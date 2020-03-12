@@ -48,7 +48,7 @@ def runTests():
     q = multiprocessing.Queue()
     p = multiprocessing.Process(target=testing.runAllTests, args=(q,))
     p.start()
-    time.sleep(5)
+    time.sleep(10)
     p.join()
     p.terminate()
     return q.get()
