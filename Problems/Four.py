@@ -1,4 +1,4 @@
-import AlgoInt
+from AlgoInt.Problems import FourS
 import multiprocessing
 import time
 
@@ -7,31 +7,31 @@ class Testing:
         self.total = 0
 
     def test_case_1(self):
-        if AlgoInt.Problems.FourS.int_to_Roman(3) != "III":
+        if FourS.int_to_Roman(3) != "III":
             return 1
         else:
             return 0
 
     def test_case_2(self):
-        if AlgoInt.Problems.FourS.int_to_Roman(4) != "IV":
+        if FourS.int_to_Roman(4) != "IV":
             return 1
         else:
             return 0
 
     def test_case_3(self):
-        if AlgoInt.Problems.FourS.int_to_Roman(9) != "IX":
+        if FourS.int_to_Roman(9) != "IX":
             return 1
         else:
             return 0
 
     def test_case_4(self):
-        if AlgoInt.Problems.FourS.int_to_Roman(58) != "LVIII":
+        if FourS.int_to_Roman(58) != "LVIII":
             return 1
         else:
             return 0
 
     def test_case_5(self):
-        if AlgoInt.Problems.FourS.int_to_Roman(1994) != "MCMXCIV":
+        if FourS.int_to_Roman(1994) != "MCMXCIV":
             return 1
         else:
             return 0

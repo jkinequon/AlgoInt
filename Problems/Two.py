@@ -1,4 +1,4 @@
-import AlgoInt
+from AlgoInt.Problems import TwoS
 import multiprocessing
 import time
 
@@ -7,25 +7,25 @@ class Testing:
         self.total = 0
 
     def test_case_1(self):
-        if AlgoInt.Problems.TwoS.mostCommon([1]) != 1:
+        if TwoS.mostCommon([1]) != 1:
             return 1
         else:
             return 0
 
     def test_case_2(self):
-        if AlgoInt.Problems.TwoS.mostCommon([2, 1, 2]) != 2:
+        if TwoS.mostCommon([2, 1, 2]) != 2:
             return 1
         else:
             return 0
 
     def test_case_3(self):
-        if AlgoInt.Problems.TwoS.mostCommon([0, 0, 1, 1, 1]) != 1:
+        if TwoS.mostCommon([0, 0, 1, 1, 1]) != 1:
             return 1
         else:
             return 0
 
     def test_case_4(self):
-        if AlgoInt.Problems.TwoS.mostCommon([3, 3, 3, 3, 3, 3]) != 3:
+        if TwoS.mostCommon([3, 3, 3, 3, 3, 3]) != 3:
             return 1
         else:
             return 0
