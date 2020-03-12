@@ -1,4 +1,4 @@
-from AlgoInt.Problems import OneS
+import AlgoInt
 import multiprocessing
 import time
 
@@ -7,31 +7,31 @@ class Testing:
         self.total = 0
 
     def test_case_1(self):
-        if (OneS.getNthFib(1)) != 1:
+        if (AlgoInt.Problems.OneS.getNthFib(1)) != 1:
             return 1
         else:
             return 0
 
     def test_case_2(self):
-        if (OneS.getNthFib(7)) != 13:
+        if (AlgoInt.Problems.OneS.getNthFib(7)) != 13:
             return 1
         else:
             return 0
 
     def test_case_3(self):
-        if (OneS.getNthFib(14)) != 377:
+        if (AlgoInt.Problems.OneS.getNthFib(14)) != 377:
             return 1
         else:
             return 0
 
     def test_case_4(self):
-        if (OneS.getNthFib(16)) != 987:
+        if (AlgoInt.Problems.OneS.getNthFib(16)) != 987:
             return 1
         else:
             return 0
 
     def test_case_5(self):
-        if (OneS.getNthFib(17)) != 1597:
+        if (AlgoInt.Problems.OneS.getNthFib(17)) != 1597:
             return 1
         else:
             return 0

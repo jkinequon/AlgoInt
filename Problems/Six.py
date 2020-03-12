@@ -1,6 +1,6 @@
-from AlgoInt.Problems import SixS
 import multiprocessing
 import time
+import AlgoInt
 
 class Testing:
     def __init__(self):
@@ -8,42 +8,42 @@ class Testing:
 
     def test_case_1(self):
         nums = [1,2,0]
-        if SixS.firstMissingPositive(nums) != 3:
+        if AlgoInt.Problems.SixS.firstMissingPositive(nums) != 3:
             return 1
         else:
             return 0
 
     def test_case_2(self):
         nums = [3,4,-1,1]
-        if SixS.firstMissingPositive(nums) != 2:
+        if AlgoInt.Problems.SixS.firstMissingPositive(nums) != 2:
             return 1
         else:
             return 0
 
     def test_case_3(self):
         nums = [7,8,9,11,12]
-        if SixS.firstMissingPositive(nums) != 1:
+        if AlgoInt.Problems.SixS.firstMissingPositive(nums) != 1:
             return 1
         else:
             return 0
 
     def test_case_4(self):
         nums = [x for x in range(1001) if x != 867]
-        if SixS.firstMissingPositive(nums) != 867:
+        if AlgoInt.Problems.SixS.firstMissingPositive(nums) != 867:
             return 1
         else:
             return 0
 
     def test_case_5(self):
         nums = [x for x in range(100) if x != 23]
-        if SixS.firstMissingPositive(nums) != 23:
+        if AlgoInt.Problems.SixS.firstMissingPositive(nums) != 23:
             return 1
         else:
             return 0
 
     def test_case_6(self):
         nums = [x for x in range(-100,1)]
-        if SixS.firstMissingPositive(nums) != 1:
+        if AlgoInt.Problems.SixS.firstMissingPositive(nums) != 1:
             return 1
         else:
             return 0

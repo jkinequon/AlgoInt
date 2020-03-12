@@ -1,4 +1,4 @@
-from AlgoInt.Problems import ThreeS
+import AlgoInt
 import multiprocessing
 import time
 
@@ -7,31 +7,31 @@ class Testing:
         self.total = 0
 
     def test_case_1(self):
-        if ThreeS.lengthOfLongestSubstring('abcabcbb') != 3:
+        if AlgoInt.Problems.ThreeS.lengthOfLongestSubstring('abcabcbb') != 3:
             return 1
         else:
             return 0
 
     def test_case_2(self):
-        if ThreeS.lengthOfLongestSubstring('bbbbb') != 3:
+        if AlgoInt.Problems.ThreeS.lengthOfLongestSubstring('bbbbb') != 3:
             return 1
         else:
             return 0
 
     def test_case_3(self):
-        if ThreeS.lengthOfLongestSubstring('pwwkew') != 3:
+        if AlgoInt.Problems.ThreeS.lengthOfLongestSubstring('pwwkew') != 3:
             return 1
         else:
             return 0
 
     def test_case_4(self):
-        if ThreeS.lengthOfLongestSubstring('aababcabcdabcdeabcdefabcdefg') != 7:
+        if AlgoInt.Problems.ThreeS.lengthOfLongestSubstring('aababcabcdabcdeabcdefabcdefg') != 7:
             return 1
         else:
             return 0
 
     def test_case_5(self):
-        if ThreeS.lengthOfLongestSubstring('CODINGISAWESOME') != 7:
+        if AlgoInt.Problems.ThreeS.lengthOfLongestSubstring('CODINGISAWESOME') != 7:
             return 1
         else:
             return 0
