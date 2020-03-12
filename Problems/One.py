@@ -40,8 +40,8 @@ class Testing:
         tests = [self.test_case_1, self.test_case_2, self.test_case_3, self.test_case_4, self.test_case_5]
         for test in tests:
             self.total = test()
-        proc.put(self.total)
-        return self.total
+        proc.put([self.total, len(tests)])
+        return self.total, len(tests)
 
 def runTests():
     testing = Testing()
@@ -56,4 +56,6 @@ def runTests():
 
 
 val = runTests()
-print(val)
+print("Failed: ", val[0])
+print("Total: ", val[1])
+
