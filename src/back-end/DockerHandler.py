@@ -1,26 +1,27 @@
 class handleDocker:
     def __init__(self):
-        return
+        self.errorData = []
+        self.testsFailed = 0
+        self.testsTotal = 0
+        self.outputData = []
 
-    def DockerRun(self):
+    def DockerRun(self, UUID, QuestionID):
         return
-
 
     def getErrorData(self):
-        return
+        return self.errorData
 
+    def getTestsFailed(self):
+        return self.testsFailed
 
-    def getTestsDone(self):
-        return
-
+    def getTestsTotal(self):
+        return self.testsTotal
 
     def getOutputData(self):
-        return
-
+        return self.outputData
 
     def handleInformation(self):
         return
-
 
     def DockerClean(self):
         return
