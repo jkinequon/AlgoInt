@@ -64,3 +64,6 @@ build/bundle.js
 
 # ignore configuration file
 config.json
+
+# .DS_Store
+*.DS_Store
