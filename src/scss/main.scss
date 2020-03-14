@@ -26,10 +26,8 @@ body {
 @import './components/navbar';
 @import './components/Sidebar/index';
 @import './components/Sidebar/sidebarOption';
-@import './components/challenge';
 @import './components/Survey/index';
 // import pages contains page-specific styling
 @import 'pages/home';
 @import 'pages/notFound';
-@import 'pages/challenges';
-@import 'pages/profile';
+@import 'pages/selection';

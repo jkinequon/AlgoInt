@@ -1,5 +1,4 @@
 export default {
   signedIn: false,
-  surveyTaken: false,
-  surveyScore: 0,
+  currentState: "LogIn"
 };
