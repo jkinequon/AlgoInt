@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Navbar, Sidebar, } from './components';
-import { Home, NotFound, Selection } from './pages';
+import { Home, NotFound, Selection, Problem } from './pages';
 import {
   HashRouter as Router,
   Switch,
@@ -18,9 +18,7 @@ class SecureRouter extends Component {
         return (
             <Router>
                 <Navbar/>
-                <div className="root-inner-container">
-                    {/* <Sidebar/> */}
-                    <div className="inner-middle-container">
+                <div className="root-inner-container" style={{ height: 'calc(100vh - Xpx)'}}>
                         <Switch>
                             <Route exact path='/'>
                                 <Home/>
@@ -32,13 +30,12 @@ class SecureRouter extends Component {
                                 <Selection/>
                             </Route>
                             <Route path='/Problem'>
-                                <NotFound/>
+                                <Problem/>
                             </Route>
                             <Route path="*">
                                 <NotFound />
                             </Route>
                         </Switch>
-                    </div>
                 </div>
             </Router>
         )
