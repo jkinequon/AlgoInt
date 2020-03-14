@@ -1,22 +1,26 @@
-def DockerRun():
-    return
+class handleDocker:
+    def __init__(self):
+        return
+
+    def DockerRun(self):
+        return
 
 
-def getErrorData():
-    return
+    def getErrorData(self):
+        return
 
 
-def getTestsDone():
-    return
+    def getTestsDone(self):
+        return
 
 
-def getOutputData():
-    return
+    def getOutputData(self):
+        return
 
 
-def handleInformation():
-    return
+    def handleInformation(self):
+        return
 
 
-def DockerClean():
-    return
+    def DockerClean(self):
+        return
