@@ -27,5 +27,9 @@ class DockerTest:
 
 
     def DockerClean(self):
-        cmd = "rm -r ./" + self.UUID
+        cmd = "rm -r ./user/" + self.UUID
         os.system(cmd)
+
+d = DockerTest("UUID", "One", "hi")
+d.DockerClean()
+d.DockerTest()
