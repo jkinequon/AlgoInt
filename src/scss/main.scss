@@ -9,14 +9,10 @@ body {
 
 #root {
     .root-inner-container {
-        .inner-middle-container {
-            position: absolute;
-            top: 20%;
-            margin: 15px 0px;
-            width: 99%;
-            height: 60%;
-            min-height: 100px;
-        }
+        position: absolute;
+        width: 99%;
+        top: 80px;
+        height: calc(100% - 100px);
     }
 }
 
@@ -26,8 +22,8 @@ body {
 @import './components/navbar';
 @import './components/Sidebar/index';
 @import './components/Sidebar/sidebarOption';
-@import './components/Survey/index';
 // import pages contains page-specific styling
 @import 'pages/home';
 @import 'pages/notFound';
 @import 'pages/selection';
+@import 'pages/problem';

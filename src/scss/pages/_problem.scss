@@ -1,0 +1,73 @@
+.parent-container {
+    width: 100%;
+    height: 100%;
+    .left-container {
+        border-style: solid;
+        border-color: red;
+        width: 29%;
+        height: 100%;
+        float: left;
+        .question-div {
+            width: 99%;
+            height: 59%;
+            border-style: solid;
+            border-color: blue;
+        }
+        .console-div {
+            width: 99%;
+            height: 39%;
+            border-style: solid;
+            border-color: blue;
+        }
+    }
+    .right-container {
+        border-style: solid;
+        border-color: red;
+        width: 70%;
+        height: 100%;
+        float: right;
+        .bottom-right-bar {
+            // width: max-content;
+            // position: absolute;
+            bottom: 0px;
+            right: 0px;
+            height: max-content;
+            border-style: solid;
+            border-color: blue;
+        }
+        button {
+            display: inline-block;
+            border-radius: 4px;
+            background-color: #282c34;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            padding: 20px;
+            width: 20%;
+            transition: all 0.5s;
+            cursor: pointer;
+        }
+        button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+        button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+        button:hover span {
+            padding-right: 25px;
+        }
+        button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+    }
+}
