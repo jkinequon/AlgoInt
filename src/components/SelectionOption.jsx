@@ -12,9 +12,15 @@ export default class SelectionOption extends Component {
 
 
         return (
-            <button className="testSelectionOption" onClick={this.test}>
-                <table></table>
-                {difficulty} | {type} | {language} | {description}
+            <button className="selectionOption" onClick={this.test}>
+                <table className="option">
+                    <tr>
+                        <td>{difficulty}</td>
+                        <td>{type}</td>
+                        <td>{language}</td>
+                        <td>{description}</td>
+                    </tr>
+                </table>
             </button>
         )
     }
