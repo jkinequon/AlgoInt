@@ -1,0 +1,24 @@
+.notfound-root {
+    background: white;
+    padding: 40px;
+    height: 300px;
+    border-radius: 8px;
+    border: 1px solid #eceff1;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+    
+    .page-text {
+        font-size: 2em;
+        white-space: pre;
+    }
+    .image-container {
+        position: relative;
+        width: max-content;
+        margin-inline-start: auto;
+
+        img {
+            width: 300px;
+            height: 300px;
+            transform: translate(50px, -115px);
+        }
+    }
+}

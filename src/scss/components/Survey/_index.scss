@@ -1,0 +1,105 @@
+.survey-container-root {
+    background: white;
+    padding: 15px;
+    height: 450px;
+    border-radius: 8px;
+    border: 1px solid #eceff1;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+    margin-bottom: 20px;
+    
+    .logo {
+        display: inline-block;
+        width: max-content;
+        font-size: 40px;
+        height: 100%;
+        vertical-align: top;
+        cursor: pointer;
+        visibility: visible;
+        opacity: 1;
+
+        &.hidden {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        svg {
+            position: relative;
+            top: 50%;
+            transform: translateY(-60%);
+        }
+    }
+
+    .middle-container {
+        display: inline-block;
+        width: calc(100% - 92px);
+        height: 100%;
+        vertical-align: top;
+
+        .welcome-text {
+            padding: 40px;
+
+            h1 {
+                font-size: 3.2em;
+            }
+
+            .text {
+                font-size: 1.6em;
+                white-space: pre-line;
+            }
+        }
+
+        .question-root {
+            padding: 40px;
+            .question-text {
+                font-size: 2em;
+                margin-bottom: 20px;
+
+            }
+            .option-text {
+                font-size: 1.35em;
+                margin-bottom: 10px;
+
+                input {
+                    transform: scale(1.2);
+                    margin-right: 10px;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .result-text {
+            padding: 40px;
+            
+            h1 {
+                font-size: 2.6em;
+            }
+            
+            .result {
+                white-space: pre-line;
+                font-size: 1.5em;
+                padding: 15px;
+            }
+
+            .submit-button {
+                margin-top: 30px;
+                margin-right: auto;
+                margin-left: auto;
+                width: max-content;
+                background: white;
+                padding: 6px 20px;
+                border-radius: 5px;
+                font-size: 24px;
+                user-select: none;
+                cursor: pointer;
+                border: 1.2px solid #8080808c;
+                transition: background-color 0.2s ease-in-out;
+
+                &:hover {
+                    color: white;
+                    background: #005200;
+                    border: 1.2px solid #050c008f;
+                }
+            }
+        }
+    }
+}
