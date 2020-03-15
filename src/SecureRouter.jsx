@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Navbar, Sidebar, } from './components';
-import { Home, NotFound, Selection, Problem } from './pages';
+import { Home, NotFound, Selection, Problem, LogIn } from './pages';
 import {
   HashRouter as Router,
   Switch,
@@ -20,21 +20,29 @@ class SecureRouter extends Component {
                 <Navbar/>
                 <div className="root-inner-container" style={{ height: 'calc(100vh - Xpx)'}}>
                         <Switch>
-                            <Route exact path='/'>
-                                <Home/>
-                            </Route>
-                            <Route path='/Selection'>
-                                <Selection/>
-                            </Route>
-                            <Route path='/Selection'>
-                                <Selection/>
-                            </Route>
-                            <Route path='/Problem'>
-                                <Problem/>
-                            </Route>
+                            {!signedIn ? 
                             <Route path="*">
-                                <NotFound />
+                                <LogIn />
                             </Route>
+                            :
+                            <>
+                                <Route exact path='/'>
+                                    <Home/>
+                                </Route>
+                                <Route path='/Selection'>
+                                    <Selection/>
+                                </Route>
+                                <Route path='/Selection'>
+                                    <Selection/>
+                                </Route>
+                                <Route path='/Problem'>
+                                    <Problem/>
+                                </Route>
+                                {/* <Route path="*">
+                                    <NotFound />
+                                </Route> */}
+                            </>
+                        }
                         </Switch>
                 </div>
             </Router>
