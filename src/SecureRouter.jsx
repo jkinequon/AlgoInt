@@ -32,9 +32,6 @@ class SecureRouter extends Component {
                                 <Route path='/Selection'>
                                     <Selection/>
                                 </Route>
-                                <Route path='/Selection'>
-                                    <Selection/>
-                                </Route>
                                 <Route path='/Problem'>
                                     <Problem/>
                                 </Route>
