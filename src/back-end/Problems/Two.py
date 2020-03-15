@@ -1,4 +1,4 @@
-from AlgoInt.Problems import TwoS
+from AlgoInt.Problems import TwoS.py
 import multiprocessing
 import time
 

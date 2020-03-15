@@ -1,4 +1,5 @@
-from AlgoInt.Problems import FiveS
+from AlgoInt.Problems import FiveS.py
+import multiprocessing
 import multiprocessing
 import time
 
