@@ -13,14 +13,18 @@ import {
 class LogIn extends Component {
     render() {
         const { signedIn, signIn, signOff } = this.props;
-        
+
         return (
             <div className="test">
-                Log In
-                {signedIn ? 
-                <button className="" onClick={() => {signOff()}}>Log out</button> : 
-                <button className="" onClick={() => {signIn()}}>Log in</button>
-                }
+                <form className="signIn">
+                    <label>Log In</label>
+                    <input type="email" placeholder="email" name="email" required></input>
+                    <input type="password" placeholder="password" name="psw" required></input>
+                    {signedIn ?
+                        <button className="" onClick={() => { signOff() }}>Log out</button> :
+                        <button className="" onClick={() => { signIn() }}>Log in</button>
+                    }
+                </form>
             </div>
         )
     }
@@ -34,8 +38,8 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
     return {
-      signIn: bindActionCreators(signIn, dispatch),
-      signOff: bindActionCreators(signOff, dispatch),
+        signIn: bindActionCreators(signIn, dispatch),
+        signOff: bindActionCreators(signOff, dispatch),
     };
 }
 
