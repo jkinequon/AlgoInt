@@ -1,3 +1,22 @@
 .test {
-    color: wheat;
+    background-color: grey;
+    color: #fff;
+    width: 65vw;
+    height: 50vh;
+    margin: auto;
+    margin-top: 20vh;
+}
+
+.signIn {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: auto;
+    padding-top: 20vh;
+}
+
+.signIn button {
+    width: 50px;
+    margin-top: 1vh;
+    align-self: center;
 }
