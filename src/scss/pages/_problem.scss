@@ -27,8 +27,8 @@
         height: 100%;
         float: right;
         .bottom-right-bar {
-            // width: max-content;
-            // position: absolute;
+            width: max-content;
+            position: absolute;
             bottom: 0px;
             right: 0px;
             height: max-content;
@@ -36,6 +36,8 @@
             border-color: blue;
         }
         button {
+            min-width: 200px;
+            margin: 0px 5px;
             display: inline-block;
             border-radius: 4px;
             background-color: #282c34;

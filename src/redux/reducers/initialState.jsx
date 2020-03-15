@@ -1,4 +1,4 @@
 export default {
-  signedIn: false,
+  signedIn: true,
   currentState: "LogIn"
 };
