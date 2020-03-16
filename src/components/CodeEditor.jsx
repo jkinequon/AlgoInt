@@ -79,7 +79,7 @@ export default class CodeEditor extends Component {
         this.state = {
           value: defaultValue,
           placeholder: "Enter some code...",
-          theme: "twilight",
+          theme: "monokai",
           mode: "javascript",
           enableBasicAutocompletion: false,
           enableLiveAutocompletion: true,
