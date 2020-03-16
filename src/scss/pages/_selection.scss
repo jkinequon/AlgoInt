@@ -16,7 +16,7 @@
         padding: 20px;
     }
     .selectionOption {
-        background-color: grey;
+        background-color: #2c2c2c;
         border: none;
     }
     .option {
@@ -29,6 +29,15 @@
         text-align: -internal-center;
         font-size: 20px;
         padding: 14px;
+    }
+    .selectionOption:hover {
+        color: #141414;
+        background: #8a8a8a;
+        border: 1px solid #272727;
+        box-shadow: 0 1px 2px 0 rgba(77, 77, 77, 0.3), 0 4px 12px 4px rgba(7, 7, 7, 0.15);
+    }
+    .option:hover {
+        color: #141414;
     }
 }
 

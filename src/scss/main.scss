@@ -14,6 +14,9 @@ body {
         top: 80px;
         height: calc(100% - 100px);
     }
+    .no-text-decoration {
+        text-decoration: none;
+    }
 }
 
 // import base - contains global styles, such as resets, typography, colors
