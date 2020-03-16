@@ -1,4 +1,7 @@
 export default {
   signedIn: false,
-  currentState: "LogIn"
+  currentState: "LogIn",
+  questionQueue:[],
+  questionsObject:[]
+
 };
