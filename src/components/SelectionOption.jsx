@@ -11,21 +11,13 @@ import { setQuestionQueue } from '../redux/actions/actions'
 
  class SelectionOption extends Component {
 
-    test = () => {
-        const {  number='999', setQuestionQueue  } = this.props;
-
-        setQuestionQueue(number)
-        console.log("TESTING")
-
-    }
-
     render() {
 
-        const { difficulty, type, language, description, number='999'  } = this.props;
+        const { difficulty, type, language, description, number=[999], setQuestionQueue  } = this.props;
 
         return (
-            <button className="selectionOption" onClick={this.test}>
-            <NavLink className="no-text-decoration" activeClassName={'no-text-decoration'} to={'/problem'} >
+            <button className="selectionOption"  onClick={() => setQuestionQueue([number])}>
+            <NavLink className="no-text-decoration" activeClassName={'no-text-decoration'} to={'/Problem'} >
                     <table className="option">
                         <tr>
                             <td>{difficulty}</td>
@@ -39,12 +31,6 @@ import { setQuestionQueue } from '../redux/actions/actions'
         )
     }
 }
-
-// const mapStateToProps = (state) => {
-//     return {
-//         signedIn: state.delta.signedIn,
-//     };
-// };
 
 function mapDispatchToProps(dispatch) {
     return {

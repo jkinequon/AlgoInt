@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { setQuestionObject } from '../src/redux/actions/actions'
 
 import { Navbar, Sidebar, } from './components';
-import { Home, NotFound, Selection, Problem, LogIn } from './pages';
+import { Home, NotFound, Selection, ProblemManager, LogIn, Problem } from './pages';
 import firebase from './firebase_config'
 import {
   HashRouter as Router,
@@ -57,7 +57,7 @@ class SecureRouter extends Component {
                                     <Selection/>
                                 </Route>
                                 <Route path='/Problem'>
-                                    <Problem/>
+                                    <ProblemManager/>
                                 </Route>
                                 {/* <Route path="*">
                                     <NotFound />

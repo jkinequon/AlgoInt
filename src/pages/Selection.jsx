@@ -12,23 +12,18 @@ class Selection extends Component {
 
         return (
             <tr key={i}>
-                <td colSpan="4"><SelectionOption difficulty={val['Question Difficulty']} type={val['Question Type']} language={val['Language']} description={val['Question Name']} /></td>
+                <td colSpan="4">
+                    <SelectionOption 
+                        difficulty={val['Question Difficulty']} 
+                        type={val['Question Type']} 
+                        language={val['Language']} 
+                        description={val['Question Name']}
+                        number={val['QuestionID']}
+                    />
+                </td>
             </tr>
         )
     })
-    
-    // {
-    //     for (var key in questionsObject) {
-    //             // skip loop if the property is from prototype
-
-    //         var obj = questionsObject[key];     
-    //         console.log(obj)
-
-    //     }
-              
-
-       
-    // }
 
     render() {
         const {questionsObject} = this.props
