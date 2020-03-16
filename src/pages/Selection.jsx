@@ -1,9 +1,38 @@
 import React, { Component } from 'react'
 
 import { SelectionOption } from '../components';
+import { connect } from 'react-redux'
 
-export default class Selection extends Component {
+
+class Selection extends Component {
+
+    returnSelections = (questionsObject) => 
+    questionsObject.map((val, i) => {
+        console.log(val)
+
+        return (
+            <tr key={i}>
+                <td colSpan="4"><SelectionOption difficulty={val['Question Difficulty']} type={val['Question Type']} language={val['Language']} description={val['Question Name']} /></td>
+            </tr>
+        )
+    })
+    
+    // {
+    //     for (var key in questionsObject) {
+    //             // skip loop if the property is from prototype
+
+    //         var obj = questionsObject[key];     
+    //         console.log(obj)
+
+    //     }
+              
+
+       
+    // }
+
     render() {
+        const {questionsObject} = this.props
+
         return (
             <div className="container">
                 <table className="questions">
@@ -16,60 +45,7 @@ export default class Selection extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <td colspan="4"><SelectionOption difficulty="***" type="UX/UI" language="Java" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><SelectionOption difficulty="*" type="UX/UI" language="JavaScript" description="Q Description" /></td>
-                        </tr>
+                        {this.returnSelections(questionsObject)}                        
                     </tbody>
                 </table>
             </div>
@@ -77,3 +53,11 @@ export default class Selection extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        questionsObject: state.delta.questionsObject,
+
+    };
+};
+
+export default connect(mapStateToProps, null)(Selection);
