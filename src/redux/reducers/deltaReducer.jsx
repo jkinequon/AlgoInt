@@ -11,6 +11,10 @@ export default function deltaReducer(state = initialState, action) {
       return Object.assign({}, state,  { ...state, signedIn: false });
     }
 
+    case (types.SET_CURRENT_QUESTION): {
+      return Object.assign({}, state,  { ...state, currentQuestion: action.currentQuestion });
+    }
+
     case (types.SET_QUESTION_QUEUE): {
       return Object.assign({}, state,  { ...state, questionQueue: action.questionObject });
     }
