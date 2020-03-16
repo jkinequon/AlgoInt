@@ -2,15 +2,6 @@ import React, { Component } from 'react'
 
 import { CodeEditor } from '../components'
 
-// PLAN TO STORE UP TO 3 QUESTION NUMBERS HERE 
-// QUERY DATABASE FOR QUESTIONS
-
-// var question =  firebase.database().ref('/questions/' + questionID).once('value').then(function(snapshot){ 
-//     var information = snapshot.val()
-//   });
-    
-//   var information = snapshot.val().QuestionName();
-
 export default class Problem extends Component {
     render() {
         return (
