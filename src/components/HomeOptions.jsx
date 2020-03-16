@@ -11,7 +11,7 @@ export default class HomeOptions extends Component {
         const { title, description, toLink='/' } = this.props; 
 
         return (
-            <NavLink className="root-container-home" activeClassName={''} to={toLink} >
+            <NavLink className="root-container-home" activeClassName={'root-container-home-active'} to={toLink} >
                 <div className="inner-container">
                     <div className="title-container">
                         <div className="title-text">
