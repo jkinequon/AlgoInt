@@ -64,6 +64,10 @@ build/bundle.js
 
 # ignore configuration file
 config.json
+src/firebase_config.js
+
 
 # .DS_Store
 *.DS_Store
+
+
