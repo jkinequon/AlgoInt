@@ -1,8 +1,8 @@
 export default {
-  signedIn: false,
+  signedIn: true,
   currentState: "LogIn",
   currentQuestion: null,
-  questionQueue:[],
+  questionQueue:[3],
   questionsObject:[]
 
 };

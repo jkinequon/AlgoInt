@@ -2,8 +2,14 @@ import React, { Component } from 'react'
 
 import { CodeEditor } from '../components'
 
-export default class Problem extends Component {
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { setCurrentQuestion, setQuestionQueue } from '../redux/actions/actions'
+
+class Problem extends Component {
     render() {
+        const { setCurrentQuestion } = this.props;
+
         return (
             <div className="parent-container">
                 <div className="left-container">
@@ -23,11 +29,29 @@ export default class Problem extends Component {
                 <div className="right-container">
                     <CodeEditor/>
                     <div className="bottom-right-bar">
-                        <button><span>RUN</span></button>
-                        <button><span>SUBMIT</span></button>
+                        <button className='problem-button'><span>RUN</span></button>
+                        <button className='problem-button' onClick={() => setCurrentQuestion(null)}><span>SUBMIT</span></button>
                     </div>
                 </div>
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        currentQuestion: state.delta.currentQuestion,
+        questionQueue: state.delta.questionQueue,
+
+    };
+};
+
+function mapDispatchToProps(dispatch) {
+    return {
+        setCurrentQuestion: bindActionCreators(setCurrentQuestion, dispatch),
+        setQuestionQueue: bindActionCreators(setQuestionQueue, dispatch),
+
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Problem);
