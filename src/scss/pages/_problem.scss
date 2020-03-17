@@ -10,7 +10,7 @@
         float: left;
         .question-div {
             width: 99%;
-            height: 59%;
+            height: 50%;
             // border-style: solid;
             // border-color: blue;
             text-align: center;
@@ -63,6 +63,10 @@
     }
 }
 
+h1 {
+    color: #ffffffa6;
+}
+
 .bottom-right-bar {
     width: max-content;
     position: absolute;
@@ -73,14 +77,19 @@
     // border-color: blue;
 }
 
+.hint-div {
+    width: max-content;
+    margin: 2px auto;
+}
+
 .problem-button {
-    min-width: 200px;
+    min-width: 250px;
     margin: 0px 5px;
     display: inline-block;
     border-radius: 4px;
     background-color: #282c34;
     border: none;
-    color: #FFFFFF;
+    color: #ffffffa6;
     text-align: center;
     font-size: 28px;
     padding: 20px;
@@ -112,4 +121,41 @@
 .problem-button:hover span:after {
     opacity: 1;
     right: 0;
+}
+
+.ReactModal__Overlay {
+    z-index: 7;
+}
+
+.Modal {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background-color: #252525;
+    width: 40%;
+    height: 40%;
+    color: #ffffffa6;
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(46, 46, 46, 0.514);
+}
+
+.modal-div {
+    position: relative;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: max-content;
+    text-align: center;
+    text-decoration: none !important;
+    h1 {
+        margin: 5px;
+    }
 }
