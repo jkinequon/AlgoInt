@@ -11,16 +11,20 @@
         .question-div {
             width: 99%;
             height: 50%;
-            // border-style: solid;
-            // border-color: blue;
             text-align: center;
+            border-style: solid;
+            border-color: #10101063;
+            background-color: #1010108f;
+            border-radius: 8px;
         }
         .console-div {
             width: 99%;
             height: 39%;
             // border-style: solid;
             // border-color: blue;
-            background-color: #141414;
+            border-style: solid;
+            border-color: #10101063;
+            background-color: #1010108f;
             border-radius: 8px;
         }
     }
@@ -87,7 +91,7 @@ h1 {
     margin: 0px 5px;
     display: inline-block;
     border-radius: 4px;
-    background-color: #282c34;
+    background-color: #1e2127;
     border: none;
     color: #ffffffa6;
     text-align: center;
@@ -112,6 +116,10 @@ h1 {
     top: 0;
     right: -20px;
     transition: 0.5s;
+}
+
+.problem-button:hover {
+    background-color: #3e4452;
 }
 
 .problem-button:hover span {

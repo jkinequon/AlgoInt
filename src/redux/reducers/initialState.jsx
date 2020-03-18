@@ -1,5 +1,5 @@
 export default {
-  signedIn: true,
+  signedIn: false,
   currentState: "LogIn",
   currentQuestion: null,
   questionQueue:[],
