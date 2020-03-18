@@ -24,6 +24,10 @@
             font-size: 1em;
             text-align: center;
             padding-top: 10px;
+            transition: 0.5s;
+        }
+        .title-text:hover {
+            color: whitesmoke;
         }
         svg {
             display: inline-block;
