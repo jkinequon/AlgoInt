@@ -57,7 +57,7 @@ class DockerTest:
         return self.TestsTotal
 
     def getOutputData(self):
-        return selfOutputData
+        return self.OutputData
 
     def getTestTime(self):
         return self.TestTime
