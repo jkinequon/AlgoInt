@@ -1,7 +1,10 @@
 export { default as Home } from './Home';
 export { default as NotFound } from './NotFound';
-export { default as Challenges } from './Challenges';
-export { default as Profile } from './Profile';
+export { default as Selection } from './Selection';
+export { default as ProblemManager } from './ProblemManager';
+export { default as Problem } from './Problem';
+export { default as LogIn } from './LogIn';
+
 
 
 

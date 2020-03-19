@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import {HomeOptions} from '../components';
+import { HomeOptions } from '../components';
 
 
 export default class Home extends Component {
     render() {
         return (
-            <div className="main-home-container">
-                <HomeOptions title="WHITEBOARD" description="-add description-" toLink="/whiteboard"/>
-                <HomeOptions title="CODING PROBLEM" description="-add description-"  toLink="/codeproblem"/>
-                <HomeOptions title="MOCK INTERVIEW" description="-add description-"  toLink="/mockinterview"/>
+            <div className="inner-middle-container">
+                <div className="main-home-container">
+                    <HomeOptions title="WHITEBOARD" description="-add description-" toLink="/Selection" />
+                    <HomeOptions title="CODING PROBLEM" description="-add description-"  toLink="/Selection"/>
+                    <HomeOptions title="MOCK INTERVIEW" description="-add description-"  toLink="/Problem" isMockInterview={true}/>
+                </div>
             </div>
         )
     }

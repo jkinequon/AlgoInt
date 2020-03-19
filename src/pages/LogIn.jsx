@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { signIn, signOff } from '../redux/actions/actions'
@@ -8,7 +9,8 @@ import {
     withRouter
 } from "react-router-dom";
 
-class Navbar extends Component {
+
+class LogIn extends Component {
     googleSignIn = () => {
         const { signIn } = this.props;
 
@@ -28,9 +30,10 @@ class Navbar extends Component {
         });
     }
 
-    googleSignOut = () => {
-        const { signOff } = this.props;
+    googleSignOut = (e) => {
+        e.preventDefault();
         firebase.auth().signOut().then(function(){
+            const { signOff } = this.props;
             signOff()
             // successful signout
         }).catch(function(error){
@@ -39,34 +42,32 @@ class Navbar extends Component {
     }
 
     render() {
-        const { signedIn } = this.props;
+        const { signedIn, signIn, signOff } = this.props;
 
         return (
-            <NavLink className="root-container-home" activeClassName={'root-container-home-active'} to={'/'} >
-                <nav className="navbar-root">
-                    <div className="navbar-title">
-                        <div className="title-text">
-                            AlgoInt
-                        </div>
-                    </div>
+            <div className="test">
+                <form className="signIn">
+                    <label>Log In</label>
+                    <input type="email" placeholder="email" name="email" ></input>
+                    <input type="password" placeholder="password" name="psw" ></input>
                     {signedIn ?
-                    <div className="google-sign-in-div float-right"  onClick={() => { this.googleSignOut() }}>
-                        <span className="third_party_text_Signout">Sign out</span>
-
-                    </div>
-                    :
-                    <div className="google-sign-in-div float-right"  onClick={() => { this.googleSignIn() }}>
-                        <button className="google-image-button">
-                            <img className='google-image' src='assets/google-logo.png'></img>
-                        </button>
-                        <span className="third_party_text">Sign in with google</span>
-                    </div>
+                        <button className="" onClick={() => { signOff() }}>Log out</button> :
+                        <>
+                            <button className="" onClick={() => { signIn() }}>Log in</button>
+                            <div className="google-sign-in-div"  onClick={() => { this.googleSignIn() }}>
+                                <button className="google-image-button">
+                                    <img className='google-image' src='assets/google-logo.png'></img>
+                                </button>
+                                <span className="third_party_text">Sign in with google</span>
+                            </div>
+                        </>
                     }
-                </nav>
-            </NavLink>
+                </form>
+            </div>
         )
-       }
+    }
 }
+
 const mapStateToProps = (state) => {
     return {
         signedIn: state.delta.signedIn,
@@ -80,4 +81,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LogIn));
