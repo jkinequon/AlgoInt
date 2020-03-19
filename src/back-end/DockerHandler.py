@@ -31,6 +31,7 @@ class handleDocker:
     def getErrorData(self):
         return self.errorData
 
+  command 'nmon' from deb nmon
     def getTestsFailed(self):
         return self.testsFailed
 
@@ -41,6 +42,10 @@ class handleDocker:
         return self.outputData
 
     def handleInformation(self):
+        if self.state == "Submit":
+           # Handle the submit which is about sending the leaderboard and time
+        else:
+           # Handle the Run Case (Which involves not sending time + leaderboard"
         return
 
     def DockerClean(self):

@@ -44,10 +44,10 @@ class Testing:
         end_time = time.time()
         total_time = end_time - start_time
         proc.put([self.total, len(tests), total_time])
-        return sel f.total, len(tests), total_time
+        return self.total, len(tests), total_time
 
 def runTests(): 
-    testing = Tes ting()
+    testing = Testing()
     q = multiprocessing.Queue()
     p = multiprocessing.Process(target=testing.runAllTests, args=(q,))
     p.start()
@@ -60,7 +60,7 @@ def runTests():
 
 val = runTests()
 print("Failed: ", val[0])
-p rint("Total: ", val[1])
+print("Total: ", val[1])
 print("Time: ", val[2])
 
  
