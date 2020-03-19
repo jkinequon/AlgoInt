@@ -20,3 +20,50 @@
     margin-top: 1vh;
     align-self: center;
 }
+
+.google-sign-in-div {
+    width: max-content;
+    height: max-content;
+    background-color: white;
+    margin: 0 auto;
+    .google-image-button {
+        cursor: pointer;
+        margin-top: 0px;
+        padding: 0;
+        border: none;
+        background: none;
+    }
+    .google-image {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.third_party_text {
+    cursor: pointer;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    height: 40px;
+    align-items: center;
+    padding-left: 11px;
+    text-decoration: none;
+    line-height: 16px;
+    font-weight: 500;
+    line-height: 14px;
+    font-family: Roboto !important;
+    color: black;
+    position: relative;
+    top: -12px;
+    padding-right: 11px;
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.google_login_img {
+    background: url(/assets/icons/groupgoogle_2x_360-e7d3bc14d96e3610ff46ad704e3b88322efee353327a40e68003dbf63fd84d1f.png) center no-repeat;
+    background-size: 40px;
+    border: 1px solid #4285F4;
+    border-radius: 2px;
+}

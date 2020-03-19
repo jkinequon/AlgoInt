@@ -24,10 +24,11 @@
             font-size: 1em;
             text-align: center;
             padding-top: 10px;
-            transition: 0.5s;
+            transition: 0.8s;
         }
         .title-text:hover {
             color: whitesmoke;
+            text-shadow: 0 0 10px rgba(245, 245, 245, 0.486);
         }
         svg {
             display: inline-block;
