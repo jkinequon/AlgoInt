@@ -54,8 +54,8 @@ class LogIn extends Component {
                         <button className="" onClick={() => { signOff() }}>Log out</button> :
                         <>
                             <button className="" onClick={() => { signIn() }}>Log in</button>
-                            <div className="google-sign-in-div">
-                                <button className="google-image-button" onClick={() => { this.googleSignIn() }}>
+                            <div className="google-sign-in-div"  onClick={() => { this.googleSignIn() }}>
+                                <button className="google-image-button">
                                     <img className='google-image' src='assets/google-logo.png'></img>
                                 </button>
                                 <span className="third_party_text">Sign in with google</span>
