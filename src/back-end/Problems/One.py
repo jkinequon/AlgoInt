@@ -11,13 +11,13 @@ class Testing:
             return 1
         else:
             return 0
-
+ 
     def test_case_2(self):
         if (OneS.getNthFib(7)) != 13:
             return 1
         else:
             return 0
-
+ 
     def test_case_3(self):
         if (OneS.getNthFib(14)) != 377:
             return 1
@@ -26,10 +26,10 @@ class Testing:
 
     def test_case_4(self):
         if (OneS.getNthFib(16)) != 987:
-            return 1
+             return 1
         else:
             return 0
-
+ 
     def test_case_5(self):
         if (OneS.getNthFib(17)) != 1597:
             return 1
@@ -37,14 +37,17 @@ class Testing:
             return 0
 
     def runAllTests(self, proc):
-        tests = [self.test_case_1, self.test_case_2, self.test_case_3, self.test_case_4, self.test_case_5]
+        tests =  [self.test_case_1, self.test_case_2, self.test_case_3, self.test_case_4, self.test_case_5]
+        start_time = time.time()
         for test in tests:
             self.total = test()
-        proc.put([self.total, len(tests)])
-        return self.total, len(tests)
+        end_time = time.time()
+        total_time = end_time - start_time
+        proc.put([self.total, len(tests), total_time])
+        return sel f.total, len(tests), total_time
 
-def runTests():
-    testing = Testing()
+def runTests(): 
+    testing = Tes ting()
     q = multiprocessing.Queue()
     p = multiprocessing.Process(target=testing.runAllTests, args=(q,))
     p.start()
@@ -57,5 +60,7 @@ def runTests():
 
 val = runTests()
 print("Failed: ", val[0])
-print("Total: ", val[1])
+p rint("Total: ", val[1])
+print("Time: ", val[2])
 
+ 
