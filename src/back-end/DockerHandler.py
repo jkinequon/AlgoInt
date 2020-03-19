@@ -1,11 +1,21 @@
+from DockerTest import DockerTest
+
 class handleDocker:
     def __init__(self):
         self.errorData = []
         self.testsFailed = 0
         self.testsTotal = 0
         self.outputData = []
+        self.SolutionString = ""
 
-    def DockerRun(self, UUID, QuestionID):
+    def DockerSubmit(self, UUID, QuestionID, SolutionString):
+        DockerTester = DockerTest(UUID, QuestionID, SolutionString)
+        DockerTester.DockerTest()
+        DockerTester.readErrors()
+        DockerTester.readFiles()
+        return
+
+    def DockerRun(self, UUID, QuestionID, SolutionString):
         return
 
     def getErrorData(self):

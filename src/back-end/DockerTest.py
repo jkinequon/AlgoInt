@@ -42,12 +42,25 @@ class DockerTest:
         data = []
         for line in file:
             data.append(line.rstrip())
-        self.TestsFailed = data[0]
-        self.TestsTotal = data[1]
+        self.OutputData = data[:-2]
+        self.TestsFailed = data[-2]
+        self.TestsTotal = data[-1]
         return
 
     def getTestsFailed(self):
-        return
+        return self.TestsFailed
+
+    def getErrorData(self):
+        return self.ErrorData
+
+    def getTestsTotal(self):
+        return self.TestsTotal
+
+    def getOutputData(self):
+        return selfOutputData
+
+    def getTestTime(self):
+        return self.TestTime
 
 
 d = DockerTest("UUID", "One", "def getNthFib(num):\n    return num")
