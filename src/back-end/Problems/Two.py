@@ -52,6 +52,6 @@ def runTests():
 
 
 val = runTests()
-print("Failed: ", val[0])
-print("Total: ", val[1])
-print("Tie: ", val[2])
+print(val[0])
+print(val[1])
+print(val[2])
