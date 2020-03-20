@@ -1,7 +1,8 @@
 from DockerTest import DockerTest
+from fireConnection import Database
 
 class handleDocker:
-    def __init__(self):
+    def __init__(self, name):
         self.errorData = []
         self.testsFailed = 0
         self.testsTotal = 0
@@ -9,6 +10,7 @@ class handleDocker:
         self.testTime = 0
         self.SolutionString = ""
         self.state = ""
+        self.name = name
         self.DockerTester = None
 
     def DockerSubmit(self, UUID, QuestionID, SolutionString):
@@ -19,7 +21,7 @@ class handleDocker:
         self.testsFailed = self.DockerTester.getTestsFailed()
         self.testsTotal = self.DockerTester.getTestsTotal()
         self.outputData = self.DockerTester.getOutputData()
-        self.testTime = self.DockerTester.get.TestTime()
+        self.testTime = self.DockerTester.getTestTime()
         self.state = "Submit"
         return
 
@@ -41,9 +43,14 @@ class handleDocker:
     def getOutputData(self):
         return self.outputData
 
-    def handleInformation(self):
+    def handleInformation(self, QuestionID):
         if self.state == "Submit":
            # Handle the submit which is about sending the leaderboard and time
+           if (int(self.testsTotal) - int(self.testsFailed) == int(self.testsTotal)):
+               db = Database()
+               priority = 1000 - float(self.testTime)
+               rankObj = db.createRankingObject(self.name,self.testTime, priority)
+               db.addRankings(rankingObj, QuestionID)
         else:
            # Handle the Run Case (Which involves not sending time + leaderboard"
         return

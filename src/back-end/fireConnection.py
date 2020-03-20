@@ -15,14 +15,19 @@ class Database:
     def updateRankings(self):
         return
 
-    def addRankings(self, rankingObj):
-        self.firebase.post("/rankings", rankingObj)
+    def addRankings(self, rankingObj, QuestionID):
+        self.firebase.post("/rankings/"+QuestionID, rankingObj)
 
     def getChallenge(self):
         return
 
-    def createRankingObject(self):
-        return
+    def createRankingObject(self, name, testTime, priority):
+        rankObj = {
+            username: name,
+            time: testTime,
+            priority: priority
+        }
+        return rankObj
 
     def createChallengeObject(self):
         return
