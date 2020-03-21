@@ -9,29 +9,14 @@ class Database:
     def sendQuestions(self, questionObj):
         self.firebase.post('/questions', questionObj)
 
-    def getRankings(self):
-        return
-
-    def updateRankings(self):
-        return
-
     def addRankings(self, rankingObj, QuestionID):
         dbString = "/"+QuestionID
-        self.firebase.post("dbString", rankingObj)
-
-    def getChallenge(self):
-        return
+        self.firebase.post(dbString, rankingObj)
 
     def createRankingObject(self, name, testTime, priority):
         rankObj = {
-            user: name,
-            time: testTime,
-            priority: priority
+            'user': name,
+            'time': testTime,
+            'priority': priority
         }
         return rankObj
-
-    def createChallengeObject(self):
-        return
-
-    def newUser(self, userObj):
-        self.firebase.post("/user", userObj)

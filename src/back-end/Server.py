@@ -1,34 +1,36 @@
 import socket
 import threading
 
-class ClientThread(threading.Thread):
-    def __init__(self,clientAddress,clientsocket):
-        threading.Thread.__init__(self)
-        self.csocket = clientsocket
-
-    def run(self):
-        # print ("Connection from : ", clientAddress)
-        # #self.csocket.send(bytes("Hi, This is from Server..",'utf-8'))
-        # msg = ''
-        # while True:
-        #     data = self.csocket.recv(2048)
-        #     msg = data.decode()
-        #     if msg=='bye':
-        #       break
-        #     print ("from client", msg)
-        #     self.csocket.send(bytes(msg,'UTF-8'))
-        # print ("Client at ", clientAddress , " disconnected...")
-
 LOCALHOST = "127.0.0.1"
 PORT = 8080
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-server.bind((LOCALHOST, PORT))
-print("Server started")
-print("Waiting for client request..")
-while True:
-    server.listen(1)
-    clientsock, clientAddress = server.accept()
-    newthread = ClientThread(clientAddress, clientsock)
-    newthread.start()
 
+class ThreadedServer(object):
+    def __init__(self, host, port):
+        self.host = host
+        self.port = port
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self.sock.bind((self.host, self.port))
+
+    def listen(self):
+        self.sock.listen(5)
+        while True:
+            client, address = self.sock.accept()
+            client.settimeout(60) # client has 60 seconds
+            threading.Thread(target=self.listenToClient, args=(client, address)).start()
+
+    def listenToClient(self, client, address):
+        BUFFERSIZE = 1024
+        while True:
+            try:
+                data = client.recv(BUFFERSIZE)
+                if data:
+                    # TODO: we recieved a signal, and we need to run the right question
+                    response = ""
+                    # TODO: The response will be our file.txt and error.txt created from docker
+                    client.send(response)
+            except:
+                client.close()
+                return False
+
+ThreadedServer(LOCALHOST,PORT).listen()
