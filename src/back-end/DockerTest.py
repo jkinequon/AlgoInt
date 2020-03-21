@@ -25,7 +25,6 @@ class DockerTest:
               "/tmp:/tmp --rm -e user="+self.UUID+" -e path_file="+self.QuestionID+".py python-test"
         os.system(cmd)
 
-  command 'nmon' from deb nmon
     def DockerClean(self):
         cmd = "rm -r ./user/" + self.UUID
         os.system(cmd)
@@ -47,8 +46,6 @@ class DockerTest:
         self.TestsFailed = data[-3]
         self.TestsTotal = data[-2]
         self.TestTime = data[-1]
-        return  command 'nmon' from deb nmon
-
 
     def getTestsFailed(self):
         return self.TestsFailed

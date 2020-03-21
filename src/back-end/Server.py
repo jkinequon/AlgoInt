@@ -45,5 +45,5 @@ class ThreadedServer(object):
                 client.close()
                 return False
 
-
+print("Starting")
 ThreadedServer(LOCALHOST, PORT).listen()
