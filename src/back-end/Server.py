@@ -1,6 +1,6 @@
 import socket
 import threading
-from DockerHandler import Docker as D
+from DockerHandler import handleDocker
 import json
 
 LOCALHOST = "127.0.0.1"
