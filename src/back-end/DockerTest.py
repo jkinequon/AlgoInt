@@ -25,6 +25,7 @@ class DockerTest:
               "/tmp:/tmp --rm -e user="+self.UUID+" -e path_file="+self.QuestionID+".py python-test"
         os.system(cmd)
 
+  command 'nmon' from deb nmon
     def DockerClean(self):
         cmd = "rm -r ./user/" + self.UUID
         os.system(cmd)
@@ -42,12 +43,27 @@ class DockerTest:
         data = []
         for line in file:
             data.append(line.rstrip())
-        self.TestsFailed = data[0]
-        self.TestsTotal = data[1]
-        return
+        self.OutputData = data[:-3]
+        self.TestsFailed = data[-3]
+        self.TestsTotal = data[-2]
+        self.TestTime = data[-1]
+        return  command 'nmon' from deb nmon
+
 
     def getTestsFailed(self):
-        return
+        return self.TestsFailed
+
+    def getErrorData(self):
+        return self.ErrorData
+
+    def getTestsTotal(self):
+        return self.TestsTotal
+
+    def getOutputData(self):
+        return self.OutputData
+
+    def getTestTime(self):
+        return self.TestTime
 
 
 d = DockerTest("UUID", "One", "def getNthFib(num):\n    return num")
