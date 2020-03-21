@@ -10,12 +10,16 @@ import { bindActionCreators } from 'redux';
 import { setQuestionQueue } from '../redux/actions/actions'
 
  class SelectionOption extends Component {
+    rankingHandler = () => {
+        console.log("Modal pop-up for: " )
+    }
 
     render() {
 
         const { difficulty, type, language, description, number=[999], setQuestionQueue  } = this.props;
 
         return (
+            <>
             <button className="selectionOption"  onClick={() => setQuestionQueue([number])}>
             <NavLink className="no-text-decoration" activeClassName={'no-text-decoration'} to={'/Problem'} >
                     <table className="option">
@@ -24,11 +28,12 @@ import { setQuestionQueue } from '../redux/actions/actions'
                             <td>{type}</td>
                             <td>{language}</td>
                             <td>{description}</td>
-                            <td><button className='ranking-button' onClick={() => this.submitHandler()}><span>RANKINGS</span></button></td>
                         </tr>
                     </table>
             </NavLink>
             </button>
+            <button className='ranking-button' onClick={() => this.rankingHandler()}><span>RANKINGS</span></button>
+            </>
         )
     }
 }

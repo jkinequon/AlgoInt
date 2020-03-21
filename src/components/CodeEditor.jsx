@@ -55,7 +55,8 @@ class CodeEditor extends Component {
         console.log("Code Editor loaded");
 
       }
-      onChange(newValue) {
+      onChange(newValue, onChange) {
+        onChange(newValue)
         console.log("change", newValue);
         this.setState({
           value: newValue
@@ -97,7 +98,7 @@ class CodeEditor extends Component {
       }
       
       componentDidMount(){
-        const { setCurrentQuestion, questionsObject, currentQuestion } = this.props;
+        const { setCurrentQuestion, questionsObject, currentQuestion, onChange } = this.props;
         var q_object = questionsObject[currentQuestion]
         this.setState({value: q_object['QuestionBP'], mode: q_object['Language'].toLowerCase()})
       }
@@ -111,7 +112,7 @@ class CodeEditor extends Component {
                 theme={this.state.theme}
                 name="CodeEditor"
                 onLoad={this.onLoad}
-                onChange={this.onChange}
+                onChange={(newValue)=>this.onChange(newValue, this.props.onChange)}
                 // onSelectionChange={this.onSelectionChange}
                 // onCursorChange={this.onCursorChange}
                 // onValidate={this.onValidate}
