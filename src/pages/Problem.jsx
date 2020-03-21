@@ -46,7 +46,7 @@ class Problem extends Component {
     }
 
     componentDidMount(){
-        const { setCurrentQuestion, questionsObject, currentQuestion } = this.props;
+        const { questionsObject, currentQuestion } = this.props;
         var q_object = questionsObject[currentQuestion]
         this.setState({
             questionTitle: q_object['Question Name'],

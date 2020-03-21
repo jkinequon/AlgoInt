@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import AceEditor from "react-ace";
 
@@ -47,11 +48,12 @@ const languages = [
   import "ace-builds/src-min-noconflict/ext-searchbox";
   import "ace-builds/src-min-noconflict/ext-language_tools";
   
-  const defaultValue = `//Enter some code...`;
+  var defaultValue = `//Enter some code`
 
-export default class CodeEditor extends Component {
+class CodeEditor extends Component {
     onLoad() {
         console.log("Code Editor loaded");
+
       }
       onChange(newValue) {
         console.log("change", newValue);
@@ -93,8 +95,15 @@ export default class CodeEditor extends Component {
         };
         this.onChange = this.onChange.bind(this);
       }
+      
+      componentDidMount(){
+        const { setCurrentQuestion, questionsObject, currentQuestion } = this.props;
+        var q_object = questionsObject[currentQuestion]
+        this.setState({value: q_object['QuestionBP'], mode: q_object['Language'].toLowerCase()})
+      }
 
     render() {
+        console.log(this.state.mode)
         return (
               <AceEditor
                 placeholder={this.state.placeholder}
@@ -124,3 +133,13 @@ export default class CodeEditor extends Component {
         
     }
 }
+const mapStateToProps = (state) => {
+  return {
+      questionsObject: state.delta.questionsObject,
+      currentQuestion: state.delta.currentQuestion,
+
+  };
+};
+
+export default connect(mapStateToProps, null)(CodeEditor);
+
