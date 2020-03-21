@@ -11,6 +11,7 @@ class handleDocker:
         self.SolutionString = ""
         self.state = ""
         self.name = name
+        self.response = None
         self.DockerTester = None
 
     def DockerSubmit(self, UUID, QuestionID, SolutionString):
@@ -33,7 +34,6 @@ class handleDocker:
     def getErrorData(self):
         return self.errorData
 
-  command 'nmon' from deb nmon
     def getTestsFailed(self):
         return self.testsFailed
 
@@ -50,10 +50,21 @@ class handleDocker:
                db = Database()
                priority = 1000 - float(self.testTime)
                rankObj = db.createRankingObject(self.name,self.testTime, priority)
-               db.addRankings(rankingObj, QuestionID)
+               db.addRankings(rankObj, QuestionID)
         else:
            # Handle the Run Case (Which involves not sending time + leaderboard"
         return
+
+    def dockerStatus(self):
+        if self.testsFailed > 0:
+            self.response = "Failed"
+        elif len(self.errorData) != 0:
+            self.response = "Compile Error"
+        elif self.testsFailed == 0:
+            self.response = "Success"
+        elif self.testTime > 10:
+            self.response = "Timeout Error"
+
 
     def DockerClean(self):
         self.DockerTester.DockerClean()

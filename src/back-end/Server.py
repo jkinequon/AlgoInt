@@ -1,5 +1,7 @@
 import socket
 import threading
+from DockerHandler import Docker as D
+import json
 
 LOCALHOST = "127.0.0.1"
 PORT = 8080
@@ -25,12 +27,23 @@ class ThreadedServer(object):
             try:
                 data = client.recv(BUFFERSIZE)
                 if data:
-                    # TODO: we recieved a signal, and we need to run the right question
-                    response = ""
-                    # TODO: The response will be our file.txt and error.txt created from docker
+                    docker = D.HandleDocker(data["name"])
+                    if data["message"] == "Submit":
+                        docker.DockerSubmit(data['UUID'], data['Question'], data['Solution'])
+                        docker.handleInformation(data["Question"])
+                    elif data["message"] == "Run":
+                        docker.DockerRun(data['UUID'], data['Question'], data['Solution'])
+                    response = {
+                        'response': docker.response,
+                        'outputData': docker.outputData,
+                        'errorData': docker.errorData,
+                    }
+                    response = json.dumps(response)
+                    docker.DockerClean()
                     client.send(response)
             except:
                 client.close()
                 return False
 
-ThreadedServer(LOCALHOST,PORT).listen()
+
+ThreadedServer(LOCALHOST, PORT).listen()
