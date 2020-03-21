@@ -47,7 +47,7 @@ const languages = [
   import "ace-builds/src-min-noconflict/ext-searchbox";
   import "ace-builds/src-min-noconflict/ext-language_tools";
   
-  const defaultValue = `// Enter Code Here`;
+  const defaultValue = `//Enter some code...`;
 
 export default class CodeEditor extends Component {
     onLoad() {
@@ -58,6 +58,7 @@ export default class CodeEditor extends Component {
         this.setState({
           value: newValue
         });
+        // console.log("Output: " + JSON.stringify(this.state.value))
       }
     
       onSelectionChange(newValue, event) {
