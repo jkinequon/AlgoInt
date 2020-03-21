@@ -21,29 +21,41 @@ class Problem extends Component {
 
     handleOpenHint1Modal = () => {
     this.setState({ showHint1Modal: true });
-    }
+    };
     
     handleOpenHint2Modal = () => {
     this.setState({ showHint2Modal: true });
-    }
+    };
     
     handleCloseHint1Modal = () => {
     this.setState({ showHint1Modal: false });
-    }
+    };
     
     handleCloseHint2Modal = () => {
     this.setState({ showHint2Modal: false });
-    }
+    };
 
     submitHandler = () => {
-        const { setCurrentQuestion } = this.props;
-        console.log("SUBMIT CODE")
-
+        const { setCurrentQuestion, currentQuestion, username } = this.props;
+        // var net = require('net');
+        console.log( currentQuestion, username );
+        console.log(this.state.value);
+        // var client = new net.Socket();
+        // client.connect(8080, '127.0.0.1', function() {
+        //     console.log('Connected');
+        //     client.write();
+        // });
+        //
+        // client.on('data', function(data) {
+        //     console.log('Received: ' + data);
+        //     client.destroy(); // kill client after server's response
+        // });
         setCurrentQuestion(null)
-    }
+    };
+
     runHandler = () => {
         console.log("RUN CODE")
-    }
+    };
 
     componentDidMount(){
         const { questionsObject, currentQuestion } = this.props;
@@ -119,6 +131,8 @@ const mapStateToProps = (state) => {
         currentQuestion: state.delta.currentQuestion,
         questionQueue: state.delta.questionQueue,
         questionsObject: state.delta.questionsObject,
+        username: state.delta.username,
+
     };
 };
 
