@@ -15,7 +15,8 @@ class Problem extends Component {
           questionDescription: 'A description of the title',
           questionHints: '',
           showHint1Modal: false,
-          showHint2Modal: false
+          showHint2Modal: false,
+          value: ''
         };
       }
 
@@ -103,7 +104,7 @@ class Problem extends Component {
                     </div>
                 </div>
                 <div className="right-container" >
-                    <CodeEditor/>
+                    <CodeEditor onChange={(newValue)=>{this.setState({value: newValue})}}/>
                     <div className="bottom-right-bar">
                         <button className='problem-button' onClick={() => this.runHandler()}><span>RUN</span></button>
                         <button className='problem-button' onClick={() => this.submitHandler()}><span>SUBMIT</span></button>

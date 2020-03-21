@@ -12,7 +12,7 @@ class Selection extends Component {
 
         return (
             <tr key={i}>
-                <td colSpan="5">
+                <td colSpan="4">
                     <SelectionOption 
                         difficulty={val['Question Difficulty']} 
                         type={val['Question Type']} 
@@ -37,7 +37,6 @@ class Selection extends Component {
                             <th>Type</th>
                             <th>Language</th>
                             <th>Description</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

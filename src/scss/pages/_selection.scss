@@ -76,8 +76,7 @@
 }
 
 .ranking-button {
-    min-width: 250px;
-    margin: 0px 5px;
+    margin: 0px;
     display: inline-block;
     border-radius: 4px;
     background-color: #1e2127;
@@ -86,7 +85,7 @@
     text-align: center;
     font: 400 20px Arial;
     padding: 20px;
-    width: 20%;
+    width: 160px;
     transition: all 0.5s;
     cursor: pointer;
 }
