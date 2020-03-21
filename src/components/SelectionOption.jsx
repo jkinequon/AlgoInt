@@ -24,6 +24,7 @@ import { setQuestionQueue } from '../redux/actions/actions'
                             <td>{type}</td>
                             <td>{language}</td>
                             <td>{description}</td>
+                            <td><button className='ranking-button' onClick={() => this.submitHandler()}><span>RANKINGS</span></button></td>
                         </tr>
                     </table>
             </NavLink>

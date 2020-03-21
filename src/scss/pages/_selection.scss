@@ -11,7 +11,7 @@
         border-collapse: collapse;
     }
     .questions thead th {
-        width: 25%;
+        width: 20%;
         top: 0;
         position: sticky;
         background: #141414;
@@ -31,10 +31,10 @@
         color: #fff;
     }
     .option td {
-        width: 25%;
+        width: 20%;
         text-align: -internal-center;
         font-size: 20px;
-        padding: 14px;
+        // padding: 14px;
     }
     .selectionOption:hover {
         color: #141414;
@@ -73,4 +73,49 @@
 
  ::-webkit-scrollbar-thumb:hover {
     background: #333333;
+}
+
+.ranking-button {
+    min-width: 250px;
+    margin: 0px 5px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #1e2127;
+    border: none;
+    color: #ffffffa6;
+    text-align: center;
+    font: 400 20px Arial;
+    padding: 20px;
+    width: 20%;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.ranking-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.ranking-button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.ranking-button:hover {
+    background-color: #3e4452;
+}
+
+.ranking-button:hover span {
+    padding-right: 25px;
+}
+
+.ranking-button:hover span:after {
+    opacity: 1;
+    right: 0;
 }
