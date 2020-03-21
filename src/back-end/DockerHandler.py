@@ -24,12 +24,12 @@ class handleDocker:
         self.outputData = self.DockerTester.getOutputData()
         self.testTime = self.DockerTester.getTestTime()
         self.state = "Submit"
-        return
+        return None
 
     def DockerRun(self, UUID, QuestionID, SolutionString):
         DockerSubmit(UUID, QuestionID, SolutionString)
         self.state = "Run"
-        return
+        return None
 
     def getErrorData(self):
         return self.errorData
@@ -53,7 +53,8 @@ class handleDocker:
                db.addRankings(rankObj, QuestionID)
         else:
            # Handle the Run Case (Which involves not sending time + leaderboard"
-        return
+            return None
+        return None
 
     def dockerStatus(self):
         if self.testsFailed > 0:
@@ -68,4 +69,4 @@ class handleDocker:
 
     def DockerClean(self):
         self.DockerTester.DockerClean()
-        return
+        return None
