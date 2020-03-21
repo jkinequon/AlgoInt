@@ -16,14 +16,15 @@ class Database:
         return
 
     def addRankings(self, rankingObj, QuestionID):
-        self.firebase.post("/rankings/"+QuestionID, rankingObj)
+        dbString = "/"+QuestionID
+        self.firebase.post("dbString", rankingObj)
 
     def getChallenge(self):
         return
 
     def createRankingObject(self, name, testTime, priority):
         rankObj = {
-            username: name,
+            user: name,
             time: testTime,
             priority: priority
         }
