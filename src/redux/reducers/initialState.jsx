@@ -3,6 +3,6 @@ export default {
   currentState: "LogIn",
   currentQuestion: null,
   questionQueue:[],
-  questionsObject:[]
-
+  questionsObject:[],
+  username: ''
 };

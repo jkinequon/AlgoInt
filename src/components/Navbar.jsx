@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { signIn, signOff } from '../redux/actions/actions'
+import { signIn, signOff, setUsername } from '../redux/actions/actions'
 import firebase from '../firebase_config'
 import {
     NavLink,
@@ -10,7 +10,7 @@ import {
 
 class Navbar extends Component {
     googleSignIn = () => {
-        const { signIn } = this.props;
+        const { signIn, setUsername } = this.props;
 
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then(function(result) {
@@ -18,8 +18,9 @@ class Navbar extends Component {
             var token = result.credential.accessToken;
             // user info
             var user = result.user;
-            console.log(user)
+            // console.log(user)
             signIn();
+            setUsername(user['displayName'])
         }).catch(function(error) {
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -29,10 +30,11 @@ class Navbar extends Component {
     }
 
     googleSignOut = () => {
-        const { signOff } = this.props;
+        const { signOff, setUsername } = this.props;
         firebase.auth().signOut().then(function(){
             signOff()
             // successful signout
+            setUsername('')
         }).catch(function(error){
             console.log(error);
         });
@@ -77,6 +79,7 @@ function mapDispatchToProps(dispatch) {
     return {
         signIn: bindActionCreators(signIn, dispatch),
         signOff: bindActionCreators(signOff, dispatch),
+        setUsername: bindActionCreators(setUsername, dispatch),
     };
 }
 

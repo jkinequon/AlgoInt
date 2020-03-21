@@ -36,7 +36,6 @@ class ProblemManager extends Component {
     // getObjectOfQuestionNumber = () => this.props.questionsObject[this.props.questionQueue[0]]['Question Name']
     // getObjectOfQuestionNumber = () => questionsObject[questionQueue[0]]['Question Name']
 
-    
     // TODO: Maybe add in secureRouter that if the queue is not empty, to redirect to /problem
     render() {
         const { currentQuestion, questionQueue, questionsObject = [] } = this.props;
@@ -44,7 +43,6 @@ class ProblemManager extends Component {
         return (
         <>
         {
-
             // if no current question and there exists a queue
             (currentQuestion == null && questionQueue.length != 0) 
                 ? 

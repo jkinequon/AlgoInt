@@ -7,8 +7,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { setCurrentQuestion, setQuestionQueue } from '../redux/actions/actions'
 
-
-
 class Problem extends Component {
     constructor(props) {
         super(props);
@@ -37,6 +35,16 @@ class Problem extends Component {
     this.setState({ showHint2Modal: false });
     }
 
+    submitHandler = () => {
+        const { setCurrentQuestion } = this.props;
+        console.log("SUBMIT CODE")
+
+        setCurrentQuestion(null)
+    }
+    runHandler = () => {
+        console.log("RUN CODE")
+    }
+
     componentDidMount(){
         const { setCurrentQuestion, questionsObject, currentQuestion } = this.props;
         var q_object = questionsObject[currentQuestion]
@@ -48,7 +56,6 @@ class Problem extends Component {
         }
         
     render() {
-        const { setCurrentQuestion, questionsObject } = this.props;
         console.log(this.state.questionHints)
         return (
             <div className="parent-container">
@@ -98,8 +105,8 @@ class Problem extends Component {
                 <div className="right-container" >
                     <CodeEditor/>
                     <div className="bottom-right-bar">
-                        <button className='problem-button'><span>RUN</span></button>
-                        <button className='problem-button' onClick={() => setCurrentQuestion(null)}><span>SUBMIT</span></button>
+                        <button className='problem-button' onClick={() => this.runHandler()}><span>RUN</span></button>
+                        <button className='problem-button' onClick={() => this.submitHandler()}><span>SUBMIT</span></button>
                     </div>
                 </div>
             </div>
@@ -112,8 +119,6 @@ const mapStateToProps = (state) => {
         currentQuestion: state.delta.currentQuestion,
         questionQueue: state.delta.questionQueue,
         questionsObject: state.delta.questionsObject,
-
-
     };
 };
 
