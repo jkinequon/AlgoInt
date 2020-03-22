@@ -47,5 +47,14 @@
         "webpack": "^4.35.2",
         "webpack-cli": "^3.3.5",
         "webpack-dev-server": "^3.7.2"
+    },
+    "proxy": {
+        "/api": {
+            "target": "http://localhost:3001/"
+        },
+        "/sync": {
+            "target": "ws://localhost:3001/",
+            "ws": true
+        }
     }
 }
