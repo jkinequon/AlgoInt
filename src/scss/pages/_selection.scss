@@ -7,18 +7,32 @@
         color: #ffffff;
         font-size: 30px;
         margin: auto;
-        width: 90vw;
+        // width: 90vw;
         border-collapse: collapse;
     }
     .questions thead th {
-        width: 20%;
         top: 0;
         position: sticky;
         background: #141414;
-        padding: 20px;
+        padding: 20px 160px;
+    }
+    .question-tr {
+        display: inline-block;
+        vertical-align: top;
+    }
+    .question-spacer {
+        vertical-align: top;
+        display: inline-block;
+        border: 2px solid red;
+        height: 70px;
+        width: 100px;
     }
     .selectionOption {
+        // width: calc(90vw - 1%);
+        width: calc(100% - 140px);
+        display: inline-block;
         font-weight: 500;
+        padding: 20px;
         color: #ffffffa6;
         font-size: 1em;
         background-color: #2c2c2c;
@@ -32,8 +46,9 @@
     }
     .option td {
         width: 20%;
-        text-align: -internal-center;
+        // text-align: -internal-center;
         font-size: 20px;
+        text-align: center;
         // padding: 14px;
     }
     .selectionOption:hover {
@@ -42,6 +57,16 @@
     }
     .option:hover {
         color: #141414;
+    }
+    .selection-RankingDiv {
+        display: inline-block;
+        width: max-content;
+        height: 30px;
+        padding: 20px 1px;
+        position: relative;
+    }
+    .option-table {
+        white-space: nowrap;
     }
 }
 
@@ -76,6 +101,10 @@
 }
 
 .ranking-button {
+    z-index: 10;
+    position: relative;
+    top: -20px;
+    float: right;
     margin: 0px;
     display: inline-block;
     border-radius: 4px;
@@ -83,9 +112,9 @@
     border: none;
     color: #ffffffa6;
     text-align: center;
-    font: 400 20px Arial;
-    padding: 20px;
-    width: 160px;
+    font: 400 15px Arial;
+    padding: 20px 5px;
+    width: 100px;
     transition: all 0.5s;
     cursor: pointer;
 }
@@ -95,6 +124,7 @@
     display: inline-block;
     position: relative;
     transition: 0.5s;
+    padding: 6px 0px;
 }
 
 .ranking-button span:after {
@@ -102,7 +132,7 @@
     position: absolute;
     opacity: 0;
     top: 0;
-    right: -20px;
+    right: -10px;
     transition: 0.5s;
 }
 
@@ -111,7 +141,7 @@
 }
 
 .ranking-button:hover span {
-    padding-right: 25px;
+    padding-right: 10px;
 }
 
 .ranking-button:hover span:after {

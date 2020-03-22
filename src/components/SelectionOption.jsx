@@ -10,7 +10,9 @@ import { bindActionCreators } from 'redux';
 import { setQuestionQueue } from '../redux/actions/actions'
 
  class SelectionOption extends Component {
-    rankingHandler = () => {
+    rankingHandler = (event) => {
+        event.stopPropagation()
+        event.preventDefault();
         console.log("Modal pop-up for: " )
     }
 
@@ -20,7 +22,7 @@ import { setQuestionQueue } from '../redux/actions/actions'
 
         return (
             <>
-            <button className="selectionOption"  onClick={() => setQuestionQueue([number])}>
+            <div className="selectionOption"  onClick={() => setQuestionQueue([number])}>
             <NavLink className="no-text-decoration" activeClassName={'no-text-decoration'} to={'/Problem'} >
                     <table className="option">
                         <tr>
@@ -28,11 +30,14 @@ import { setQuestionQueue } from '../redux/actions/actions'
                             <td>{type}</td>
                             <td>{language}</td>
                             <td>{description}</td>
+                            {/* <td><button className='ranking-button' onClick={() => this.rankingHandler()}><span>RANKINGS</span></button></td> */}
                         </tr>
                     </table>
             </NavLink>
-            </button>
-            <button className='ranking-button' onClick={() => this.rankingHandler()}><span>RANKINGS</span></button>
+            </div>
+            <div className="selection-RankingDiv">
+                <button className='ranking-button' onClick={() => this.rankingHandler()}><span className='ranking-span'>RANKINGS</span></button>
+            </div>
             </>
         )
     }

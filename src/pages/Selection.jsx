@@ -12,7 +12,7 @@ class Selection extends Component {
 
         return (
             <tr key={i}>
-                <td colSpan="4">
+                <td colSpan="4" className="option-table">
                     <SelectionOption 
                         difficulty={val['Question Difficulty']} 
                         type={val['Question Type']} 
@@ -32,13 +32,15 @@ class Selection extends Component {
             <div className="container">
                 <table className="questions">
                     <thead>
-                        <tr>
+                        <tr className="question-tr">
                             <th>Difficulty</th>
                             <th>Type</th>
                             <th>Language</th>
                             <th>Description</th>
                         </tr>
+                        <div className="question-spacer"></div>
                     </thead>
+                    
                     <tbody>
                         {this.returnSelections(questionsObject)}                        
                     </tbody>
