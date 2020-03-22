@@ -4,12 +4,13 @@ import DockerHandler
 import json
 
 app = Flask(__name__)
-cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app)
+cors = CORS(app,resources={r"/Submit": {"origins": "*"}})
 
 
 @app.route('/')
-@cross_origin()
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def index():
     return "Hello, World!"
 
@@ -21,7 +22,7 @@ def not_found(error):
 
 
 @app.route('/Submit', methods=['POST', "OPTIONS"])
-@cross_origin()
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def submitCode():
     print("Inside Submit")
     print(request.json)
@@ -32,18 +33,22 @@ def submitCode():
     docker = DockerHandler.handleDocker(name)
     docker.DockerSubmit(UUID, question, solution)
     docker.handleInformation(question)
+    docker.dockerStatus()
     response = {
-        'response': docker.response,
-        'outputData': docker.outputData,
-        'errorData': docker.errorData,
+        'response': docker.getResponse(),
+        'outputData': docker.getOutputData(),
+        'errorData': docker.getErrorData(),
     }
+    print(response)
     response = json.dumps(response)
     docker.DockerClean()
+    print("Finished here")
+    print(response)
     return jsonify({'response': response}), 201
 
 
 @app.route('/Run', methods=['POST', "OPTIONS"])
-@cross_origin()
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def runCode():
     if not request.json:
         # send back they fucked up

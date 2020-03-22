@@ -1,4 +1,4 @@
-from AlgoInt.Problems import ThreeS.py
+from AlgoInt.Problems import ThreeS
 import multiprocessing
 import time
 

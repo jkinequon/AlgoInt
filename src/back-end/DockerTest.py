@@ -21,8 +21,8 @@ class DockerTest:
         f = open("./user/"+self.UUID+"/AlgoInt/Problems/"+self.QuestionID+"S.py", "w")
         f.write(self.SolutionString)
         f.close()
-        cmd = "docker run -v /Users/jeremystorring/PycharmProjects/CMPT350/AlgoInt/src/back-end/user/"+self.UUID+\
-              "/tmp:/tmp --rm -e user="+self.UUID+" -e path_file="+self.QuestionID+".py python-test"
+        cmd = "docker run -v /home/justicesk/Documents/Master/AlgoInt/src/back-end/user/"+self.UUID+\
+              "/AlgoInt:/AlgoInt --rm -e user="+self.UUID+" -e path_file="+self.QuestionID+".py python-test"
         os.system(cmd)
 
     def DockerClean(self):
@@ -31,14 +31,14 @@ class DockerTest:
 
     def readErrors(self):
         str = ""
-        file = open("./user/"+self.UUID+"/tmp/err.txt")
+        file = open("./user/"+self.UUID+"/AlgoInt/Problems/err.txt")
         for line in file:
             line = line.rstrip()
             str += line
         self.ErrorData = str
 
     def readFiles(self):
-        file = open("./user/"+self.UUID+"/tmp/file.txt")
+        file = open("./user/"+self.UUID+"/AlgoInt/Problems/file.txt")
         data = []
         for line in file:
             data.append(line.rstrip())
@@ -46,6 +46,7 @@ class DockerTest:
         self.TestsFailed = data[-3]
         self.TestsTotal = data[-2]
         self.TestTime = data[-1]
+        print(self.OutputData, self.TestsFailed, self.TestsTotal, self.TestTime)
 
     def getTestsFailed(self):
         return self.TestsFailed
@@ -62,7 +63,6 @@ class DockerTest:
     def getTestTime(self):
         return self.TestTime
 
-
-d = DockerTest("UUID", "One", "def getNthFib(num):\n    return num")
+d = DockerTest("UUID", "One", "def getNthFib(num):\n    return 1")
 d.DockerClean()
 d.DockerTest()

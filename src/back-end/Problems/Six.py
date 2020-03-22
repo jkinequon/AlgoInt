@@ -1,4 +1,4 @@
-from AlgoInt.Problems import SixS.py
+from AlgoInt.Problems import SixS
 import multiprocessing
 import time
 

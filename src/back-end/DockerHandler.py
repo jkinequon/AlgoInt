@@ -24,6 +24,8 @@ class handleDocker:
         self.outputData = self.DockerTester.getOutputData()
         self.testTime = self.DockerTester.getTestTime()
         self.state = "Submit"
+        print(self.testsFailed, self.testsTotal, self.outputData,
+            self.testTime)
 
     def DockerRun(self, UUID, QuestionID, SolutionString):
         DockerSubmit(UUID, QuestionID, SolutionString)
@@ -41,6 +43,8 @@ class handleDocker:
     def getOutputData(self):
         return self.outputData
 
+    def getResponse(self):
+        return self.response
     def handleInformation(self, QuestionID):
         if self.state == "Submit":
            # Handle the submit which is about sending the leaderboard and time
@@ -51,13 +55,13 @@ class handleDocker:
                db.addRankings(rankObj, QuestionID)
 
     def dockerStatus(self):
-        if self.testsFailed > 0:
+        if int(self.testsFailed) > 0:
             self.response = "Failed"
         elif len(self.errorData) != 0:
             self.response = "Compile Error"
-        elif self.testsFailed == 0:
+        elif int(self.testsFailed) == 0:
             self.response = "Success"
-        elif self.testTime > 10:
+        elif float(self.testTime) > 10:
             self.response = "Timeout Error"
 
 

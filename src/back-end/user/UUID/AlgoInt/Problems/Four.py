@@ -38,10 +38,13 @@ class Testing:
 
     def runAllTests(self, proc):
         tests = [self.test_case_1, self.test_case_2, self.test_case_3, self.test_case_4, self.test_case_5]
+        start_time = time.time()
         for test in tests:
             self.total = test()
-        proc.put(self.total)
-        return self.total
+        end_time = time.time()
+        total_time = end_time - start_time
+        proc.put([self.total, len(tests), total_time])
+        return self.total, len(test), total_time
 
 def runTests():
     testing = Testing()
@@ -54,4 +57,8 @@ def runTests():
     return q.get()
 
 
-print(runTests())
+val = runTests()
+print(val[0])
+print(val[1])
+print(val[2])
+

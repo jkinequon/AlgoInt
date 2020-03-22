@@ -31,25 +31,42 @@ class Problem extends Component {
     handleCloseHint1Modal = () => {
     this.setState({ showHint1Modal: false });
     };
-    
+
     handleCloseHint2Modal = () => {
     this.setState({ showHint2Modal: false });
     };
 
     submitHandler = () => {
-        const { setCurrentQuestion, currentQuestion, username } = this.props;
-        // var net = require('net');
+        const { setCurrentQuestion, currentQuestion, username, questionsObject } = this.props;
+
         console.log( currentQuestion, username );
         console.log(this.state.value);
-        // var client = new net.Socket();
-        // client.connect(8080, '127.0.0.1', function() {
-        //     console.log('Connected');
-        //     client.write();
-        // });
-        //
-        // client.on('data', function(data) {
-        //     console.log('Received: ' + data);
-        //     client.destroy(); // kill client after server's response
+        console.log("Test0");
+        var data = {"name" : username,
+                "message": "Submit",
+                "UUID": "EAEREOK123OKAF",
+                "Question": questionsObject[currentQuestion]["Question Python File"],
+                "Solution": this.state.value};
+        console.log("Test1");
+        console.log(data);
+        console.log("Test2");
+        let response = fetch('http://localhost:5000/Submit', {
+               method: 'POST',
+               headers: {"Content-Type": "application/json"},
+               body: JSON.stringify(data)
+        });
+        console.log(response);
+        // fetch('http://127.0.0.1:5000/Submit', {
+        //   method: 'POST', // or 'PUT'
+        //   body: JSON.stringify(data),
+        // })
+        // .then((response) => response.json())
+        // .then((data) => {
+        //     // this is the data we get back
+        //   console.log('Success:', data);
+        // })
+        // .catch((error) => {
+        //   console.error('Error:', error);
         // });
         setCurrentQuestion(null)
     };
