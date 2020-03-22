@@ -10,35 +10,32 @@ import { bindActionCreators } from 'redux';
 import { setQuestionQueue } from '../redux/actions/actions'
 
  class SelectionOption extends Component {
-    rankingHandler = (event) => {
-        event.stopPropagation()
-        event.preventDefault();
+    rankingHandler = (e) => {
+        e.preventDefault()
+        e.stopPropagation()
         console.log("Modal pop-up for: " )
     }
-
+    // 
     render() {
 
-        const { difficulty, type, language, description, number=[999], setQuestionQueue  } = this.props;
+        const {onClick =() => {}, difficulty, type, language, description, number=[999], setQuestionQueue  } = this.props;
 
         return (
-            <>
-            <div className="selectionOption"  onClick={() => setQuestionQueue([number])}>
             <NavLink className="no-text-decoration" activeClassName={'no-text-decoration'} to={'/Problem'} >
-                    <table className="option">
-                        <tr>
-                            <td>{difficulty}</td>
-                            <td>{type}</td>
-                            <td>{language}</td>
-                            <td>{description}</td>
-                            {/* <td><button className='ranking-button' onClick={() => this.rankingHandler()}><span>RANKINGS</span></button></td> */}
-                        </tr>
-                    </table>
+                <div className="table-row" onClick={() => setQuestionQueue([number])}  onMouseOver={(e) => { console.log("Test Row Hover") }}>
+                    {
+                        [difficulty, type, language, description, <button className='ranking-button' onClick={(e) => this.rankingHandler(e)}><span>RANKINGS</span></button>].map((e, i) => {
+                            return(
+                                <div className="row-item" key={e.toString() + " " +  i}>
+                                    {e}
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+
             </NavLink>
-            </div>
-            <div className="selection-RankingDiv">
-                <button className='ranking-button' onClick={() => this.rankingHandler()}><span className='ranking-span'>RANKINGS</span></button>
-            </div>
-            </>
+
         )
     }
 }
