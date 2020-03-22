@@ -47,11 +47,12 @@ class Problem extends Component {
                 "Question": questionsObject[currentQuestion]["Question Python File"],
                 "Solution": this.state.value};
         console.log(data);
-         let response = fetch('http://127.0.0.1:5000/Submit', {
+        let response = fetch('http://127.0.0.1:5000/api/Submit', {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(data)
-         });
+         }).then(response => response.json())
+         .then(json => console.log(json));
          console.log(response);
         // fetch('http://127.0.0.1:5000/Submit', {
         //   method: 'POST', // or 'PUT'
@@ -65,7 +66,7 @@ class Problem extends Component {
         // .catch((error) => {
         //   console.error('Error:', error);
         // });
-        setCurrentQuestion(null)
+        //setCurrentQuestion(null)
   };
 
   runHandler = () => {

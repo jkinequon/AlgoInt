@@ -50,7 +50,7 @@ class handleDocker:
            # Handle the submit which is about sending the leaderboard and time
            if (int(self.testsTotal) - int(self.testsFailed) == int(self.testsTotal)):
                db = Database()
-               priority = 1000 - float(self.testTime)
+               priority = float(self.testTime)
                rankObj = db.createRankingObject(self.name,self.testTime, priority)
                db.addRankings(rankObj, QuestionID)
 

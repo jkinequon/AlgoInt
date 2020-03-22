@@ -9,7 +9,7 @@ CORS(app)
 cors = CORS(app,resources={r"/Submit": {"origins": "*"}})
 
 
-@app.route('/')
+@app.route('/api')
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def index():
     return "Hello, World!"
@@ -21,7 +21,7 @@ def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
 
-@app.route('/Submit', methods=['POST', "OPTIONS"])
+@app.route('/api/Submit', methods=['POST', "OPTIONS"])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def submitCode():
     print("Inside Submit")
@@ -47,7 +47,7 @@ def submitCode():
     return jsonify({'response': response}), 201
 
 
-@app.route('/Run', methods=['POST', "OPTIONS"])
+@app.route('/api/Run', methods=['POST', "OPTIONS"])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def runCode():
     if not request.json:
