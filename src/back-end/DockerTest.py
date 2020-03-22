@@ -21,7 +21,7 @@ class DockerTest:
         f = open("./user/"+self.UUID+"/AlgoInt/Problems/"+self.QuestionID+"S.py", "w")
         f.write(self.SolutionString)
         f.close()
-        cmd = "docker run -v /Users/jeremystorring/PycharmProjects/CMPT350/AlgoInt/src/back-end/user/"+self.UUID+\
+        cmd = "docker run -v /home/justicesk/Documents/Test/AlgoInt/src/back-end/user/"+self.UUID+\
               "/tmp:/tmp --rm -e user="+self.UUID+" -e path_file="+self.QuestionID+".py python-test"
         os.system(cmd)
 
