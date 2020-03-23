@@ -4,5 +4,6 @@ export default {
   currentQuestion: null,
   questionQueue:[],
   questionsObject:[],
-  username: ''
+  username: '',
+  currentMode: 0
 };

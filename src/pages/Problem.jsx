@@ -37,36 +37,45 @@ class Problem extends Component {
   };
 
   submitHandler = () => {
-        const { setCurrentQuestion, currentQuestion, username, questionsObject } = this.props;
+    const {
+      setCurrentQuestion,
+      currentQuestion,
+      username,
+      questionsObject
+    } = this.props;
 
-        console.log( currentQuestion, username );
-        console.log(this.state.value);
-        var data = {"name" : username,
-                "message": "Submit",
-                "UUID": "AEFJAEIFJIWFI12",
-                "Question": questionsObject[currentQuestion]["Question Python File"],
-                "Solution": this.state.value};
-        console.log(data);
-        let response = fetch('http://127.0.0.1:5000/api/Submit', {
-                method: 'POST',
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(data)
-         }).then(response => response.json())
-         .then(json => console.log(json));
-         console.log(response);
-        // fetch('http://127.0.0.1:5000/Submit', {
-        //   method: 'POST', // or 'PUT'
-        //   body: JSON.stringify(data),
-        // })
-        // .then((response) => response.json())
-        // .then((data) => {
-        //     // this is the data we get back
-        //   console.log('Success:', data);
-        // })
-        // .catch((error) => {
-        //   console.error('Error:', error);
-        // });
-        //setCurrentQuestion(null)
+    console.log(currentQuestion, username);
+    console.log(this.state.value);
+    var data = {
+      name: username,
+      message: "Submit",
+      UUID: "AEFJAEIFJIWFI12",
+      Question: questionsObject[currentQuestion]["Question Python File"],
+      Solution: this.state.value
+    };
+    console.log(data);
+    let response = fetch("http://127.0.0.1:5000/api/Submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .then(json => console.log(json))
+      .then(setCurrentQuestion(null));
+    console.log(response);
+    // fetch('http://127.0.0.1:5000/Submit', {
+    //   method: 'POST', // or 'PUT'
+    //   body: JSON.stringify(data),
+    // })
+    // .then((response) => response.json())
+    // .then((data) => {
+    //     // this is the data we get back
+    //   console.log('Success:', data);
+    // })
+    // .catch((error) => {
+    //   console.error('Error:', error);
+    // });
+    //setCurrentQuestion(null)
   };
 
   runHandler = () => {

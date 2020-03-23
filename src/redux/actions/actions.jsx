@@ -11,3 +11,5 @@ export const setQuestionQueue = (questionObject) => { return {questionObject, ty
 export const setQuestionObject = (questionObject) => { return {questionObject: [questionObject], type: types.SET_QUESTION_OBJECT } };
 
 export const setUsername = (username) => { return {username, type: types.SET_USERNAME } };
+
+export const setCurrentMode = (currentMode) => { return {currentMode, type: types.SET_CURRENT_MODE } };
