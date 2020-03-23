@@ -16,7 +16,8 @@ class Problem extends Component {
       questionHints: "",
       showHint1Modal: false,
       showHint2Modal: false,
-      value: ""
+      value: "",
+      enableHints: true
     };
   }
 
@@ -83,13 +84,24 @@ class Problem extends Component {
   };
 
   componentDidMount() {
-    const { questionsObject, currentQuestion } = this.props;
+    const { questionsObject, currentQuestion, currentMode } = this.props;
     var q_object = questionsObject[currentQuestion];
     this.setState({
       questionTitle: q_object["Question Name"],
       questionDescription: q_object["Question Description"],
       questionHints: q_object["Question Hints"]
     });
+
+    if (currentMode == 1) {
+      // Whiteboard
+      this.setState({ enableHints: true });
+    } else if (currentMode == 2) {
+      // Coding Problem
+      this.setState({ enableHints: true });
+    } else if (currentMode == 3) {
+      // Mock Interview
+      this.setState({ enableHints: false });
+    }
   }
 
   render() {
@@ -139,20 +151,25 @@ class Problem extends Component {
             </h1>
             <h2 className="question-text">{this.state.questionDescription}</h2>
           </div>
-          <div className="hint-div">
-            <button
-              className="problem-button"
-              onClick={() => this.handleOpenHint1Modal()}
-            >
-              <span>HINT 1</span>
-            </button>
-            <button
-              className="problem-button"
-              onClick={() => this.handleOpenHint2Modal()}
-            >
-              <span>HINT 2</span>
-            </button>
-          </div>
+          {this.state.enableHints ? (
+            <div className="hint-div">
+              <button
+                className="problem-button"
+                onClick={() => this.handleOpenHint1Modal()}
+              >
+                <span>HINT 1</span>
+              </button>
+              <button
+                className="problem-button"
+                onClick={() => this.handleOpenHint2Modal()}
+              >
+                <span>HINT 2</span>
+              </button>
+            </div>
+          ) : (
+            <div />
+          )}
+
           <div className="console-div">Console Output</div>
         </div>
         <div className="right-container">
@@ -161,20 +178,24 @@ class Problem extends Component {
               this.setState({ value: newValue });
             }}
           />
-          <div className="bottom-right-bar">
-            <button
-              className="problem-button"
-              onClick={() => this.runHandler()}
-            >
-              <span>RUN</span>
-            </button>
-            <button
-              className="problem-button"
-              onClick={() => this.submitHandler()}
-            >
-              <span>SUBMIT</span>
-            </button>
-          </div>
+          {this.state.value != "" ? (
+            <div className="bottom-right-bar">
+              <button
+                className="problem-button"
+                onClick={() => this.runHandler()}
+              >
+                <span>RUN</span>
+              </button>
+              <button
+                className="problem-button"
+                onClick={() => this.submitHandler()}
+              >
+                <span>SUBMIT</span>
+              </button>
+            </div>
+          ) : (
+            <div />
+          )}
         </div>
       </div>
     );
@@ -186,7 +207,8 @@ const mapStateToProps = state => {
     currentQuestion: state.delta.currentQuestion,
     questionQueue: state.delta.questionQueue,
     questionsObject: state.delta.questionsObject,
-    username: state.delta.username
+    username: state.delta.username,
+    currentMode: state.delta.currentMode
   };
 };
 

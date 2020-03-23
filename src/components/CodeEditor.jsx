@@ -92,15 +92,25 @@ class CodeEditor extends Component {
           showPrintMargin: true,
           highlightActiveLine: true,
           enableSnippets: false,
-          showLineNumbers: true
+          showLineNumbers: true,
         };
         this.onChange = this.onChange.bind(this);
       }
       
       componentDidMount(){
-        const { setCurrentQuestion, questionsObject, currentQuestion, onChange } = this.props;
+        const { setCurrentQuestion, questionsObject, currentQuestion, onChange, currentMode } = this.props;
         var q_object = questionsObject[currentQuestion]
         this.setState({value: q_object['QuestionBP'], mode: q_object['Language'].toLowerCase()})
+        
+        if (currentMode == 1){ // Whiteboard
+          this.setState({enableLiveAutocompletion: false})
+        }
+        else if (currentMode == 2){ // Coding Problem
+          this.setState({enableLiveAutocompletion: true})
+        }
+        else if (currentMode == 3){ // Mock Interview
+          this.setState({enableLiveAutocompletion: true})
+        }
       }
 
     render() {
@@ -138,6 +148,7 @@ const mapStateToProps = (state) => {
   return {
       questionsObject: state.delta.questionsObject,
       currentQuestion: state.delta.currentQuestion,
+      currentMode: state.delta.currentMode,
 
   };
 };
