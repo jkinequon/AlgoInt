@@ -77,10 +77,10 @@ class Problem extends Component {
           isOpen={this.state.showHint1Modal}
           contentLabel="Modal #1 Global Style Override Example"
           onRequestClose={this.handleCloseHint1Modal}
-          className="Modal"
-          overlayClassName="Overlay"
+          className="hint-modal"
+          overlayClassName="hint-modal-overlay"
         >
-          <div className="modal-div">
+          <div className="hint-modal-div">
             <h1>{this.state.questionHints[0]}</h1>
             <button
               className="problem-button modal-close"
@@ -94,10 +94,10 @@ class Problem extends Component {
           isOpen={this.state.showHint2Modal}
           contentLabel="Modal #2 Global Style Override Example"
           onRequestClose={this.handleCloseHint2Modal}
-          className="Modal"
-          overlayClassName="Overlay"
+          className="hint-modal"
+          overlayClassName="hint-modal-overlay"
         >
-          <div className="modal-div">
+          <div className="hint-modal-div">
             <h1>{this.state.questionHints[1]}</h1>
             <button
               className="problem-button modal-close"

@@ -110,7 +110,7 @@ h1 {
 }
 
 .problem-button span:after {
-    content: '\00bb';
+    content: "\00bb";
     position: absolute;
     opacity: 0;
     top: 0;
@@ -135,7 +135,7 @@ h1 {
     z-index: 7;
 }
 
-.Modal {
+.hint-modal {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -146,7 +146,7 @@ h1 {
     color: #ffffffa6;
 }
 
-.Overlay {
+.hint-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -155,7 +155,7 @@ h1 {
     background-color: rgba(46, 46, 46, 0.514);
 }
 
-.modal-div {
+.hint-modal-div {
     position: relative;
     transform: translate(-50%, -50%);
     top: 50%;

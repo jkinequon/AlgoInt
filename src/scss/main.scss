@@ -43,6 +43,7 @@ body {
 @import './mixins';
 // import components- contains each self-contained component in its own .scss partial
 @import './components/navbar';
+@import './components/ranking';
 @import './components/Sidebar/index';
 @import './components/Sidebar/sidebarOption';
 // import pages contains page-specific styling
