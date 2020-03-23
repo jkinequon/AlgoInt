@@ -5,10 +5,9 @@ import { bindActionCreators } from "redux";
 import {
   setCurrentQuestion,
   setQuestionQueue,
-  setCurrentMode
+  setCurrentMode,
+  setMockInterviewTime
 } from "../redux/actions/actions";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import { NavLink, withRouter } from "react-router-dom";
 
@@ -16,7 +15,7 @@ class HomeOptions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sliderValue: 0
+      sliderValue: 60
     };
   }
 
@@ -25,12 +24,13 @@ class HomeOptions extends Component {
       setQuestionQueue,
       setCurrentQuestion,
       setCurrentMode,
+      setMockInterviewTime,
       questionsObject = []
     } = this.props;
     setCurrentQuestion(null);
     setQuestionQueue([]);
     setCurrentMode(mode);
-
+    setMockInterviewTime(this.state.sliderValue);
     // If Whiteboard mode
     if (mode == 0) {
       alert("No mode detected, error?");
@@ -54,7 +54,9 @@ class HomeOptions extends Component {
   };
 
   handleChange = (event, newValue) => {
-    this.setState({ value: newValue });
+    const { setMockInterviewTime } = this.props;
+    this.setState({ sliderValue: newValue });
+    setMockInterviewTime(this.state.sliderValue);
   };
 
   render() {
@@ -65,7 +67,7 @@ class HomeOptions extends Component {
       isMockInterview = false,
       mode = 0
     } = this.props;
-    
+
     return (
       <NavLink
         className="root-container-home"
@@ -90,7 +92,7 @@ class HomeOptions extends Component {
                 aria-labelledby="discrete-slider-small-steps"
                 step={10}
                 marks
-                min={10}
+                min={1}
                 max={100}
                 valueLabelDisplay="auto"
               />
@@ -116,7 +118,8 @@ function mapDispatchToProps(dispatch) {
   return {
     setCurrentQuestion: bindActionCreators(setCurrentQuestion, dispatch),
     setQuestionQueue: bindActionCreators(setQuestionQueue, dispatch),
-    setCurrentMode: bindActionCreators(setCurrentMode, dispatch)
+    setCurrentMode: bindActionCreators(setCurrentMode, dispatch),
+    setMockInterviewTime: bindActionCreators(setMockInterviewTime, dispatch)
   };
 }
 
