@@ -44,6 +44,13 @@ export default function deltaReducer(state = initialState, action) {
       });
     }
 
+    case types.SET_MOCKINTERVIEW_TIME: {
+      return Object.assign({}, state, {
+        ...state,
+        mockInterviewTime: action.mockInterviewTime
+      });
+    }
+
     default:
       return state;
   }

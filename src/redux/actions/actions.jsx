@@ -13,3 +13,5 @@ export const setQuestionObject = (questionObject) => { return {questionObject: [
 export const setUsername = (username) => { return {username, type: types.SET_USERNAME } };
 
 export const setCurrentMode = (currentMode) => { return {currentMode, type: types.SET_CURRENT_MODE } };
+
+export const setMockInterviewTime = (mockInterviewTime) => { return {mockInterviewTime, type: types.SET_MOCKINTERVIEW_TIME } };

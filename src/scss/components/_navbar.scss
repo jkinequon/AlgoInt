@@ -18,7 +18,7 @@
             vertical-align: top;
             font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
             font-weight: 700;
-            letter-spacing: .25em;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
             color: #ffffffa6;
             font-size: 1em;
@@ -44,14 +44,26 @@
             }
         }
     }
-    .float-right {
+    .float-left {
         position: relative;
-        right: 20px;
-        float: right;
+        right: -20px;
+        float: left;
         top: 20px;
         border-radius: 8px;
         border: 1px solid #ffffff00;
         padding: 4px !important;
+    }
+    .float-right {
+        position: relative;
+        right: 40px;
+        float: right;
+        border-radius: 8px;
+        border: 1px solid #ffffff00;
+        padding: 4px !important;
+    }
+    .timer {
+        font: 600 58px "Roboto";
+        color: whitesmoke;
     }
     .third_party_text_Signout {
         cursor: pointer;
