@@ -7,10 +7,19 @@ import {
   setQuestionQueue,
   setCurrentMode
 } from "../redux/actions/actions";
-
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Slider from "@material-ui/core/Slider";
 import { NavLink, withRouter } from "react-router-dom";
 
 class HomeOptions extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sliderValue: 0
+    };
+  }
+
   initializeModeSelection = (mode, isMockInterview) => {
     const {
       setQuestionQueue,
@@ -44,6 +53,10 @@ class HomeOptions extends Component {
     }
   };
 
+  handleChange = (event, newValue) => {
+    this.setState({ value: newValue });
+  };
+
   render() {
     const {
       title,
@@ -52,7 +65,7 @@ class HomeOptions extends Component {
       isMockInterview = false,
       mode = 0
     } = this.props;
-
+    
     return (
       <NavLink
         className="root-container-home"
@@ -65,6 +78,26 @@ class HomeOptions extends Component {
             <div className="title-text">{title}</div>
           </div>
           <div className="info-text">{description}</div>
+          {isMockInterview ? (
+            <div className="range-slider">
+              <Slider
+                onClick={e => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                }}
+                onChange={(e, val) => this.handleChange(e, val)}
+                defaultValue={60}
+                aria-labelledby="discrete-slider-small-steps"
+                step={10}
+                marks
+                min={10}
+                max={100}
+                valueLabelDisplay="auto"
+              />
+            </div>
+          ) : (
+            <div />
+          )}
         </div>
       </NavLink>
     );
