@@ -4,7 +4,7 @@ class DockerTest:
     def __init__(self, UUID, QuestionID, SolutionString):
         self.UUID = UUID
         self.QuestionID = QuestionID
-        self.ErrorData = ""
+        self.ErrorData = []
         self.TestsFailed = ""
         self.TestsTotal = ""
         self.TestTime = ""
@@ -12,6 +12,8 @@ class DockerTest:
         self.OutputData = ""
 
     def DockerTest(self):
+        cmd = "rm -rf ./user/"+self.UUID
+        os.system(cmd)
         cmd = "cd user; mkdir "+self.UUID+"; cd "+self.UUID+"; mkdir AlgoInt; cd ../.."
         os.system(cmd)
         cmd = "cp -r ./Problems ./user/"+self.UUID+"/AlgoInt/Problems"
@@ -30,12 +32,12 @@ class DockerTest:
         os.system(cmd)
 
     def readErrors(self):
-        str = ""
+        data = []
         file = open("./user/"+self.UUID+"/AlgoInt/Problems/err.txt")
         for line in file:
             line = line.rstrip()
-            str += line
-        self.ErrorData = str
+            data.append(line)
+        self.ErrorData = data
 
     def readFiles(self):
         file = open("./user/"+self.UUID+"/AlgoInt/Problems/file.txt")
