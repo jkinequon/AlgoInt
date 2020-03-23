@@ -47,7 +47,8 @@ class DockerTest:
         self.OutputData = data[:-3]
         self.TestsFailed = data[-3]
         self.TestsTotal = data[-2]
-        self.TestTime = data[-1]
+        self.TestTime = int(data[-1])
+        self.TestTime = '{:f}'.format(self.TestTime)
         print(self.OutputData, self.TestsFailed, self.TestsTotal, self.TestTime)
 
     def getTestsFailed(self):
