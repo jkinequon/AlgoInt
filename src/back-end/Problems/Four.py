@@ -1,4 +1,4 @@
-from AlgoInt.Problems import FourS.py
+from AlgoInt.Problems import FourS
 import multiprocessing
 import time
 
