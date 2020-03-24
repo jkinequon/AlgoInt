@@ -92,7 +92,7 @@ class HomeOptions extends Component {
                 aria-labelledby="discrete-slider-small-steps"
                 step={10}
                 marks
-                min={1}
+                min={10}
                 max={100}
                 valueLabelDisplay="auto"
               />

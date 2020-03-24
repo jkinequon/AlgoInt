@@ -136,6 +136,8 @@ h1 {
 }
 
 .hint-modal {
+    border-radius: 20px;
+    border: dashed 5px #353535;
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
