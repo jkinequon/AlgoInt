@@ -29,19 +29,6 @@
             color: whitesmoke;
             text-shadow: 0 0 10px rgba(245, 245, 245, 0.486);
         }
-        svg {
-            display: inline-block;
-            vertical-align: text-top;
-            width: 30px;
-            height: 38px;
-            g {
-                transform: translate(0px, 3px) scale(0.15);
-                fill: #239a23;
-                stroke: #00000069;
-                stroke-linecap: round;
-                stroke-width: 1px;
-            }
-        }
     }
     .float-left {
         position: relative;
@@ -69,7 +56,7 @@
         -webkit-font-smoothing: antialiased;
         text-decoration: none;
         font-family: Roboto !important;
-        color: #f92749;
+        color: #f8f8f2;
         position: relative;
         /* top: -12px; */
         padding: 12px 12px;

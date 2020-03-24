@@ -30,6 +30,7 @@
     margin: 0 auto;
     border: solid;
     border-radius: 4px;
+    transition: 0.5s;
     .google-image-button {
         cursor: pointer;
         margin-top: 0px;
@@ -46,12 +47,16 @@
         -webkit-font-smoothing: antialiased;
         text-decoration: none;
         font-family: Roboto !important;
-        color: black;
+        color: #f8f8f2;
         position: relative;
         top: -12px;
         padding: 0px 12px;
         font-weight: 700;
         font-size: 17px;
+    }
+    &:hover {
+        background: #f9274aa2 !important;
+        border-color: #0f0f0f;
     }
 }
 
