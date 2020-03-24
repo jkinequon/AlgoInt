@@ -40,10 +40,10 @@
     width: max-content;
     min-width: 700px;
     margin: auto;
-    font: 500 22px "Roboto";
+    font: 500 22px monospace;
     padding: 10px;
     color: #ffffffa6;
-    background-color: #2c2c2c;
+    background-color: #232323;
     border: solid;
     border-color: #191919c4;
     transition: 0.8s;
@@ -53,10 +53,11 @@
 }
 
 .header {
-    background-color: #0e0e0e !important;
-    font: 600 30px "Roboto";
+    background-color: #141414 !important;
+    font: 600 30px monospace;
     text-decoration: underline;
     padding: 20px 10px;
+    color: #f92749 !important;
 }
 
 .modal-close {

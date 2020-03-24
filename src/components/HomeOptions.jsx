@@ -77,7 +77,7 @@ class HomeOptions extends Component {
       >
         <div className="inner-container">
           <div className="title-container">
-            <div className="title-text">{title}</div>
+            <h1 className="title-text">{title}</h1>
           </div>
           <div className="info-text">{description}</div>
           {isMockInterview ? (

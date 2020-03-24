@@ -181,13 +181,13 @@ class Problem extends Component {
           {this.state.value != "" ? (
             <div className="bottom-right-bar">
               <button
-                className="problem-button"
+                className="problem-button submit-button"
                 onClick={() => this.runHandler()}
               >
                 <span>RUN</span>
               </button>
               <button
-                className="problem-button"
+                className="problem-button submit-button"
                 onClick={() => this.submitHandler()}
               >
                 <span>SUBMIT</span>
