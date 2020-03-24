@@ -184,3 +184,11 @@ h1 {
     background: #232323;
     color: #8f908a;
 }
+
+.ace_dark.ace_editor.ace_autocomplete .ace_completion-highlight {
+    color: #9081f1;
+}
+
+.ace_dark.ace_editor.ace_autocomplete .ace_marker-layer .ace_active-line {
+    background-color: #9081f14f;
+}
