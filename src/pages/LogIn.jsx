@@ -20,7 +20,7 @@ class LogIn extends Component {
             var token = result.credential.accessToken;
             // user info
             var user = result.user;
-            // console.log(user['displayName'])
+            console.log(user)
             signIn();
             setUsername(user['displayName'])
         }).catch(function(error) {
