@@ -70,4 +70,5 @@ src/firebase_config.js
 # .DS_Store
 *.DS_Store
 
-
+#IntelliJ Generated
+*.idea
