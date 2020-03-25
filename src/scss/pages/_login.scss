@@ -1,5 +1,7 @@
 .test {
-    background-color: grey;
+    background-color: #0f0f0f;
+    border-radius: 15px;
+    border: solid 5px #232323 !important;
     color: #fff;
     width: 65vw;
     height: 50vh;
@@ -7,12 +9,20 @@
     margin-top: 20vh;
 }
 
+.intro {
+    text-align: center;
+    font-size: 20px;
+    padding-top: 10vh;
+    margin: auto;
+    width: 50%;
+}
+
 .signIn {
     display: flex;
     flex-direction: column;
     width: 30%;
     margin: auto;
-    padding-top: 20vh;
+    padding-top: 5vh;
 }
 
 .signIn button {
@@ -25,11 +35,12 @@
     cursor: pointer;
     width: max-content;
     height: max-content;
-    background-color: white !important;
+    background-color: #ffffff00 !important;
     text-decoration: none !important;
     margin: 0 auto;
     border: solid;
     border-radius: 4px;
+    transition: 0.5s;
     .google-image-button {
         cursor: pointer;
         margin-top: 0px;
@@ -46,17 +57,21 @@
         -webkit-font-smoothing: antialiased;
         text-decoration: none;
         font-family: Roboto !important;
-        color: black;
+        color: #f8f8f2;
         position: relative;
         top: -12px;
         padding: 0px 12px;
         font-weight: 700;
         font-size: 17px;
     }
+    &:hover {
+        background: #f9274aa2 !important;
+        border-color: #0f0f0f;
+    }
 }
 
 .google_login_img {
     background: url(/assets/icons/groupgoogle_2x_360-e7d3bc14d96e3610ff46ad704e3b88322efee353327a40e68003dbf63fd84d1f.png) center no-repeat;
     background-size: 40px;
-    border: 1px solid #4285F4;
+    border: 1px solid #4285f4;
 }

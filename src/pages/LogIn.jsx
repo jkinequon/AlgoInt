@@ -47,10 +47,10 @@ class LogIn extends Component {
 
         return (
             <div className="test">
+                <div className="intro">
+                    Welcome to AlgoInt! Practice your coding knowledge and skills to prepare for interviews or exams.
+                </div>
                 <form className="signIn">
-                    <label>Log In</label>
-                    <input type="email" placeholder="email" name="email" ></input>
-                    <input type="password" placeholder="password" name="psw" ></input>
                     {signedIn ?
                         <button className="" onClick={() => { signOff() }}>Log out</button> :
                         <>

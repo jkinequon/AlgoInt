@@ -16,7 +16,8 @@ class Problem extends Component {
       questionHints: "",
       showHint1Modal: false,
       showHint2Modal: false,
-      value: ""
+      value: "",
+      enableHints: true
     };
   }
 
@@ -37,36 +38,45 @@ class Problem extends Component {
   };
 
   submitHandler = () => {
-        const { setCurrentQuestion, currentQuestion, username, questionsObject } = this.props;
+    const {
+      setCurrentQuestion,
+      currentQuestion,
+      username,
+      questionsObject
+    } = this.props;
 
-        console.log( currentQuestion, username );
-        console.log(this.state.value);
-        var data = {"name" : username,
-                "message": "Submit",
-                "UUID": "AEFJAEIFJIWFI12",
-                "Question": questionsObject[currentQuestion]["Question Python File"],
-                "Solution": this.state.value};
-        console.log(data);
-        let response = fetch('http://127.0.0.1:5000/api/Submit', {
-                method: 'POST',
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(data)
-         }).then(response => response.json())
-         .then(json => console.log(json));
-         console.log(response);
-        // fetch('http://127.0.0.1:5000/Submit', {
-        //   method: 'POST', // or 'PUT'
-        //   body: JSON.stringify(data),
-        // })
-        // .then((response) => response.json())
-        // .then((data) => {
-        //     // this is the data we get back
-        //   console.log('Success:', data);
-        // })
-        // .catch((error) => {
-        //   console.error('Error:', error);
-        // });
-        //setCurrentQuestion(null)
+    console.log(currentQuestion, username);
+    console.log(this.state.value);
+    var data = {
+      name: username,
+      message: "Submit",
+      UUID: "AEFJAEIFJIWFI12",
+      Question: questionsObject[currentQuestion]["Question Python File"],
+      Solution: this.state.value
+    };
+    console.log(data);
+    let response = fetch("http://127.0.0.1:5000/api/Submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .then(json => console.log(json))
+      .then(setCurrentQuestion(null));
+    console.log(response);
+    // fetch('http://127.0.0.1:5000/Submit', {
+    //   method: 'POST', // or 'PUT'
+    //   body: JSON.stringify(data),
+    // })
+    // .then((response) => response.json())
+    // .then((data) => {
+    //     // this is the data we get back
+    //   console.log('Success:', data);
+    // })
+    // .catch((error) => {
+    //   console.error('Error:', error);
+    // });
+    //setCurrentQuestion(null)
   };
 
   runHandler = () => {
@@ -74,13 +84,24 @@ class Problem extends Component {
   };
 
   componentDidMount() {
-    const { questionsObject, currentQuestion } = this.props;
+    const { questionsObject, currentQuestion, currentMode } = this.props;
     var q_object = questionsObject[currentQuestion];
     this.setState({
       questionTitle: q_object["Question Name"],
       questionDescription: q_object["Question Description"],
       questionHints: q_object["Question Hints"]
     });
+
+    if (currentMode == 1) {
+      // Whiteboard
+      this.setState({ enableHints: true });
+    } else if (currentMode == 2) {
+      // Coding Problem
+      this.setState({ enableHints: true });
+    } else if (currentMode == 3) {
+      // Mock Interview
+      this.setState({ enableHints: false });
+    }
   }
 
   render() {
@@ -92,10 +113,10 @@ class Problem extends Component {
           isOpen={this.state.showHint1Modal}
           contentLabel="Modal #1 Global Style Override Example"
           onRequestClose={this.handleCloseHint1Modal}
-          className="Modal"
-          overlayClassName="Overlay"
+          className="hint-modal"
+          overlayClassName="hint-modal-overlay"
         >
-          <div className="modal-div">
+          <div className="hint-modal-div">
             <h1>{this.state.questionHints[0]}</h1>
             <button
               className="problem-button modal-close"
@@ -109,10 +130,10 @@ class Problem extends Component {
           isOpen={this.state.showHint2Modal}
           contentLabel="Modal #2 Global Style Override Example"
           onRequestClose={this.handleCloseHint2Modal}
-          className="Modal"
-          overlayClassName="Overlay"
+          className="hint-modal"
+          overlayClassName="hint-modal-overlay"
         >
-          <div className="modal-div">
+          <div className="hint-modal-div">
             <h1>{this.state.questionHints[1]}</h1>
             <button
               className="problem-button modal-close"
@@ -130,20 +151,25 @@ class Problem extends Component {
             </h1>
             <h2 className="question-text">{this.state.questionDescription}</h2>
           </div>
-          <div className="hint-div">
-            <button
-              className="problem-button"
-              onClick={() => this.handleOpenHint1Modal()}
-            >
-              <span>HINT 1</span>
-            </button>
-            <button
-              className="problem-button"
-              onClick={() => this.handleOpenHint2Modal()}
-            >
-              <span>HINT 2</span>
-            </button>
-          </div>
+          {this.state.enableHints ? (
+            <div className="hint-div">
+              <button
+                className="problem-button"
+                onClick={() => this.handleOpenHint1Modal()}
+              >
+                <span>HINT 1</span>
+              </button>
+              <button
+                className="problem-button"
+                onClick={() => this.handleOpenHint2Modal()}
+              >
+                <span>HINT 2</span>
+              </button>
+            </div>
+          ) : (
+            <div />
+          )}
+
           <div className="console-div">Console Output</div>
         </div>
         <div className="right-container">
@@ -152,20 +178,24 @@ class Problem extends Component {
               this.setState({ value: newValue });
             }}
           />
-          <div className="bottom-right-bar">
-            <button
-              className="problem-button"
-              onClick={() => this.runHandler()}
-            >
-              <span>RUN</span>
-            </button>
-            <button
-              className="problem-button"
-              onClick={() => this.submitHandler()}
-            >
-              <span>SUBMIT</span>
-            </button>
-          </div>
+          {this.state.value != "" ? (
+            <div className="bottom-right-bar">
+              <button
+                className="problem-button submit-button"
+                onClick={() => this.runHandler()}
+              >
+                <span>RUN</span>
+              </button>
+              <button
+                className="problem-button submit-button"
+                onClick={() => this.submitHandler()}
+              >
+                <span>SUBMIT</span>
+              </button>
+            </div>
+          ) : (
+            <div />
+          )}
         </div>
       </div>
     );
@@ -177,7 +207,8 @@ const mapStateToProps = state => {
     currentQuestion: state.delta.currentQuestion,
     questionQueue: state.delta.questionQueue,
     questionsObject: state.delta.questionsObject,
-    username: state.delta.username
+    username: state.delta.username,
+    currentMode: state.delta.currentMode
   };
 };
 

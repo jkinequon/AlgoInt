@@ -12,20 +12,20 @@
             width: 99%;
             height: 50%;
             text-align: center;
-            border-style: solid;
-            border-color: #10101063;
-            background-color: #1010108f;
+            border: solid 5px #232323;
+            background-color: #141414;
             border-radius: 8px;
         }
         .console-div {
             width: 99%;
             height: 39%;
-            // border-style: solid;
-            // border-color: blue;
-            border-style: solid;
-            border-color: #10101063;
-            background-color: #1010108f;
+            width: 99%;
+            border: solid 5px #232323;
+            background-color: #141414;
             border-radius: 8px;
+        }
+        .question-title {
+            color: #f92749;
         }
     }
     .right-container {
@@ -44,7 +44,7 @@
 
 .problem-start {
     background-color: #141414;
-    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: monospace;
     font-weight: normal;
     color: #ffffffa6;
     // border-style: solid;
@@ -64,6 +64,7 @@
     }
     h1 {
         text-decoration: underline;
+        color: #f92749;
     }
 }
 
@@ -90,16 +91,20 @@ h1 {
     min-width: 250px;
     margin: 0px 5px;
     display: inline-block;
-    border-radius: 4px;
-    background-color: #1e2127;
-    border: none;
-    color: #ffffffa6;
+    border-radius: 10px;
+    border: solid 5px #232323 !important;
+    background-color: #141414;
+    color: #f8f8f2;
     text-align: center;
     font-size: 28px;
     padding: 20px;
     width: 20%;
     transition: all 0.5s;
     cursor: pointer;
+}
+
+.submit-button {
+    border-color: #f92749 !important;
 }
 
 .problem-button span {
@@ -110,7 +115,7 @@ h1 {
 }
 
 .problem-button span:after {
-    content: '\00bb';
+    content: "\00bb";
     position: absolute;
     opacity: 0;
     top: 0;
@@ -119,7 +124,7 @@ h1 {
 }
 
 .problem-button:hover {
-    background-color: #3e4452;
+    background-color: #f92749b0;
 }
 
 .problem-button:hover span {
@@ -135,7 +140,9 @@ h1 {
     z-index: 7;
 }
 
-.Modal {
+.hint-modal {
+    border-radius: 20px;
+    border: dashed 5px #353535;
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -146,7 +153,7 @@ h1 {
     color: #ffffffa6;
 }
 
-.Overlay {
+.hint-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -155,7 +162,7 @@ h1 {
     background-color: rgba(46, 46, 46, 0.514);
 }
 
-.modal-div {
+.hint-modal-div {
     position: relative;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -166,4 +173,22 @@ h1 {
     h1 {
         margin: 5px;
     }
+}
+
+.ace-monokai {
+    background-color: #141414;
+    color: #f8f8f2;
+}
+
+.ace-monokai .ace_gutter {
+    background: #232323;
+    color: #8f908a;
+}
+
+.ace_dark.ace_editor.ace_autocomplete .ace_completion-highlight {
+    color: #9081f1;
+}
+
+.ace_dark.ace_editor.ace_autocomplete .ace_marker-layer .ace_active-line {
+    background-color: #9081f14f;
 }
