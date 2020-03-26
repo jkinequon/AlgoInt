@@ -91,9 +91,9 @@ class ProblemManager extends Component {
           // if there are no selected questions
           <div className="problem-start">
             <div className="center-align">
-            {currentMode == 3 ? (
+              {currentMode == 3 ? (
                 completedQuestions.map(val => {
-                  return <h1>{val}</h1>;
+                  return <h1>Question: {val} : Success!</h1>;
                 })
               ) : (
                 <h1>Question Completed!</h1>
@@ -129,7 +129,7 @@ function mapDispatchToProps(dispatch) {
   return {
     setCurrentQuestion: bindActionCreators(setCurrentQuestion, dispatch),
     setQuestionQueue: bindActionCreators(setQuestionQueue, dispatch),
-    setCurrentMode: bindActionCreators(setCurrentMode, dispatch)    
+    setCurrentMode: bindActionCreators(setCurrentMode, dispatch)
   };
 }
 
