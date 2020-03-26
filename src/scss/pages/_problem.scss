@@ -26,12 +26,6 @@
             overflow-y: auto;
             .inner-console-div {
                 padding: 0px 15px;
-                .console-success {
-                    color: #9081f1;
-                }
-                .console-failed {
-                    color: #f92749;
-                }
             }
         }
         .question-title {
@@ -50,6 +44,14 @@
             margin-top: 5px;
         }
     }
+}
+
+.console-success {
+    color: #9081f1 !important;
+}
+
+.console-failed {
+    color: #f92749 !important;
 }
 
 .problem-start {

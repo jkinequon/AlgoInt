@@ -9,6 +9,8 @@ import {
   setCurrentMode
 } from "../redux/actions/actions";
 
+import RankingModal from "../components/RankingModal";
+
 import { NavLink, withRouter } from "react-router-dom";
 
 class ProblemManager extends Component {
@@ -18,6 +20,12 @@ class ProblemManager extends Component {
       questionActive: false
     };
   }
+
+  callRankingFunction = (e, number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.clickChild(number);
+  };
 
   selectQuestion = questionQueue => {
     const { setCurrentQuestion, setQuestionQueue } = this.props;
@@ -48,6 +56,8 @@ class ProblemManager extends Component {
     console.log(questionsObject);
     return (
       <>
+        <RankingModal setClick={click => (this.clickChild = click)} />
+
         {// if no current question and there exists a queue
         currentQuestion == null && questionQueue.length != 0 ? (
           <div className="problem-start">
@@ -91,13 +101,59 @@ class ProblemManager extends Component {
           // if there are no selected questions
           <div className="problem-start">
             <div className="center-align">
-              {currentMode == 3 ? (
+              {currentMode == 3 ? <h1>Mock Interview Completed!</h1> : <></>}
+              {currentMode == 3 && completedQuestions.length != 0 ? (
                 completedQuestions.map(val => {
-                  return <h1>Question: {val} : Success!</h1>;
+                  return (
+                    <h2>
+                      Question {val}:{" "}
+                      <span className="console-success">Success! </span>
+                      <button
+                        className="ranking-button"
+                        onClick={e => this.callRankingFunction(e, val)}
+                      >
+                        <span>RANKING Q{val}</span>
+                      </button>
+                    </h2>
+                  );
                 })
               ) : (
-                <h1>Question Completed!</h1>
+                <></>
               )}
+              {currentMode == 3 && currentQuestion != null ? (
+                <h2>
+                  Question {currentQuestion}:{" "}
+                  <span className="console-failed">Not Completed... </span>
+                  <button
+                    className="ranking-button"
+                    onClick={e => this.callRankingFunction(e, currentQuestion)}
+                  >
+                    <span>RANKING Q{currentQuestion}</span>
+                  </button>
+                </h2>
+              ) : (
+                <></>
+              )}
+              {currentMode == 3 && questionQueue.length != 0 ? (
+                questionQueue.map(val => {
+                  return (
+                    <h2>
+                      Question {val}:{" "}
+                      <span className="console-failed">Not Attempted... </span>
+                      <button
+                        className="ranking-button"
+                        onClick={e => this.callRankingFunction(e, val)}
+                      >
+                        <span>RANKING Q{val}</span>
+                      </button>
+                    </h2>
+                  );
+                })
+              ) : (
+                <></>
+              )}
+              {currentMode != 3 ? <h2>Question Completed!</h2> : <></>}
+
               <NavLink
                 className="no-text-decoration"
                 activeClassName={"no-text-decoration"}
