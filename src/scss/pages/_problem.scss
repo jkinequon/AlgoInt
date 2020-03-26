@@ -23,7 +23,7 @@
             border: solid 5px #232323;
             background-color: #141414;
             border-radius: 8px;
-            overflow-y: scroll;
+            overflow-y: auto;
             .inner-console-div {
                 padding: 0px 15px;
                 .console-success {
@@ -192,6 +192,9 @@ h1 {
 .ace-monokai {
     background-color: #141414;
     color: #f8f8f2;
+    margin-top: 0px !important;
+    border-radius: 10px !important;
+    border: solid 5px #232323;
 }
 
 .ace-monokai .ace_gutter {
