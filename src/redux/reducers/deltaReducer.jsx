@@ -3,6 +3,10 @@ import initialState from "./initialState";
 
 export default function deltaReducer(state = initialState, action) {
   switch (action.type) {
+    case types.SET_FRONTEND_TEST: {
+      return Object.assign({}, state, { ...state, frontEndTest: true });
+    }
+
     case types.SIGN_IN: {
       return Object.assign({}, state, { ...state, signedIn: true });
     }

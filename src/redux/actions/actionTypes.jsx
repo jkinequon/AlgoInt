@@ -1,3 +1,4 @@
+export const SET_FRONTEND_TEST = 'SET_FRONTEND_TEST';
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_OFF = 'SIGN_OFF';
 export const SET_CURRENT_QUESTION = 'SET_CURRENT_QUESTION';

@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
 import firebase from "../firebase_config";
+
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { setCurrentQuestion } from "../redux/actions/actions";
 
 class RankingModal extends Component {
   constructor(props) {
@@ -23,7 +26,12 @@ class RankingModal extends Component {
   };
 
   handleCloseRankingModal = () => {
-    this.setState({ showRankingModal: false });
+    const { withinProblem = false } = this.props;
+    if (withinProblem) {
+      setCurrentQuestion(null);
+    } else {
+      this.setState({ showRankingModal: false });
+    }
   };
 
   rankingHandler(number) {
@@ -53,7 +61,7 @@ class RankingModal extends Component {
   }
 
   render() {
-    const { username } = this.props;
+    const { username, withinProblem = false } = this.props;
     return (
       <div>
         <ReactModal
@@ -105,4 +113,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(RankingModal);
+function mapDispatchToProps(dispatch) {
+  return {
+    setCurrentQuestion: bindActionCreators(setCurrentQuestion, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RankingModal);

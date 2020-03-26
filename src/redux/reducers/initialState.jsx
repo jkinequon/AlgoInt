@@ -1,4 +1,5 @@
 export default {
+  frontEndTest: false,
   signedIn: false,
   currentState: "LogIn",
   currentQuestion: null,

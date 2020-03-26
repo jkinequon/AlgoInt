@@ -2,7 +2,13 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { signIn, signOff, setUsername, setUID } from "../redux/actions/actions";
+import {
+  setFrontEndTest,
+  signIn,
+  signOff,
+  setUsername,
+  setUID
+} from "../redux/actions/actions";
 import firebase from "../firebase_config";
 import { NavLink, withRouter } from "react-router-dom";
 
@@ -49,7 +55,7 @@ class LogIn extends Component {
   };
 
   render() {
-    const { signedIn, signIn, signOff } = this.props;
+    const { signedIn, signIn, signOff, setFrontEndTest } = this.props;
 
     return (
       <div className="test">
@@ -73,9 +79,10 @@ class LogIn extends Component {
                 className=""
                 onClick={() => {
                   signIn();
+                  setFrontEndTest();
                 }}
               >
-                Log in
+                Front-end Dev Testing
               </button>
               <div
                 className="google-sign-in-div"
@@ -107,6 +114,7 @@ const mapStateToProps = state => {
 
 function mapDispatchToProps(dispatch) {
   return {
+    setFrontEndTest: bindActionCreators(setFrontEndTest, dispatch),
     signIn: bindActionCreators(signIn, dispatch),
     signOff: bindActionCreators(signOff, dispatch),
     setUsername: bindActionCreators(setUsername, dispatch),

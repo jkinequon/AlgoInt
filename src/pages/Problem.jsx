@@ -46,7 +46,8 @@ class Problem extends Component {
       currentQuestion,
       username,
       uid,
-      questionsObject
+      questionsObject,
+      currentMode
     } = this.props;
 
     console.log(currentQuestion, username);
@@ -69,7 +70,6 @@ class Problem extends Component {
         var response = JSON.parse(jsonObject["response"]);
 
         if (response["response"] == "Success") {
-          // this.clickChild(currentQuestion);
           this.setState({
             consoleOutput: [...this.state.consoleOutput, "Success"]
           });
@@ -78,7 +78,11 @@ class Problem extends Component {
             consoleOutput: [...this.state.consoleOutput, "Failed"]
           });
         }
-        this.clickChild(currentQuestion); // Send setCurrentQuestion function to rankingModal's close button
+        if (currentMode == 3){
+          setCurrentQuestion(null)
+        }else{
+          this.clickChild(currentQuestion);
+        }
       });
   };
 
@@ -111,9 +115,13 @@ class Problem extends Component {
         var response = JSON.parse(jsonObject["response"]);
 
         if (response["response"] == "Success") {
-          this.setState({ consoleOutput: "Success" });
+          this.setState({
+            consoleOutput: [...this.state.consoleOutput, "Success"]
+          });
         } else {
-          this.setState({ consoleOutput: "Failed" });
+          this.setState({
+            consoleOutput: [...this.state.consoleOutput, "Failed"]
+          });
         }
       });
   };
@@ -144,7 +152,7 @@ class Problem extends Component {
     var consoleOutput = this.state.consoleOutput;
     return (
       <div className="parent-container">
-        <RankingModal setClick={click => (this.clickChild = click)} />
+        <RankingModal setClick={click => (this.clickChild = click)} withinProblem={true} />
         {/* HINT MODALS */}
         <ReactModal
           isOpen={this.state.showHint1Modal}
