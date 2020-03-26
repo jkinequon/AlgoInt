@@ -23,9 +23,10 @@ class DockerTest:
         f = open("./user/"+self.UUID+"/AlgoInt/Problems/"+self.QuestionID+"S.py", "w")
         f.write(self.SolutionString)
         f.close()
-        cmd = "docker run -v /home/justicesk/Documents/Master/AlgoInt/src/back-end/user/"+self.UUID+\
+        cmd = "docker run --stop-timeout 10 -v /home/justicesk/Documents/Master/AlgoInt/src/back-end/user/"+self.UUID+\
               "/AlgoInt:/AlgoInt --rm -e user="+self.UUID+" -e path_file="+self.QuestionID+".py python-test"
         os.system(cmd)
+        print("Finished")
 
     def DockerClean(self):
         cmd = "rm -r ./user/" + self.UUID

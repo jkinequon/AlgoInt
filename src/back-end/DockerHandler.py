@@ -17,6 +17,7 @@ class handleDocker:
     def DockerSubmit(self, UUID, QuestionID, SolutionString):
         self.DockerTester = DockerTest(UUID, QuestionID, SolutionString)
         self.DockerTester.DockerTest()
+        print("Got passed here")
         self.DockerTester.readErrors()
         self.DockerTester.readFiles()
         self.testsFailed = self.DockerTester.getTestsFailed()
@@ -28,7 +29,7 @@ class handleDocker:
             self.testTime)
 
     def DockerRun(self, UUID, QuestionID, SolutionString):
-        DockerSubmit(UUID, QuestionID, SolutionString)
+        self.DockerSubmit(UUID, QuestionID, SolutionString)
         self.state = "Run"
 
     def getErrorData(self):

@@ -67,11 +67,11 @@ class Problem extends Component {
       .then(response => response.json())
       .then(json => {
         console.log(json);
-        var response = json["response"].json();
+        var response = JSON.parse(json["response"]);
         console.log(response["response"]);
 
         if (response["response"] == "Success") {
-          // this.clickChild(currentQuestion);
+          this.clickChild(currentQuestion);
           this.setState({ consoleOutput: "Success" });
         } else {
           this.setState({ consoleOutput: "Failed" });
