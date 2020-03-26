@@ -3,6 +3,7 @@ import Countdown from "react-countdown";
 import { connect } from "react-redux";
 import ReactModal from "react-modal";
 import { NavLink, withRouter } from "react-router-dom";
+import RankingModal from "./RankingModal";
 
 class Clock extends Component {
   constructor(props) {
