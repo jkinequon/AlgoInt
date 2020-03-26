@@ -89,13 +89,12 @@ class Problem extends Component {
               ]
             });
           }
-          if (currentMode == 3) {
-            setCurrentQuestion(null);
-          } else {
-            if (success) {
-              this.clickChild(currentQuestion);
-            } else {
+
+          if (success) {
+            if (currentMode == 3) {
               setCurrentQuestion(null);
+            } else {
+              this.clickChild(currentQuestion);
             }
           }
         });
@@ -282,13 +281,21 @@ class Problem extends Component {
           <div className="console-div">
             <div className="inner-console-div">
               {consoleOutput != [] ? (
-                consoleOutput.map(val => {
+                consoleOutput.map((val, i) => {
                   if (val == "Success") {
-                    return <p className="console-success">{val}</p>;
+                    return (
+                      <p className="console-success" key={i}>
+                        {val}
+                      </p>
+                    );
                   } else if (val == "Failed") {
-                    return <p className="console-failed">{val}</p>;
+                    return (
+                      <p className="console-failed" key={i}>
+                        {val}
+                      </p>
+                    );
                   } else {
-                    return <p>{val}</p>;
+                    return <p key={i}>{val}</p>;
                   }
                 })
               ) : (
