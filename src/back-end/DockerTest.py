@@ -23,7 +23,7 @@ class DockerTest:
         f = open("./user/"+self.UUID+"/AlgoInt/Problems/"+self.QuestionID+"S.py", "w")
         f.write(self.SolutionString)
         f.close()
-        cmd = "timeout --signal=SIGKILL 12 docker run -v /home/justicesk/Documents/Master/AlgoInt/src/back-end/user/"+self.UUID+\
+        cmd = "docker run -v /home/justicesk/Documents/Master/AlgoInt/src/back-end/user/"+self.UUID+\
               "/AlgoInt:/AlgoInt --rm -e user="+self.UUID+" -e path_file="+self.QuestionID+".py python-test"
         os.system(cmd)
         print("Finished")

@@ -66,7 +66,6 @@ class Problem extends Component {
     })
       .then(response => response.json())
       .then(jsonObject => {
-        console.log(json);
         var response = JSON.parse(jsonObject["response"]);
 
         if (response["response"] == "Success") {
@@ -109,7 +108,6 @@ class Problem extends Component {
     })
       .then(response => response.json())
       .then(jsonObject => {
-        console.log(json);
         var response = JSON.parse(jsonObject["response"]);
 
         if (response["response"] == "Success") {
