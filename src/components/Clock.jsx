@@ -49,18 +49,18 @@ class Clock extends Component {
 
     return (
       <div>
-        {!willUnmount && !timeFinished ? (
-          <Countdown
-            ref={this.setRef}
-            date={Date.now() + mockInterviewTime * 60000}
-            // date={Date.now() + 3000} // Sets timer to 3 seconds for testing
-            renderer={this.renderer}
-            autoStart={true}
-            onPause={this.handlePause}
-          />
-        ) : (
-          <></>
-        )}
+        {/* {!willUnmount && !timeFinished ? ( */}
+        <Countdown
+          ref={this.setRef}
+          date={Date.now() + mockInterviewTime * 60000}
+          // date={Date.now() + 3000} // Sets timer to 3 seconds for testing
+          renderer={this.renderer}
+          autoStart={true}
+          onPause={this.handlePause}
+        />
+        {/* ) : ( */}
+        {/* <></> */}
+        {/* )} */}
       </div>
     );
   }
