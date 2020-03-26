@@ -37,14 +37,14 @@ class ProblemManager extends Component {
     setCurrentMode(0);
   }
 
-  returnHome = () => {};
-
-  // getObjectOfQuestionNumber = () => this.props.questionsObject[this.props.questionQueue[0]]['Question Name']
-  // getObjectOfQuestionNumber = () => questionsObject[questionQueue[0]]['Question Name']
-
-  // TODO: Maybe add in secureRouter that if the queue is not empty, to redirect to /problem
   render() {
-    const { currentQuestion, questionQueue, questionsObject = [] } = this.props;
+    const {
+      currentQuestion,
+      questionQueue,
+      questionsObject = [],
+      currentMode,
+      completedQuestions
+    } = this.props;
     console.log(questionsObject);
     return (
       <>
@@ -91,16 +91,19 @@ class ProblemManager extends Component {
           // if there are no selected questions
           <div className="problem-start">
             <div className="center-align">
-              <h1>No questions remaining</h1>
+            {currentMode == 3 ? (
+                completedQuestions.map(val => {
+                  return <h1>{val}</h1>;
+                })
+              ) : (
+                <h1>Question Completed!</h1>
+              )}
               <NavLink
                 className="no-text-decoration"
                 activeClassName={"no-text-decoration"}
                 to={"/"}
               >
-                <button
-                  className="problem-button"
-                  onClick={() => this.returnHome()}
-                >
+                <button className="problem-button">
                   <span>RETURN</span>
                 </button>
               </NavLink>
@@ -116,7 +119,9 @@ const mapStateToProps = state => {
   return {
     currentQuestion: state.delta.currentQuestion,
     questionQueue: state.delta.questionQueue,
-    questionsObject: state.delta.questionsObject
+    questionsObject: state.delta.questionsObject,
+    currentMode: state.delta.currentMode,
+    completedQuestions: state.delta.completedQuestions
   };
 };
 
@@ -124,7 +129,7 @@ function mapDispatchToProps(dispatch) {
   return {
     setCurrentQuestion: bindActionCreators(setCurrentQuestion, dispatch),
     setQuestionQueue: bindActionCreators(setQuestionQueue, dispatch),
-    setCurrentMode: bindActionCreators(setCurrentMode, dispatch)
+    setCurrentMode: bindActionCreators(setCurrentMode, dispatch)    
   };
 }
 

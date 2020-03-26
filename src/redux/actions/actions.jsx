@@ -10,6 +10,10 @@ export const setCurrentQuestion = (currentQuestion) => { return {currentQuestion
 
 export const setQuestionQueue = (questionObject) => { return {questionObject, type: types.SET_QUESTION_QUEUE } };
 
+export const addCompletedQuestion = (completedQuestions) => { return {completedQuestions, type: types.ADD_COMPLETED_QUESTION } };
+
+export const setCompletedQuestions = (completedQuestions) => { return {completedQuestions, type: types.SET_COMPLETED_QUESTIONS } };
+
 export const setQuestionObject = (questionObject) => { return {questionObject: [questionObject], type: types.SET_QUESTION_OBJECT } };
 
 export const setUsername = (username) => { return {username, type: types.SET_USERNAME } };

@@ -4,7 +4,7 @@ import firebase from "../firebase_config";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { setCurrentQuestion } from "../redux/actions/actions";
+import { setCurrentQuestion, setCompletedQuestions } from "../redux/actions/actions";
 
 class RankingModal extends Component {
   constructor(props) {
@@ -26,8 +26,9 @@ class RankingModal extends Component {
   };
 
   handleCloseRankingModal = () => {
-    const { withinProblem = false, setCurrentQuestion } = this.props;
+    const { withinProblem = false, setCurrentQuestion, setCompletedQuestions, currentQuestion } = this.props;
     if (withinProblem) {
+      setCompletedQuestions(currentQuestion)
       setCurrentQuestion(null);
     } else {
       this.setState({ showRankingModal: false });
@@ -109,13 +110,15 @@ class RankingModal extends Component {
 const mapStateToProps = state => {
   return {
     questionsObject: state.delta.questionsObject,
-    username: state.delta.username
+    username: state.delta.username,
+    currentQuestion: state.delta.currentQuestion,
   };
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    setCurrentQuestion: bindActionCreators(setCurrentQuestion, dispatch)
+    setCurrentQuestion: bindActionCreators(setCurrentQuestion, dispatch),
+    setCompletedQuestions: bindActionCreators(setCompletedQuestions, dispatch),
   };
 }
 

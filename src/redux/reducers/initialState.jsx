@@ -4,6 +4,7 @@ export default {
   currentState: "LogIn",
   currentQuestion: null,
   questionQueue: [],
+  completedQuestions: [],
   questionsObject: [],
   username: "default_user",
   uid: "abcd",

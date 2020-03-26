@@ -5,7 +5,7 @@ import ReactModal from "react-modal";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { setCurrentQuestion, setQuestionQueue } from "../redux/actions/actions";
+import { setCurrentQuestion, setQuestionQueue, addCompletedQuestion } from "../redux/actions/actions";
 
 import RankingModal from "./../components/RankingModal";
 
@@ -49,7 +49,8 @@ class Problem extends Component {
       uid,
       questionsObject,
       currentMode,
-      frontEndTest
+      frontEndTest,
+      addCompletedQuestion
     } = this.props;
     var success = false;
     // console.log(currentQuestion, username);
@@ -94,6 +95,7 @@ class Problem extends Component {
 
           if (success) {
             if (currentMode == 3) {
+              addCompletedQuestion(currentQuestion)
               setCurrentQuestion(null);
             } else {
               this.clickChild(currentQuestion);
@@ -103,6 +105,7 @@ class Problem extends Component {
         });
     } else {
       // THIS IS FRONT-END TESTING CASE
+      addCompletedQuestion(currentQuestion)
       setCurrentQuestion(null);
     }
   };
@@ -337,6 +340,7 @@ const mapStateToProps = state => {
 function mapDispatchToProps(dispatch) {
   return {
     setCurrentQuestion: bindActionCreators(setCurrentQuestion, dispatch),
+    addCompletedQuestion: bindActionCreators(addCompletedQuestion, dispatch),
     setQuestionQueue: bindActionCreators(setQuestionQueue, dispatch)
   };
 }

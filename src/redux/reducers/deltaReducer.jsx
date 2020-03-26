@@ -29,6 +29,23 @@ export default function deltaReducer(state = initialState, action) {
       });
     }
 
+    case types.SET_COMPLETED_QUESTIONS: {
+      return Object.assign({}, state, {
+        ...state,
+        completedQuestions: action.completedQuestions
+      });
+    }
+
+    case types.ADD_COMPLETED_QUESTION: {
+      return Object.assign({}, state, {
+        ...state,
+        completedQuestions: [
+          ...state.completedQuestions,
+          action.completedQuestions
+        ]
+      });
+    }
+
     case types.SET_QUESTION_OBJECT: {
       // console.log(state)
       return Object.assign({}, state, {
