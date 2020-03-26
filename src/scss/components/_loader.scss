@@ -1,7 +1,31 @@
+.loader-modal {
+    border-radius: 20px;
+    border: solid 5px #353535;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background-color: #252525;
+    width: max-content;
+    height: max-content;
+    color: #ffffffa6;
+    padding: 20px;
+}
+
+.loader-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(46, 46, 46, 0.904);
+}
+
 .loader {
+    transform: scale(1.5);
     --path: #2f3545;
-    --dot: #5628ee;
-    --duration: 3s;
+    --dot: #f92749;
+    --duration: 5s;
     width: 44px;
     height: 44px;
     position: relative;
