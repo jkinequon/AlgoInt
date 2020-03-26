@@ -10,10 +10,14 @@ import { setTimeFinished } from "../redux/actions/actions";
 var willUnmount = false;
 
 class Clock extends Component {
+  countdownApi = null;
+
   renderer = ({ formatted: { hours, minutes, seconds }, completed }) => {
     const { setTimeFinished, timeFinished } = this.props;
     if (completed) {
       // Render a complete state
+      this.countdownApi && this.countdownApi.pause();
+
       setTimeFinished(true);
       if (timeFinished) {
         return <span className="float-right timer">Time's up!</span>;
@@ -30,6 +34,12 @@ class Clock extends Component {
     }
   };
 
+  setRef = countdown => {
+    if (countdown) {
+      this.countdownApi = countdown.getApi();
+    }
+  };
+
   componentWillUnmount() {
     willUnmount = true;
   }
@@ -41,10 +51,12 @@ class Clock extends Component {
       <div>
         {!willUnmount && !timeFinished ? (
           <Countdown
+            ref={this.setRef}
             date={Date.now() + mockInterviewTime * 60000}
             // date={Date.now() + 3000} // Sets timer to 3 seconds for testing
             renderer={this.renderer}
             autoStart={true}
+            onPause={this.handlePause}
           />
         ) : (
           <></>
