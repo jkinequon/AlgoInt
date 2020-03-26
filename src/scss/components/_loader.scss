@@ -9,7 +9,7 @@
     width: max-content;
     height: max-content;
     color: #ffffffa6;
-    padding: 20px;
+    padding: 50px;
 }
 
 .loader-modal-overlay {
@@ -21,14 +21,55 @@
     background-color: rgba(46, 46, 46, 0.904);
 }
 
+.loading-container {
+    zoom: 300%;
+    .loading06 {
+        span {
+            position: relative;
+            color: rgba(#000, 0.2);
+            top: 25px;
+            &::after {
+                position: absolute;
+                top: 0;
+                left: 0;
+                content: attr(data-text);
+                color: #fff;
+                opacity: 0;
+                transform: rotateY(-90deg);
+                animation: loading06 4s infinite;
+            }
+            @for $i from 1 through 12 {
+                &:nth-child(#{$i + 1})::after {
+                    animation-delay: #{$i * 0.2}s;
+                }
+            }
+        }
+    }
+    @keyframes loading06 {
+        0%,
+        75%,
+        100% {
+            transform: rotateY(-90deg);
+            opacity: 0;
+        }
+        25%,
+        50% {
+            transform: rotateY(0);
+            opacity: 1;
+        }
+    }
+}
+
 .loader {
-    transform: scale(1.5);
     --path: #2f3545;
     --dot: #f92749;
     --duration: 5s;
     width: 44px;
     height: 44px;
     position: relative;
+    margin: 0px auto;
+    transform: scale(2.5);
+    top: -50px;
     &:before {
         content: "";
         width: 6px;
