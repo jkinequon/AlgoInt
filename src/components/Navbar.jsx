@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { signIn, signOff, setUsername } from "../redux/actions/actions";
 import firebase from "../firebase_config";
 import { NavLink, withRouter } from "react-router-dom";
-import {Clock} from "./"
+import { Clock } from "./";
 
 class Navbar extends Component {
   googleSignIn = () => {
@@ -47,7 +47,12 @@ class Navbar extends Component {
   };
 
   render() {
-    const { signedIn, currentMode } = this.props;
+    const {
+      signedIn,
+      currentMode,
+      currentQuestion,
+      questionQueue
+    } = this.props;
 
     return (
       <nav className="navbar-root">
@@ -82,7 +87,12 @@ class Navbar extends Component {
             <span className="third_party_text">Sign in with google</span>
           </div>
         )}
-        {currentMode == 3 ? <Clock/> : <div />}
+        {(currentMode == 3) &
+        !(currentQuestion == null && questionQueue == []) ? (
+          <Clock />
+        ) : (
+          <div />
+        )}
       </nav>
     );
   }
@@ -91,7 +101,9 @@ const mapStateToProps = state => {
   return {
     signedIn: state.delta.signedIn,
     currentMode: state.delta.currentMode,
-    mockInterviewTime: state.delta.mockInterviewTime
+    mockInterviewTime: state.delta.mockInterviewTime,
+    currentQuestion: state.delta.currentQuestion,
+    questionQueue: state.delta.questionQueue
   };
 };
 
