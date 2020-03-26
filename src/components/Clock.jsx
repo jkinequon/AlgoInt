@@ -7,6 +7,8 @@ import RankingModal from "./RankingModal";
 import { bindActionCreators } from "redux";
 import { setTimeFinished } from "../redux/actions/actions";
 
+var willUnmount = false;
+
 class Clock extends Component {
   renderer = ({ formatted: { hours, minutes, seconds }, completed }) => {
     const { setTimeFinished, timeFinished } = this.props;
@@ -24,12 +26,17 @@ class Clock extends Component {
       );
     }
   };
+
+  componentWillUnmount() {
+    willUnmount = true;
+  }
+
   render() {
     const { mockInterviewTime, timeFinished } = this.props;
 
     return (
       <div>
-        {!timeFinished ? (
+        {!willUnmount && !timeFinished ? (
           <Countdown
             date={Date.now() + mockInterviewTime * 60000}
             // date={Date.now() + 3000} // Sets timer to 3 seconds for testing
