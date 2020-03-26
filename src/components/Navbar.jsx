@@ -82,8 +82,8 @@ class Navbar extends Component {
             <span className="third_party_text">Sign in with google</span>
           </div>
         )}
-        {/* {currentMode == 3 ? <Clock /> : <div />} */}
-        <Clock />
+        {currentMode == 3 ? <Clock /> : <div />}
+        {/* <Clock /> */}
       </nav>
     );
   }

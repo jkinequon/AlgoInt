@@ -6,6 +6,7 @@ import { NavLink, withRouter } from "react-router-dom";
 import RankingModal from "./RankingModal";
 import { bindActionCreators } from "redux";
 import { setTimeFinished } from "../redux/actions/actions";
+import { ClockHelper } from "./";
 
 var willUnmount = false;
 
@@ -18,9 +19,13 @@ class Clock extends Component {
       // Render a complete state
       this.countdownApi && this.countdownApi.pause();
 
-      ()=>setTimeFinished(true);
       if (timeFinished) {
-        return <span className="float-right timer">Time's up!</span>;
+        return (
+          <span className="float-right timer">
+            Time's up!
+            <ClockHelper />
+          </span>
+        );
       } else {
         return <div />;
       }
@@ -39,7 +44,7 @@ class Clock extends Component {
       this.countdownApi = countdown.getApi();
     }
   };
-
+  componentWillUpdate() {}
   componentWillUnmount() {
     willUnmount = true;
   }
@@ -49,18 +54,18 @@ class Clock extends Component {
 
     return (
       <div>
-        {/* {!willUnmount && !timeFinished ? ( */}
-        <Countdown
-          ref={this.setRef}
-          date={Date.now() + mockInterviewTime * 60000}
-          // date={Date.now() + 3000} // Sets timer to 3 seconds for testing
-          renderer={this.renderer}
-          autoStart={true}
-          onPause={this.handlePause}
-        />
-        {/* ) : ( */}
-        {/* <></> */}
-        {/* )} */}
+        {!timeFinished ? (
+          <Countdown
+            ref={this.setRef}
+            date={Date.now() + mockInterviewTime * 60000}
+            // date={Date.now() + 3000} // Sets timer to 3 seconds for testing
+            renderer={this.renderer}
+            autoStart={true}
+            onPause={this.handlePause}
+          />
+        ) : (
+          <></>
+        )}
       </div>
     );
   }
