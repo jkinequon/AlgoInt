@@ -50,7 +50,7 @@ class Problem extends Component {
       currentMode,
       frontEndTest
     } = this.props;
-
+    var success = false;
     // console.log(currentQuestion, username);
     // console.log(this.state.value);
     var data = {
@@ -72,12 +72,13 @@ class Problem extends Component {
           var response = JSON.parse(jsonObject["response"]);
 
           if (response["response"] == "Success") {
+            success = true;
             this.setState({
-              consoleOutput: [...this.state.consoleOutput, "Success"]
+              consoleOutput: "Success"
             });
           } else {
             this.setState({
-              consoleOutput: [...this.state.consoleOutput, "Failed"]
+              consoleOutput: "Failed"
             });
           }
           if (response["outputData"] != []) {
@@ -91,7 +92,11 @@ class Problem extends Component {
           if (currentMode == 3) {
             setCurrentQuestion(null);
           } else {
-            this.clickChild(currentQuestion);
+            if (success) {
+              this.clickChild(currentQuestion);
+            } else {
+              setCurrentQuestion(null);
+            }
           }
         });
     } else {
@@ -132,11 +137,11 @@ class Problem extends Component {
 
           if (response["response"] == "Success") {
             this.setState({
-              consoleOutput: [...this.state.consoleOutput, "Success"]
+              consoleOutput: "Success"
             });
           } else {
             this.setState({
-              consoleOutput: [...this.state.consoleOutput, "Failed"]
+              consoleOutput: "Failed"
             });
           }
           if (response["outputData"] != []) {

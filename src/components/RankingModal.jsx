@@ -26,7 +26,7 @@ class RankingModal extends Component {
   };
 
   handleCloseRankingModal = () => {
-    const { withinProblem = false } = this.props;
+    const { withinProblem = false, setCurrentQuestion } = this.props;
     if (withinProblem) {
       setCurrentQuestion(null);
     } else {
