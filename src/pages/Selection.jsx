@@ -15,6 +15,7 @@ class Selection extends Component {
             language={val["Language"]}
             description={val["Question Name"]}
             number={val["QuestionID"]}
+            key={i}
           />
         );
     });

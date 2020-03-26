@@ -256,7 +256,7 @@ class Problem extends Component {
         <div className="left-container">
           <div className="question-div">
             <h1 className="question-title">
-              Question {this.state.questionTitle}
+              {this.state.questionTitle}
             </h1>
             <h2 className="question-text">{this.state.questionDescription}</h2>
           </div>

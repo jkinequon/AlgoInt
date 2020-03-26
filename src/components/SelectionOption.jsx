@@ -22,7 +22,8 @@ class SelectionOption extends Component {
       language,
       description,
       number = [999],
-      setQuestionQueue
+      setQuestionQueue,
+      key
     } = this.props;
 
     return (
@@ -33,7 +34,11 @@ class SelectionOption extends Component {
           activeClassName={"no-text-decoration"}
           to={"/Problem"}
         >
-          <div className="table-row" onClick={() => setQuestionQueue([number])}>
+          <div
+            className="table-row"
+            onClick={() => setQuestionQueue([number])}
+            key={key}
+          >
             {[
               difficulty,
               type,
