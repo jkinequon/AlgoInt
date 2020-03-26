@@ -60,8 +60,10 @@ class LogIn extends Component {
     return (
       <div className="test">
         <div className="intro">
-          Welcome to AlgoInt! Practice your coding knowledge and skills to
-          prepare for interviews or exams.
+          AlgoInt is a platform that prepares you for coding interviews.
+          Everything you need from whiteboard, mock interviews and more. Solve
+          our 6 questions as efficient as you can and see your rank compared to
+          others.
         </div>
         <form className="signIn">
           {signedIn ? (
