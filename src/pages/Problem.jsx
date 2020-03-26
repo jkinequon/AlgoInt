@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setCurrentQuestion, setQuestionQueue } from "../redux/actions/actions";
 
+import RankingModal from "./../components/RankingModal";
+
 class Problem extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +19,8 @@ class Problem extends Component {
       showHint1Modal: false,
       showHint2Modal: false,
       value: "",
-      enableHints: true
+      enableHints: true,
+      consoleOutput: ""
     };
   }
 
@@ -62,8 +65,19 @@ class Problem extends Component {
       body: JSON.stringify(data)
     })
       .then(response => response.json())
-      .then(json => console.log(json))
-      .then(setCurrentQuestion(null));
+      .then(json => {
+        console.log(json);
+        var response = json["response"].json();
+        console.log(response["response"]);
+
+        if (response["response"] == "Success") {
+          // this.clickChild(currentQuestion);
+          this.setState({ consoleOutput: "Success" });
+        } else {
+          this.setState({ consoleOutput: "Failed" });
+        }
+      });
+    // .then(setCurrentQuestion(null));
     console.log(response);
   };
 
@@ -122,6 +136,7 @@ class Problem extends Component {
     console.log(this.state.questionHints);
     return (
       <div className="parent-container">
+        <RankingModal setClick={click => (this.clickChild = click)} />
         {/* HINT MODALS */}
         <ReactModal
           isOpen={this.state.showHint1Modal}
@@ -158,6 +173,23 @@ class Problem extends Component {
           </div>
         </ReactModal>
         {/* HINT MODALS */}
+        <ReactModal
+          isOpen={this.state.showHint2Modal}
+          contentLabel="Modal #2 Global Style Override Example"
+          onRequestClose={this.handleCloseHint2Modal}
+          className="hint-modal"
+          overlayClassName="hint-modal-overlay"
+        >
+          <div className="hint-modal-div">
+            <h1>{this.state.questionHints[1]}</h1>
+            <button
+              className="problem-button modal-close"
+              onClick={this.handleCloseHint2Modal}
+            >
+              <span>Close Modal</span>
+            </button>
+          </div>
+        </ReactModal>
         <div className="left-container">
           <div className="question-div">
             <h1 className="question-title">
@@ -184,7 +216,7 @@ class Problem extends Component {
             <div />
           )}
 
-          <div className="console-div">Console Output</div>
+          <div className="console-div">{this.state.consoleOutput}</div>
         </div>
         <div className="right-container">
           <CodeEditor
