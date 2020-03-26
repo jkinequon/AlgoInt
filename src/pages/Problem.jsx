@@ -236,28 +236,9 @@ class Problem extends Component {
           </div>
         </ReactModal>
         {/* HINT MODALS */}
-        <ReactModal
-          isOpen={this.state.showHint2Modal}
-          contentLabel="Modal #2 Global Style Override Example"
-          onRequestClose={this.handleCloseHint2Modal}
-          className="hint-modal"
-          overlayClassName="hint-modal-overlay"
-        >
-          <div className="hint-modal-div">
-            <h1>{this.state.questionHints[1]}</h1>
-            <button
-              className="problem-button modal-close"
-              onClick={this.handleCloseHint2Modal}
-            >
-              <span>Close Modal</span>
-            </button>
-          </div>
-        </ReactModal>
         <div className="left-container">
           <div className="question-div">
-            <h1 className="question-title">
-              {this.state.questionTitle}
-            </h1>
+            <h1 className="question-title">{this.state.questionTitle}</h1>
             <h2 className="question-text">{this.state.questionDescription}</h2>
           </div>
           {this.state.enableHints ? (
