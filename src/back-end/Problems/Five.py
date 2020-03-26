@@ -11,40 +11,50 @@ class Testing:
         nums1 = [1,3]
         nums2 = [2]
         if FiveS.median(nums1, nums2) != 2.0:
+            print("Test Case 1 Failed")
             return 1
         else:
+            print("Test Case 1 Passed")
             return 0
 
     def test_case_2(self):
         nums1 = [1, 2]
         nums2 = [3, 4, 5]
         if FiveS.median(nums1, nums2) != 3:
+            print("Test Case 2 Failed")
             return 1
         else:
+            print("Test Case 2 Passed")
             return 0
 
     def test_case_3(self):
         nums1 = [1, 2, 3, 4]
         nums2 = [3, 4, 5, 6]
         if FiveS.median(nums1, nums2) != 7:
+            print("Test Case 3 Failed")
             return 1
         else:
+            print("Test Case 3 Passed")
             return 0
 
     def test_case_4(self):
         nums1 = [1, 2]
         nums2 = [3, 4]
         if FiveS.median(nums1, nums2) != 2.5:
+            print("Test Case 4 Failed")
             return 1
         else:
+            print("Test Case 4 Passed")
             return 0
 
     def test_case_5(self):
         nums1 = [10, 11, 12]
         nums2 = [9, 10, 11]
         if FiveS.median(nums1, nums2) != 10.5:
+            print("Test Case 5 Failed")
             return 1
         else:
+            print("Test Case 5 Passed")
             return 0
 
     def runAllTests(self, proc):
