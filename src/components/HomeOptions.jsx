@@ -41,7 +41,7 @@ class HomeOptions extends Component {
       if (questionsObject.length > 0) {
         let tempQuestionQueue = [];
         while (tempQuestionQueue.length < 3) {
-          var min = 0;
+          var min = 1;
           var max = questionsObject.length;
           var random = Math.floor(Math.random() * (+max - +min)) + +min;
           if (!tempQuestionQueue.includes(random)) {
