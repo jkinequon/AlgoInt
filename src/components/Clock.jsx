@@ -9,11 +9,12 @@ import { setTimeFinished } from "../redux/actions/actions";
 
 class Clock extends Component {
   renderer = ({ formatted: { hours, minutes, seconds }, completed }) => {
-    const { setTimeFinished } = this.props;
+    const { setTimeFinished, timeFinished } = this.props;
     if (completed) {
       // Render a complete state
       setTimeFinished(true);
-      return <span className="float-right timer">Time's up!</span>;
+      if (timeFinished)
+        return <span className="float-right timer">Time's up!</span>;
     } else {
       // Render a countdown
       return (
@@ -45,7 +46,6 @@ class Clock extends Component {
 const mapStateToProps = state => {
   return {
     mockInterviewTime: state.delta.mockInterviewTime,
-
     timeFinished: state.delta.timeFinished
   };
 };
