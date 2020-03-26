@@ -37,6 +37,10 @@ export default function deltaReducer(state = initialState, action) {
       return Object.assign({}, state, { ...state, username: action.username });
     }
 
+    case types.SET_UID: {
+      return Object.assign({}, state, { ...state, uid: action.uid });
+    }
+
     case types.SET_CURRENT_MODE: {
       return Object.assign({}, state, {
         ...state,
