@@ -65,6 +65,11 @@ class LogIn extends Component {
           our 6 questions as efficient as you can and see your rank compared to
           others.
         </div>
+        <div class="loader triangle">
+          <svg viewBox="0 0 86 80">
+            <polygon points="43 8 79 72 7 72"> </polygon>
+          </svg>
+        </div>
         <form className="signIn">
           {signedIn ? (
             <button

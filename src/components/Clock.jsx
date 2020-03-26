@@ -13,12 +13,7 @@ class Clock extends Component {
     if (completed) {
       // Render a complete state
       setTimeFinished(true);
-      return (
-        <>
-          <span className="float-right timer">Time's up!</span>
-          {this.handleOpenTimeUpModal()}
-        </>
-      );
+      return <span className="float-right timer">Time's up!</span>;
     } else {
       // Render a countdown
       return (
