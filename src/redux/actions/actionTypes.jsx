@@ -12,3 +12,5 @@ export const SET_USERNAME = 'SET_USERNAME';
 export const SET_UID = 'SET_UID';
 export const SET_CURRENT_MODE = 'SET_CURRENT_MODE';
 export const SET_MOCKINTERVIEW_TIME = 'SET_MOCKINTERVIEW_TIME';
+
+export const TIME_FINISHED = 'TIME_FINISHED';

@@ -8,33 +8,18 @@ import {
   setQuestionQueue,
   setCurrentMode
 } from "../redux/actions/actions";
-
-import RankingModal from "../components/RankingModal";
+import { MockIntResults } from "../components";
 
 import { NavLink, withRouter } from "react-router-dom";
 
 class ProblemManager extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      questionActive: false
-    };
-  }
-
-  callRankingFunction = (e, number) => {
-    e.preventDefault();
-    e.stopPropagation();
-    this.clickChild(number);
-  };
-
   selectQuestion = questionQueue => {
     const { setCurrentQuestion, setQuestionQueue } = this.props;
-
     if (questionQueue != null) {
       var question = questionQueue[0];
       var queue = questionQueue.slice(1);
-      console.log(question);
-      console.log(queue);
+      // console.log(question);
+      // console.log(queue);
       setCurrentQuestion(question);
       setQuestionQueue(queue);
     }
@@ -50,16 +35,13 @@ class ProblemManager extends Component {
       currentQuestion,
       questionQueue,
       questionsObject = [],
-      currentMode,
-      completedQuestions
+      currentMode
     } = this.props;
     console.log(questionsObject);
     return (
       <>
-        <RankingModal setClick={click => (this.clickChild = click)} />
-
         {// if no current question and there exists a queue
-        currentQuestion == null && questionQueue.length != 0 ? (
+        questionQueue.length != 0 && currentQuestion == null ? (
           <div className="problem-start">
             <div className="center-align">
               <h1>
@@ -101,58 +83,11 @@ class ProblemManager extends Component {
           // if there are no selected questions
           <div className="problem-start">
             <div className="center-align">
-              {currentMode == 3 ? <h1>Mock Interview Completed!</h1> : <></>}
-              {currentMode == 3 && completedQuestions.length != 0 ? (
-                completedQuestions.map(val => {
-                  return (
-                    <h2>
-                      Question {val}:{" "}
-                      <span className="console-success">Success! </span>
-                      <button
-                        className="ranking-button"
-                        onClick={e => this.callRankingFunction(e, val)}
-                      >
-                        <span>RANKING Q{val}</span>
-                      </button>
-                    </h2>
-                  );
-                })
+              {currentMode != 3 ? (
+                <h2>Question Completed!</h2>
               ) : (
-                <></>
+                <MockIntResults />
               )}
-              {currentMode == 3 && currentQuestion != null ? (
-                <h2>
-                  Question {currentQuestion}:{" "}
-                  <span className="console-failed">Not Completed... </span>
-                  <button
-                    className="ranking-button"
-                    onClick={e => this.callRankingFunction(e, currentQuestion)}
-                  >
-                    <span>RANKING Q{currentQuestion}</span>
-                  </button>
-                </h2>
-              ) : (
-                <></>
-              )}
-              {currentMode == 3 && questionQueue.length != 0 ? (
-                questionQueue.map(val => {
-                  return (
-                    <h2>
-                      Question {val}:{" "}
-                      <span className="console-failed">Not Attempted... </span>
-                      <button
-                        className="ranking-button"
-                        onClick={e => this.callRankingFunction(e, val)}
-                      >
-                        <span>RANKING Q{val}</span>
-                      </button>
-                    </h2>
-                  );
-                })
-              ) : (
-                <></>
-              )}
-              {currentMode != 3 ? <h2>Question Completed!</h2> : <></>}
 
               <NavLink
                 className="no-text-decoration"
@@ -177,7 +112,8 @@ const mapStateToProps = state => {
     questionQueue: state.delta.questionQueue,
     questionsObject: state.delta.questionsObject,
     currentMode: state.delta.currentMode,
-    completedQuestions: state.delta.completedQuestions
+    completedQuestions: state.delta.completedQuestions,
+    timeFinished: state.delta.timeFinished
   };
 };
 

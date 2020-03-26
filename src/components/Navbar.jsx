@@ -47,12 +47,7 @@ class Navbar extends Component {
   };
 
   render() {
-    const {
-      signedIn,
-      currentMode,
-      currentQuestion,
-      questionQueue
-    } = this.props;
+    const { signedIn, currentMode } = this.props;
 
     return (
       <nav className="navbar-root">
@@ -87,13 +82,8 @@ class Navbar extends Component {
             <span className="third_party_text">Sign in with google</span>
           </div>
         )}
-        {currentMode == 3 && (
-        currentQuestion != null ||
-        questionQueue.length != 0) ? (
-          <Clock />
-        ) : (
-          <div />
-        )}
+        {/* {currentMode == 3 ? <Clock /> : <div />} */}
+        <Clock />
       </nav>
     );
   }
@@ -103,7 +93,6 @@ const mapStateToProps = state => {
     signedIn: state.delta.signedIn,
     currentMode: state.delta.currentMode,
     mockInterviewTime: state.delta.mockInterviewTime,
-    currentQuestion: state.delta.currentQuestion,
     questionQueue: state.delta.questionQueue
   };
 };
@@ -112,7 +101,7 @@ function mapDispatchToProps(dispatch) {
   return {
     signIn: bindActionCreators(signIn, dispatch),
     signOff: bindActionCreators(signOff, dispatch),
-    setUsername: bindActionCreators(setUsername, dispatch)
+    setUsername: bindActionCreators(setUsername, dispatch),
   };
 }
 

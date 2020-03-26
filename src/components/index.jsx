@@ -6,3 +6,4 @@ export { default as CodeEditor } from "./CodeEditor";
 export { default as RankingModal } from "./RankingModal";
 export { default as Clock } from "./Clock";
 export { default as Loader } from "./Loader";
+export { default as MockIntResults } from "./MockIntResults";

@@ -76,6 +76,13 @@ export default function deltaReducer(state = initialState, action) {
       });
     }
 
+    case types.TIME_FINISHED: {
+      return Object.assign({}, state, {
+        ...state,
+        timeFinished: action.timeFinished
+      });
+    }
+
     default:
       return state;
   }

@@ -7,7 +7,8 @@ import {
   setQuestionQueue,
   setCurrentMode,
   setMockInterviewTime,
-  setCompletedQuestions
+  setCompletedQuestions,
+  setTimeFinished
 } from "../redux/actions/actions";
 import Slider from "@material-ui/core/Slider";
 import { NavLink, withRouter } from "react-router-dom";
@@ -27,7 +28,8 @@ class HomeOptions extends Component {
       setCurrentMode,
       setMockInterviewTime,
       questionsObject = [],
-      setCompletedQuestions
+      setCompletedQuestions,
+      setTimeFinished
     } = this.props;
     setCurrentQuestion(null);
     setQuestionQueue([]);
@@ -42,6 +44,7 @@ class HomeOptions extends Component {
     }
     // If MockInterview Mode
     else if (mode == 3) {
+      setTimeFinished(false)
       if (questionsObject.length > 0) {
         let tempQuestionQueue = [];
         while (tempQuestionQueue.length < 3) {
@@ -124,7 +127,8 @@ function mapDispatchToProps(dispatch) {
     setQuestionQueue: bindActionCreators(setQuestionQueue, dispatch),
     setCurrentMode: bindActionCreators(setCurrentMode, dispatch),
     setMockInterviewTime: bindActionCreators(setMockInterviewTime, dispatch),
-    setCompletedQuestions: bindActionCreators(setCompletedQuestions, dispatch)
+    setCompletedQuestions: bindActionCreators(setCompletedQuestions, dispatch),
+    setTimeFinished: bindActionCreators(setTimeFinished, dispatch)
   };
 }
 

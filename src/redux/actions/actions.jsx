@@ -22,3 +22,5 @@ export const setUID = (uid) => { return {uid, type: types.SET_UID } };
 export const setCurrentMode = (currentMode) => { return {currentMode, type: types.SET_CURRENT_MODE } };
 
 export const setMockInterviewTime = (mockInterviewTime) => { return {mockInterviewTime, type: types.SET_MOCKINTERVIEW_TIME } };
+
+export const setTimeFinished = (timeFinished) => { return {timeFinished, type: types.TIME_FINISHED } };
