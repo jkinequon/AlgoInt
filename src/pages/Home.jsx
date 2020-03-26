@@ -17,19 +17,19 @@ class Home extends Component {
         <div className="main-home-container">
           <HomeOptions
             title="WHITEBOARD"
-            description="Selection of challenges, no autocomplete in the code editor"
+            description="Practice Coding Interviews Problems with no code autocompletion."
             toLink="/Selection"
             mode={1}
           />
           <HomeOptions
             title="CODING PROBLEM"
-            description="Selection of challenges, with autocomplete in the code editor"
+            description="Pratice Coding Interview Problems with code autocompletion for a more relaxed environment"
             toLink="/Selection"
             mode={2}
           />
           <HomeOptions
             title="MOCK INTERVIEW"
-            description="Randomly selected challenges, timed, without hints"
+            description="Complete 3 Coding Interview Problems back-to-back in a restricted time with no assisting hints"
             toLink="/Problem"
             mode={3}
             isMockInterview={true}

@@ -9,6 +9,6 @@ export default {
   username: "default_user",
   uid: "abcd",
   currentMode: 0,
-  mockInterviewTime: 10000,
+  mockInterviewTime: 60,
   timeFinished: true
 };

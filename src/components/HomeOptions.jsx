@@ -44,7 +44,7 @@ class HomeOptions extends Component {
     }
     // If MockInterview Mode
     else if (mode == 3) {
-      setTimeFinished(false)
+      setTimeFinished(false);
       if (questionsObject.length > 0) {
         let tempQuestionQueue = [];
         while (tempQuestionQueue.length < 3) {
@@ -72,7 +72,8 @@ class HomeOptions extends Component {
       description,
       toLink = "/",
       isMockInterview = false,
-      mode = 0
+      mode = 0,
+      mockInterviewTime
     } = this.props;
 
     return (
@@ -89,6 +90,9 @@ class HomeOptions extends Component {
           <div className="info-text">{description}</div>
           {isMockInterview ? (
             <div className="range-slider">
+              <div className="info-text">
+                Time frame: {mockInterviewTime} minutes
+              </div>
               <Slider
                 onClick={e => {
                   e.stopPropagation();
@@ -117,7 +121,8 @@ const mapStateToProps = state => {
   return {
     currentQuestion: state.delta.currentQuestion,
     questionQueue: state.delta.questionQueue,
-    questionsObject: state.delta.questionsObject
+    questionsObject: state.delta.questionsObject,
+    mockInterviewTime: state.delta.mockInterviewTime
   };
 };
 
