@@ -20,7 +20,7 @@ class Problem extends Component {
       showHint2Modal: false,
       value: "",
       enableHints: true,
-      consoleOutput: ""
+      consoleOutput: []
     };
   }
 
@@ -65,20 +65,22 @@ class Problem extends Component {
       body: JSON.stringify(data)
     })
       .then(response => response.json())
-      .then(json => {
+      .then(jsonObject => {
         console.log(json);
-        var response = JSON.parse(json["response"]);
-        console.log(response["response"]);
+        var response = JSON.parse(jsonObject["response"]);
 
         if (response["response"] == "Success") {
-          this.clickChild(currentQuestion);
-          this.setState({ consoleOutput: "Success" });
+          // this.clickChild(currentQuestion);
+          this.setState({
+            consoleOutput: [...this.state.consoleOutput, "Success"]
+          });
         } else {
-          this.setState({ consoleOutput: "Failed" });
+          this.setState({
+            consoleOutput: [...this.state.consoleOutput, "Failed"]
+          });
         }
+        this.clickChild(currentQuestion); // Send setCurrentQuestion function to rankingModal's close button
       });
-    // .then(setCurrentQuestion(null));
-    console.log(response);
   };
 
   runHandler = () => {
@@ -106,9 +108,16 @@ class Problem extends Component {
       body: JSON.stringify(data)
     })
       .then(response => response.json())
-      .then(json => console.log(json))
-      .then(setCurrentQuestion(null));
-    console.log(response);
+      .then(jsonObject => {
+        console.log(json);
+        var response = JSON.parse(jsonObject["response"]);
+
+        if (response["response"] == "Success") {
+          this.setState({ consoleOutput: "Success" });
+        } else {
+          this.setState({ consoleOutput: "Failed" });
+        }
+      });
   };
 
   componentDidMount() {
@@ -215,8 +224,11 @@ class Problem extends Component {
           ) : (
             <div />
           )}
-
-          <div className="console-div">{this.state.consoleOutput}</div>
+          <div className="console-div">
+            {this.state.consoleOutput.map(val => {
+              return <p>{val}</p>;
+            })}
+          </div>
         </div>
         <div className="right-container">
           <CodeEditor

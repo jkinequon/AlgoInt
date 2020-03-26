@@ -53,6 +53,9 @@ class RankingModal extends Component {
   }
 
   render() {
+    const {
+      username,
+    } = this.props;
     return (
       <div>
         <ReactModal
@@ -68,12 +71,19 @@ class RankingModal extends Component {
               <div>Code Efficiency</div>
             </div>
             {this.state.currentRankingObject.map((item, i) => {
-              return (
-                <div className="ranking-row" key={i}>
-                  <div>{item["user"]}</div>
-                  <div>{item["time"]}</div>
-                </div>
-              );
+              if (item["user"] == username){
+                <div className="ranking-row row-highlight" key={i}>
+                <div>{item["user"]}</div>
+                <div>{item["time"]}</div>
+              </div>
+              }else{
+                return (
+                  <div className="ranking-row" key={i}>
+                    <div>{item["user"]}</div>
+                    <div>{item["time"]}</div>
+                  </div>
+                );
+              }
             })}
             <button
               className="problem-button modal-close"
@@ -90,7 +100,9 @@ class RankingModal extends Component {
 
 const mapStateToProps = state => {
   return {
-    questionsObject: state.delta.questionsObject
+    questionsObject: state.delta.questionsObject,
+    username: state.delta.username,
+
   };
 };
 
