@@ -4,7 +4,8 @@ export default {
   currentQuestion: null,
   questionQueue: [],
   questionsObject: [],
-  username: "",
+  username: "default_user",
+  uid: "abcd",
   currentMode: 0,
   mockInterviewTime: 10000
 };

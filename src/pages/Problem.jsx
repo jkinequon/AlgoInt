@@ -42,6 +42,7 @@ class Problem extends Component {
       setCurrentQuestion,
       currentQuestion,
       username,
+      uid,
       questionsObject
     } = this.props;
 
@@ -50,7 +51,7 @@ class Problem extends Component {
     var data = {
       name: username,
       message: "Submit",
-      UUID: "AEFJAEIFJIWFI12", //todo get UID from firebase user
+      UUID: uid,
       Question: questionsObject[currentQuestion]["Question Python File"],
       Solution: this.state.value
     };
@@ -71,6 +72,7 @@ class Problem extends Component {
       setCurrentQuestion,
       currentQuestion,
       username,
+      uid,
       questionsObject
     } = this.props;
 
@@ -79,7 +81,7 @@ class Problem extends Component {
     var data = {
       name: username,
       message: "Run",
-      UUID: "AEFJAEIFJIWFI12", //todo get UID from firebase user
+      UUID: uid,
       Question: questionsObject[currentQuestion]["Question Python File"],
       Solution: this.state.value
     };
@@ -220,6 +222,7 @@ const mapStateToProps = state => {
     questionQueue: state.delta.questionQueue,
     questionsObject: state.delta.questionsObject,
     username: state.delta.username,
+    uid: state.delta.uid,
     currentMode: state.delta.currentMode
   };
 };
