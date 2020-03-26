@@ -165,8 +165,9 @@ h1 {
     left: 50%;
     background-color: #252525;
     width: 40%;
-    height: 40%;
+    height: 50%;
     color: #ffffffa6;
+    padding: 5px, 0px;
 }
 
 .hint-modal-overlay {
@@ -186,6 +187,7 @@ h1 {
     width: 100%;
     text-align: center;
     text-decoration: none !important;
+    height: max-content;
     h1 {
         margin: 5px;
     }
