@@ -23,6 +23,16 @@
             border: solid 5px #232323;
             background-color: #141414;
             border-radius: 8px;
+            overflow-y: scroll;
+            .inner-console-div {
+                padding: 0px 15px;
+                .console-success {
+                    color: #9081f1;
+                }
+                .console-failed {
+                    color: #f92749;
+                }
+            }
         }
         .question-title {
             color: #f92749;
@@ -92,7 +102,7 @@ h1 {
     margin: 0px 5px;
     display: inline-block;
     border-radius: 10px;
-    border: solid 5px #232323 !important;
+    border: outset 5px #f92749 !important;
     background-color: #141414;
     color: #f8f8f2;
     text-align: center;
@@ -101,6 +111,10 @@ h1 {
     width: 20%;
     transition: all 0.5s;
     cursor: pointer;
+}
+
+.hint-button {
+    border-color: #232323 !important;
 }
 
 .submit-button {

@@ -47,11 +47,12 @@ class Problem extends Component {
       username,
       uid,
       questionsObject,
-      currentMode
+      currentMode,
+      frontEndTest
     } = this.props;
 
-    console.log(currentQuestion, username);
-    console.log(this.state.value);
+    // console.log(currentQuestion, username);
+    // console.log(this.state.value);
     var data = {
       name: username,
       message: "Submit",
@@ -59,31 +60,44 @@ class Problem extends Component {
       Question: questionsObject[currentQuestion]["Question Python File"],
       Solution: this.state.value
     };
-    console.log(data);
-    let response = fetch("http://127.0.0.1:5000/api/Submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    })
-      .then(response => response.json())
-      .then(jsonObject => {
-        var response = JSON.parse(jsonObject["response"]);
+    if (!frontEndTest) {
+      // console.log(data);
+      let response = fetch("http://127.0.0.1:5000/api/Submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(jsonObject => {
+          var response = JSON.parse(jsonObject["response"]);
 
-        if (response["response"] == "Success") {
-          this.setState({
-            consoleOutput: [...this.state.consoleOutput, "Success"]
-          });
-        } else {
-          this.setState({
-            consoleOutput: [...this.state.consoleOutput, "Failed"]
-          });
-        }
-        if (currentMode == 3){
-          setCurrentQuestion(null)
-        }else{
-          this.clickChild(currentQuestion);
-        }
-      });
+          if (response["response"] == "Success") {
+            this.setState({
+              consoleOutput: [...this.state.consoleOutput, "Success"]
+            });
+          } else {
+            this.setState({
+              consoleOutput: [...this.state.consoleOutput, "Failed"]
+            });
+          }
+          if (response["outputData"] != []) {
+            this.setState({
+              consoleOutput: [
+                ...this.state.consoleOutput,
+                ...response["outputData"]
+              ]
+            });
+          }
+          if (currentMode == 3) {
+            setCurrentQuestion(null);
+          } else {
+            this.clickChild(currentQuestion);
+          }
+        });
+    } else {
+      // THIS IS FRONT-END TESTING CASE
+      setCurrentQuestion(null);
+    }
   };
 
   runHandler = () => {
@@ -92,11 +106,12 @@ class Problem extends Component {
       currentQuestion,
       username,
       uid,
-      questionsObject
+      questionsObject,
+      frontEndTest
     } = this.props;
 
-    console.log(currentQuestion, username);
-    console.log(this.state.value);
+    // console.log(currentQuestion, username);
+    // console.log(this.state.value);
     var data = {
       name: username,
       message: "Run",
@@ -104,26 +119,50 @@ class Problem extends Component {
       Question: questionsObject[currentQuestion]["Question Python File"],
       Solution: this.state.value
     };
-    console.log(data);
-    let response = fetch("http://127.0.0.1:5000/api/Run", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    })
-      .then(response => response.json())
-      .then(jsonObject => {
-        var response = JSON.parse(jsonObject["response"]);
+    if (!frontEndTest) {
+      // console.log(data);
+      let response = fetch("http://127.0.0.1:5000/api/Run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(jsonObject => {
+          var response = JSON.parse(jsonObject["response"]);
 
-        if (response["response"] == "Success") {
-          this.setState({
-            consoleOutput: [...this.state.consoleOutput, "Success"]
-          });
-        } else {
-          this.setState({
-            consoleOutput: [...this.state.consoleOutput, "Failed"]
-          });
-        }
+          if (response["response"] == "Success") {
+            this.setState({
+              consoleOutput: [...this.state.consoleOutput, "Success"]
+            });
+          } else {
+            this.setState({
+              consoleOutput: [...this.state.consoleOutput, "Failed"]
+            });
+          }
+          if (response["outputData"] != []) {
+            this.setState({
+              consoleOutput: [
+                ...this.state.consoleOutput,
+                ...response["outputData"]
+              ]
+            });
+          }
+        });
+    } else {
+      // THIS IS FRONT-END TESTING CASE
+      this.setState({
+        consoleOutput: [
+          ...this.state.consoleOutput,
+          "-DevMode: Response output from server-"
+        ]
       });
+      var output = ["Success", "Failed", "test string"];
+      if (output != []) {
+        this.setState({
+          consoleOutput: [...this.state.consoleOutput, ...output]
+        });
+      }
+    }
   };
 
   componentDidMount() {
@@ -148,11 +187,16 @@ class Problem extends Component {
   }
 
   render() {
-    console.log(this.state.questionHints);
+    console.log(this.state.consoleOutput);
+
+    // console.log(this.state.questionHints);
     var consoleOutput = this.state.consoleOutput;
     return (
       <div className="parent-container">
-        <RankingModal setClick={click => (this.clickChild = click)} withinProblem={true} />
+        <RankingModal
+          setClick={click => (this.clickChild = click)}
+          withinProblem={true}
+        />
         {/* HINT MODALS */}
         <ReactModal
           isOpen={this.state.showHint1Modal}
@@ -181,7 +225,7 @@ class Problem extends Component {
           <div className="hint-modal-div">
             <h1>{this.state.questionHints[1]}</h1>
             <button
-              className="problem-button modal-close"
+              className="problem-button modal-close "
               onClick={this.handleCloseHint2Modal}
             >
               <span>Close Modal</span>
@@ -216,13 +260,13 @@ class Problem extends Component {
           {this.state.enableHints ? (
             <div className="hint-div">
               <button
-                className="problem-button"
+                className="problem-button hint-button"
                 onClick={() => this.handleOpenHint1Modal()}
               >
                 <span>HINT 1</span>
               </button>
               <button
-                className="problem-button"
+                className="problem-button hint-button"
                 onClick={() => this.handleOpenHint2Modal()}
               >
                 <span>HINT 2</span>
@@ -232,13 +276,21 @@ class Problem extends Component {
             <div />
           )}
           <div className="console-div">
-            {consoleOutput != [] ? (
-              consoleOutput.map(val => {
-                return <p>{val}</p>;
-              })
-            ) : (
-              <></>
-            )}
+            <div className="inner-console-div">
+              {consoleOutput != [] ? (
+                consoleOutput.map(val => {
+                  if (val == "Success") {
+                    return <p className="console-success">{val}</p>;
+                  } else if (val == "Failed") {
+                    return <p className="console-failed">{val}</p>;
+                  } else {
+                    return <p>{val}</p>;
+                  }
+                })
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
         </div>
         <div className="right-container">
@@ -278,6 +330,7 @@ const mapStateToProps = state => {
     questionsObject: state.delta.questionsObject,
     username: state.delta.username,
     uid: state.delta.uid,
+    frontEndTest: state.delta.frontEndTest,
     currentMode: state.delta.currentMode
   };
 };
