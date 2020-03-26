@@ -74,11 +74,11 @@ class Problem extends Component {
           if (response["response"] == "Success") {
             success = true;
             this.setState({
-              consoleOutput: "Success"
+              consoleOutput: ["Success"]
             });
           } else {
             this.setState({
-              consoleOutput: "Failed"
+              consoleOutput: ["Failed"]
             });
           }
           if (response["outputData"] != []) {
@@ -137,11 +137,11 @@ class Problem extends Component {
 
           if (response["response"] == "Success") {
             this.setState({
-              consoleOutput: "Success"
+              consoleOutput: ["Success"]
             });
           } else {
             this.setState({
-              consoleOutput: "Failed"
+              consoleOutput: ["Failed"]
             });
           }
           if (response["outputData"] != []) {
@@ -192,8 +192,7 @@ class Problem extends Component {
   }
 
   render() {
-    console.log(this.state.consoleOutput);
-
+    // console.log(this.state.consoleOutput);
     // console.log(this.state.questionHints);
     var consoleOutput = this.state.consoleOutput;
     return (
