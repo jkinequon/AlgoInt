@@ -141,6 +141,7 @@ class Problem extends Component {
 
   render() {
     console.log(this.state.questionHints);
+    var consoleOutput = this.state.consoleOutput;
     return (
       <div className="parent-container">
         <RankingModal setClick={click => (this.clickChild = click)} />
@@ -223,9 +224,13 @@ class Problem extends Component {
             <div />
           )}
           <div className="console-div">
-            {this.state.consoleOutput.map(val => {
-              return <p>{val}</p>;
-            })}
+            {consoleOutput != [] ? (
+              consoleOutput.map(val => {
+                return <p>{val}</p>;
+              })
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         <div className="right-container">
