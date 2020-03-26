@@ -15,8 +15,11 @@ class Clock extends Component {
     if (completed) {
       // Render a complete state
       setTimeFinished(true);
-      if (timeFinished)
+      if (timeFinished) {
         return <span className="float-right timer">Time's up!</span>;
+      } else {
+        return <div />;
+      }
     } else {
       // Render a countdown
       return (
