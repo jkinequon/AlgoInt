@@ -87,7 +87,9 @@ class Navbar extends Component {
             <span className="third_party_text">Sign in with google</span>
           </div>
         )}
-        {currentMode == 3 && currentQuestion != null && questionQueue != [] ? (
+        {currentMode == 3 && (
+        currentQuestion != null ||
+        questionQueue.length != 0) ? (
           <Clock />
         ) : (
           <div />
