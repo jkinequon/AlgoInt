@@ -39,7 +39,13 @@ class Clock extends Component {
     }
   };
   render() {
-    const { mockInterviewTime } = this.props;
+    const {
+      mockInterviewTime,
+      currentQuestion,
+      questionQueue,
+      currentMode,
+      completedQuestions
+    } = this.props;
 
     return (
       <div>
@@ -57,9 +63,58 @@ class Clock extends Component {
           overlayClassName="hint-modal-overlay"
         >
           <div className="hint-modal-div">
-            <h1>Time is up!</h1>
-            <h1>Any unsubmitted work will be lost.</h1>
-            <h1>That kinda sucks</h1>
+            {currentMode == 3 ? <h1>Time up!</h1> : <></>}
+            {currentMode == 3 && completedQuestions.length != 0 ? (
+              completedQuestions.map(val => {
+                return (
+                  <h2>
+                    Question {val}:{" "}
+                    <span className="console-success">Success! </span>
+                    <button
+                      className="ranking-button"
+                      onClick={e => this.callRankingFunction(e, val)}
+                    >
+                      <span>RANKING Q{val}</span>
+                    </button>
+                  </h2>
+                );
+              })
+            ) : (
+              <></>
+            )}
+            {currentMode == 3 && currentQuestion != null ? (
+              <h2>
+                Question {currentQuestion}:{" "}
+                <span className="console-failed">Not Completed... </span>
+                <button
+                  className="ranking-button"
+                  onClick={e => this.callRankingFunction(e, currentQuestion)}
+                >
+                  <span>RANKING Q{currentQuestion}</span>
+                </button>
+              </h2>
+            ) : (
+              <></>
+            )}
+            {currentMode == 3 && questionQueue.length != 0 ? (
+              questionQueue.map(val => {
+                return (
+                  <h2>
+                    Question {val}:{" "}
+                    <span className="console-failed">Not Attempted... </span>
+                    <button
+                      className="ranking-button"
+                      onClick={e => this.callRankingFunction(e, val)}
+                    >
+                      <span>RANKING Q{val}</span>
+                    </button>
+                  </h2>
+                );
+              })
+            ) : (
+              <></>
+            )}
+
             <NavLink
               className="no-text-decoration"
               activeClassName={"no-text-decoration"}
@@ -80,7 +135,12 @@ class Clock extends Component {
 }
 const mapStateToProps = state => {
   return {
-    mockInterviewTime: state.delta.mockInterviewTime
+    mockInterviewTime: state.delta.mockInterviewTime,
+    currentQuestion: state.delta.currentQuestion,
+    questionQueue: state.delta.questionQueue,
+    questionsObject: state.delta.questionsObject,
+    currentMode: state.delta.currentMode,
+    completedQuestions: state.delta.completedQuestions
   };
 };
 
