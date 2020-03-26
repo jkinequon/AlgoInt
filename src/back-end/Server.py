@@ -60,6 +60,7 @@ def runCode():
         solution = request.json['Solution']
         docker = DockerHandler.handleDocker(name)
         docker.DockerRun(UUID, question, solution)
+        docker.dockerStatus()
         response = {
             'response': docker.response,
             'outputData': docker.outputData,
