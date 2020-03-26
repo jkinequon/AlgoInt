@@ -9,43 +9,55 @@ class Testing:
     def test_case_1(self):
         nums = [1,2,0]
         if SixS.firstMissingPositive(nums) != 3:
+            print("Test Case 1 Passed")
             return 1
         else:
+            print("Test Case 1 Failed")
             return 0
 
     def test_case_2(self):
         nums = [3,4,-1,1]
         if SixS.firstMissingPositive(nums) != 2:
+            print("Test Case 2 Passed")
             return 1
         else:
+            print("Test Case 2 Failed")
             return 0
 
     def test_case_3(self):
         nums = [7,8,9,11,12]
         if SixS.firstMissingPositive(nums) != 1:
+            print("Test Case 3 Passed")
             return 1
         else:
+            print("Test Case 3 Failed")
             return 0
 
     def test_case_4(self):
         nums = [x for x in range(1001) if x != 867]
         if SixS.firstMissingPositive(nums) != 867:
+            print("Test Case 4 Passed")
             return 1
         else:
+            print("Test Case 4 Failed")
             return 0
 
     def test_case_5(self):
         nums = [x for x in range(100) if x != 23]
         if SixS.firstMissingPositive(nums) != 23:
+            print("Test Case 5 Passed")
             return 1
         else:
+            print("Test Case 5 Failed")
             return 0
 
     def test_case_6(self):
         nums = [x for x in range(-100,1)]
         if SixS.firstMissingPositive(nums) != 1:
+            print("Test Case 6 Passed")
             return 1
         else:
+            print("Test Case 6 Failed")
             return 0
 
     def runAllTests(self, proc):

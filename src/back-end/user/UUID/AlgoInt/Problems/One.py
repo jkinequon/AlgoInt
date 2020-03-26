@@ -8,32 +8,42 @@ class Testing:
 
     def test_case_1(self):
         if (OneS.getNthFib(1)) != 1:
+            print("Test Case 1 Passed")
             return 1
         else:
+            print("Test Case 1 Failed")
             return 0
- 
+
     def test_case_2(self):
         if (OneS.getNthFib(7)) != 13:
+            print("Test Case 2 Passed")
             return 1
         else:
+            print("Test Case 2 Failed")
             return 0
  
     def test_case_3(self):
         if (OneS.getNthFib(14)) != 377:
+            print("Test Case 3 Passed")
             return 1
         else:
+            print("Test Case 3 Failed")
             return 0
 
     def test_case_4(self):
         if (OneS.getNthFib(16)) != 987:
-             return 1
+            print("Test Case 4 Passed")
+            return 1
         else:
+            print("Test Case 4 Failed")
             return 0
  
     def test_case_5(self):
         if (OneS.getNthFib(17)) != 1597:
+            print("Test Case 5 Passed")
             return 1
         else:
+            print("Test Case 5 Failed")
             return 0
 
     def runAllTests(self, proc):
