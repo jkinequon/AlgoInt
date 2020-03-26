@@ -18,7 +18,7 @@ class Clock extends Component {
       // Render a complete state
       this.countdownApi && this.countdownApi.pause();
 
-      setTimeFinished(true);
+      ()=>setTimeFinished(true);
       if (timeFinished) {
         return <span className="float-right timer">Time's up!</span>;
       } else {
