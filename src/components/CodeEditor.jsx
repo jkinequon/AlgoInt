@@ -52,12 +52,12 @@ const languages = [
 
 class CodeEditor extends Component {
     onLoad() {
-        console.log("Code Editor loaded");
-
+        // console.log("Code Editor loaded");
       }
+
       onChange(newValue, onChange) {
         onChange(newValue)
-        console.log("change", newValue);
+        // console.log("change", newValue);
         this.setState({
           value: newValue
         });
@@ -65,17 +65,17 @@ class CodeEditor extends Component {
       }
     
       onSelectionChange(newValue, event) {
-        console.log("select-change", newValue);
-        console.log("select-change-event", event);
+        // console.log("select-change", newValue);
+        // console.log("select-change-event", event);
       }
     
       onCursorChange(newValue, event) {
-        console.log("cursor-change", newValue);
-        console.log("cursor-change-event", event);
+        // console.log("cursor-change", newValue);
+        // console.log("cursor-change-event", event);
       }
     
       onValidate(annotations) {
-        console.log("onValidate", annotations);
+        // console.log("onValidate", annotations);
       }
 
       constructor(props) {
@@ -114,7 +114,7 @@ class CodeEditor extends Component {
       }
 
     render() {
-        console.log(this.state.mode)
+        // console.log(this.state.mode)
         return (
               <AceEditor
                 placeholder={this.state.placeholder}
