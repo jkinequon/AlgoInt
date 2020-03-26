@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { CodeEditor } from "../components";
+import { CodeEditor, Loader } from "../components";
 import ReactModal from "react-modal";
 
 import { connect } from "react-redux";
@@ -20,7 +20,8 @@ class Problem extends Component {
       showHint2Modal: false,
       value: "",
       enableHints: true,
-      consoleOutput: []
+      consoleOutput: [],
+      isLoading: false
     };
   }
 
@@ -62,6 +63,7 @@ class Problem extends Component {
     };
     if (!frontEndTest) {
       // console.log(data);
+      this.setState({ isLoading: true });
       let response = fetch("http://127.0.0.1:5000/api/Submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -97,6 +99,7 @@ class Problem extends Component {
               this.clickChild(currentQuestion);
             }
           }
+          this.setState({ isLoading: false });
         });
     } else {
       // THIS IS FRONT-END TESTING CASE
@@ -124,6 +127,7 @@ class Problem extends Component {
       Solution: this.state.value
     };
     if (!frontEndTest) {
+      this.setState({ isLoading: true });
       // console.log(data);
       let response = fetch("http://127.0.0.1:5000/api/Run", {
         method: "POST",
@@ -151,6 +155,7 @@ class Problem extends Component {
               ]
             });
           }
+          this.setState({ isLoading: false });
         });
     } else {
       // THIS IS FRONT-END TESTING CASE
@@ -196,6 +201,8 @@ class Problem extends Component {
     var consoleOutput = this.state.consoleOutput;
     return (
       <div className="parent-container">
+        {this.state.isLoading ? <Loader /> : <></>}
+
         <RankingModal
           setClick={click => (this.clickChild = click)}
           withinProblem={true}
