@@ -53,9 +53,7 @@ class RankingModal extends Component {
   }
 
   render() {
-    const {
-      username,
-    } = this.props;
+    const { username } = this.props;
     return (
       <div>
         <ReactModal
@@ -71,12 +69,14 @@ class RankingModal extends Component {
               <div>Code Efficiency</div>
             </div>
             {this.state.currentRankingObject.map((item, i) => {
-              if (item["user"] == username){
-                <div className="ranking-row row-highlight" key={i}>
-                <div>{item["user"]}</div>
-                <div>{item["time"]}</div>
-              </div>
-              }else{
+              if (item["user"] == username) {
+                return (
+                  <div className="ranking-row row-highlight" key={i}>
+                    <div>{item["user"]}</div>
+                    <div>{item["time"]}</div>
+                  </div>
+                );
+              } else {
                 return (
                   <div className="ranking-row" key={i}>
                     <div>{item["user"]}</div>
@@ -101,8 +101,7 @@ class RankingModal extends Component {
 const mapStateToProps = state => {
   return {
     questionsObject: state.delta.questionsObject,
-    username: state.delta.username,
-
+    username: state.delta.username
   };
 };
 
