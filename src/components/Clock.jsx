@@ -11,6 +11,13 @@ class Clock extends Component {
       showTimeUpModal: false
     };
   }
+
+  callRankingFunction = (e, number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.clickChild(number);
+  };
+
   handleOpenTimeUpModal = () => {
     this.setState({ showTimeUpModal: true });
   };
@@ -62,6 +69,8 @@ class Clock extends Component {
           className="hint-modal"
           overlayClassName="hint-modal-overlay"
         >
+          <RankingModal setClick={click => (this.clickChild = click)} />
+
           <div className="hint-modal-div">
             {currentMode == 3 ? <h1>Time up!</h1> : <></>}
             {currentMode == 3 && completedQuestions.length != 0 ? (
