@@ -30,7 +30,7 @@ class Testing:
     def test_case_3(self):
         nums1 = [1, 2, 3, 4]
         nums2 = [3, 4, 5, 6]
-        if FiveS.median(nums1, nums2) != 7:
+        if FiveS.median(nums1, nums2) != 3.5:
             print("Test Case 3 Failed")
             return 1
         else:
@@ -61,7 +61,7 @@ class Testing:
         tests = [self.test_case_1, self.test_case_2, self.test_case_3, self.test_case_4, self.test_case_5]
         start_time = time.time()
         for test in tests:
-            self.total = test()
+            self.total += test()
         end_time = time.time()
         total_time = end_time - start_time
         proc.put([self.total, len(tests), total_time])
