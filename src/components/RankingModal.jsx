@@ -98,7 +98,7 @@ class RankingModal extends Component {
               className="problem-button modal-close"
               onClick={() => this.handleCloseRankingModal()}
             >
-              <span>Close Modal</span>
+              <span>Close</span>
             </button>
           </div>
         </ReactModal>

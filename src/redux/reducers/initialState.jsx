@@ -10,5 +10,6 @@ export default {
   uid: "abcd",
   currentMode: 0,
   mockInterviewTime: 60,
-  timeFinished: true
+  timeFinished: true,
+  countdownRef: null
 };

@@ -5,7 +5,7 @@ import ReactModal from "react-modal";
 import { NavLink, withRouter } from "react-router-dom";
 import RankingModal from "./RankingModal";
 import { bindActionCreators } from "redux";
-import { setTimeFinished } from "../redux/actions/actions";
+import { setTimeFinished, setCountdownRef } from "../redux/actions/actions";
 import { ClockHelper } from "./";
 
 var willUnmount = false;
@@ -42,8 +42,12 @@ class Clock extends Component {
   };
 
   setRef = countdown => {
+    const { setCountdownRef } = this.props;
+
     if (countdown) {
       this.countdownApi = countdown.getApi();
+      console.log(this.countdownApi);
+      setCountdownRef(this.countdownApi); // todo store countdownref and call countdownref.pause() when submitting and .start() when fetched
     }
   };
   componentWillUpdate() {}
@@ -81,7 +85,8 @@ const mapStateToProps = state => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setTimeFinished: bindActionCreators(setTimeFinished, dispatch)
+    setTimeFinished: bindActionCreators(setTimeFinished, dispatch),
+    setCountdownRef: bindActionCreators(setCountdownRef, dispatch)
   };
 }
 

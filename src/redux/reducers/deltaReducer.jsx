@@ -83,6 +83,13 @@ export default function deltaReducer(state = initialState, action) {
       });
     }
 
+    case types.SET_COUNTDOWN_REF: {
+      return Object.assign({}, state, {
+        ...state,
+        countdownRef: action.countdownRef
+      });
+    }
+
     default:
       return state;
   }

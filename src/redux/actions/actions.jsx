@@ -24,3 +24,5 @@ export const setCurrentMode = (currentMode) => { return {currentMode, type: type
 export const setMockInterviewTime = (mockInterviewTime) => { return {mockInterviewTime, type: types.SET_MOCKINTERVIEW_TIME } };
 
 export const setTimeFinished = (timeFinished) => { return {timeFinished, type: types.TIME_FINISHED } };
+
+export const setCountdownRef = (countdownRef) => { return {countdownRef, type: types.SET_COUNTDOWN_REF } };

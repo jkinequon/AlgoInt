@@ -239,7 +239,7 @@ class Problem extends Component {
               className="problem-button modal-close"
               onClick={this.handleCloseHint1Modal}
             >
-              <span>Close Modal</span>
+              <span>Close</span>
             </button>
           </div>
         </ReactModal>
@@ -256,7 +256,7 @@ class Problem extends Component {
               className="problem-button modal-close "
               onClick={this.handleCloseHint2Modal}
             >
-              <span>Close Modal</span>
+              <span>Close</span>
             </button>
           </div>
         </ReactModal>
