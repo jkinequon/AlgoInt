@@ -10,13 +10,18 @@ import {
 
 import RankingModal from "../components/RankingModal";
 
+/**
+ * Component used to display the question results for each question that was in the queue
+ */
 class MockIntResults extends Component {
+  // Stops the default button events
   callRankingFunction = (e, number) => {
     e.preventDefault();
     e.stopPropagation();
     this.clickChild(number);
   };
 
+  // If this is mounted, hide the timer
   componentDidMount() {
     const { setTimeFinished } = this.props;
     setTimeFinished(true);
@@ -26,9 +31,13 @@ class MockIntResults extends Component {
     const { currentQuestion, questionQueue, completedQuestions } = this.props;
     return (
       <div>
+        {/**Modal containing the ranks for the question */}
         <RankingModal setClick={click => (this.clickChild = click)} />
 
         <h1>Mock Interview Completed!</h1>
+        {/**
+         * The following shows all completed, failed, and unattempted questions
+         */}
         {completedQuestions.length != 0 ? (
           completedQuestions.map(val => {
             return (
@@ -84,6 +93,7 @@ class MockIntResults extends Component {
   }
 }
 
+/** Retrieving states for the redux store */
 const mapStateToProps = state => {
   return {
     currentQuestion: state.delta.currentQuestion,
@@ -93,10 +103,12 @@ const mapStateToProps = state => {
   };
 };
 
+/** Retrieving actions for the redux store */
 function mapDispatchToProps(dispatch) {
   return {
     setTimeFinished: bindActionCreators(setTimeFinished, dispatch)
   };
 }
 
+/** Connecting to the redux store */
 export default connect(mapStateToProps, mapDispatchToProps)(MockIntResults);

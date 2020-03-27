@@ -6,10 +6,16 @@ import firebase from "../firebase_config";
 import { NavLink, withRouter } from "react-router-dom";
 import { Clock } from "./";
 
+/**
+ * Navbar will be static on the top of the page
+ * - Will contain a link button to redirect back to the home page
+ * - Will contain a Google sign-in/sign-out button
+ * - Will contain the timer
+ */
 class Navbar extends Component {
+  // Deals with google authentication
   googleSignIn = () => {
     const { signIn, setUsername } = this.props;
-
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase
       .auth()
@@ -20,8 +26,8 @@ class Navbar extends Component {
         // user info
         var user = result.user;
         // console.log(user)
-        signIn();
-        setUsername(user["displayName"]);
+        signIn(); // Sets signed in to true in redux
+        setUsername(user["displayName"]); // Sets username in redux
       })
       .catch(function(error) {
         var errorCode = error.code;
@@ -30,16 +36,16 @@ class Navbar extends Component {
         var redential = error.credential;
       });
   };
-
+  // Deals with google de-authentication
   googleSignOut = () => {
     const { signOff, setUsername } = this.props;
     firebase
       .auth()
       .signOut()
       .then(function() {
-        signOff();
+        signOff(); // Sets signed in to false in redux
         // successful signout
-        setUsername("");
+        setUsername(""); // Sets empty name in redux
       })
       .catch(function(error) {
         console.log(error);
@@ -48,10 +54,9 @@ class Navbar extends Component {
 
   render() {
     const { signedIn, currentMode } = this.props;
-
     return (
       <nav className="navbar-root">
-        <NavLink
+        <NavLink // Used to redirect to home page via router
           className="root-container-home"
           activeClassName={"root-container-home-active"}
           to={"/"}
@@ -82,12 +87,15 @@ class Navbar extends Component {
             <span className="third_party_text">Sign in with google</span>
           </div>
         )}
-        {currentMode == 3 ? <Clock /> : <div />}
+        { // If in mock interview mode, show clock
+        currentMode == 3 ? <Clock /> : <div />}
         {/* <Clock /> */}
       </nav>
     );
   }
 }
+
+/** Retrieving states for the redux store */
 const mapStateToProps = state => {
   return {
     signedIn: state.delta.signedIn,
@@ -97,6 +105,7 @@ const mapStateToProps = state => {
   };
 };
 
+/** Retrieving actions for the redux store */
 function mapDispatchToProps(dispatch) {
   return {
     signIn: bindActionCreators(signIn, dispatch),
@@ -105,4 +114,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+/** Connecting to the redux store */
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));

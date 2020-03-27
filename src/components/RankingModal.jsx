@@ -4,8 +4,16 @@ import firebase from "../firebase_config";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { setCurrentQuestion, setCompletedQuestions } from "../redux/actions/actions";
+import {
+  setCurrentQuestion,
+  setCompletedQuestions
+} from "../redux/actions/actions";
 
+/**
+ * Will display a modal which will hold the top 10 ranks for the question
+ * Ranks are based on submition's runtime
+ * - The faster the code, the higher the rank
+ */
 class RankingModal extends Component {
   constructor(props) {
     super(props);
@@ -16,28 +24,38 @@ class RankingModal extends Component {
     this.rankingHandler = this.rankingHandler.bind(this);
   }
 
+  // Setting the parent's click to call rankingHandler
   componentDidMount() {
     this.props.setClick(this.rankingHandler);
   }
 
+  // Sets the state to show the modal
   handleOpenRankingModal = () => {
     this.setState({ showRankingModal: true });
-    console.log(this.state.currentRankingObject);
+    // console.log(this.state.currentRankingObject);
   };
 
+  // Sets the state to hide the modal
   handleCloseRankingModal = () => {
-    const { withinProblem = false, setCurrentQuestion, setCompletedQuestions, currentQuestion } = this.props;
+    const {
+      withinProblem = false,
+      setCurrentQuestion,
+      setCompletedQuestions,
+      currentQuestion
+    } = this.props;
+    // If we are in a problem, close the problem
     if (withinProblem) {
-      setCompletedQuestions(currentQuestion)
+      setCompletedQuestions(currentQuestion);
       setCurrentQuestion(null);
     } else {
+      // Otherwise just close the modal
       this.setState({ showRankingModal: false });
     }
   };
 
+  // Gets the rankings from firebase
   rankingHandler(number) {
     const { questionsObject } = this.props;
-
     var rankingObject = [];
     var rankings = firebase
       .database()
@@ -54,10 +72,10 @@ class RankingModal extends Component {
         });
       })
       .then(() => {
-        this.setState({ currentRankingObject: rankingObject });
+        this.setState({ currentRankingObject: rankingObject }); // Sets the object
       })
       .then(() => {
-        this.handleOpenRankingModal();
+        this.handleOpenRankingModal(); // When object containing all rankings is fetched, open the modal
       });
   }
 
@@ -65,7 +83,7 @@ class RankingModal extends Component {
     const { username, withinProblem = false } = this.props;
     return (
       <div>
-        <ReactModal
+        <ReactModal // Handles the modal's functionality
           isOpen={this.state.showRankingModal}
           contentLabel=""
           onRequestClose={() => this.handleCloseRankingModal()}
@@ -73,10 +91,12 @@ class RankingModal extends Component {
           overlayClassName="ranking-modal-overlay"
         >
           <div className="ranking-modal-div">
+            {/** HEADERS */}
             <div className="ranking-row header">
               <div>Username</div>
               <div>Code Efficiency</div>
             </div>
+            {/** BODY: For every rank in the object, print a row for the rank */}
             {this.state.currentRankingObject.map((item, i) => {
               if (item["user"] == username) {
                 return (
@@ -107,19 +127,22 @@ class RankingModal extends Component {
   }
 }
 
+/** Retrieving states for the redux store */
 const mapStateToProps = state => {
   return {
     questionsObject: state.delta.questionsObject,
     username: state.delta.username,
-    currentQuestion: state.delta.currentQuestion,
+    currentQuestion: state.delta.currentQuestion
   };
 };
 
+/** Retrieving actions for the redux store */
 function mapDispatchToProps(dispatch) {
   return {
     setCurrentQuestion: bindActionCreators(setCurrentQuestion, dispatch),
-    setCompletedQuestions: bindActionCreators(setCompletedQuestions, dispatch),
+    setCompletedQuestions: bindActionCreators(setCompletedQuestions, dispatch)
   };
 }
 
+/** Connecting to the redux store */
 export default connect(mapStateToProps, mapDispatchToProps)(RankingModal);

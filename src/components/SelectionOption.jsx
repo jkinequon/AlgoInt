@@ -7,7 +7,12 @@ import { setQuestionQueue } from "../redux/actions/actions";
 
 import RankingModal from "./RankingModal";
 
+/**
+ * Is a component for a row for the question selection
+ * - Handles a button in a div button
+ */
 class SelectionOption extends Component {
+  // Deals with event handling
   callRankingFunction = (e, number) => {
     e.preventDefault();
     e.stopPropagation();
@@ -28,8 +33,9 @@ class SelectionOption extends Component {
 
     return (
       <>
+        {/** The Ranking modal to show when the user wants to check the question's ranking */}
         <RankingModal setClick={click => (this.clickChild = click)} />
-        <NavLink
+        <NavLink // Redirects the user to the problem when they select this option
           className="no-text-decoration"
           activeClassName={"no-text-decoration"}
           to={"/Problem"}
@@ -39,7 +45,8 @@ class SelectionOption extends Component {
             onClick={() => setQuestionQueue([number])}
             key={key}
           >
-            {[
+            {// Insert each item into a column of the row
+            [
               difficulty,
               type,
               language,
@@ -65,10 +72,12 @@ class SelectionOption extends Component {
   }
 }
 
+/** Retrieving actions for the redux store */
 function mapDispatchToProps(dispatch) {
   return {
     setQuestionQueue: bindActionCreators(setQuestionQueue, dispatch)
   };
 }
 
+/** Connecting to the redux store */
 export default withRouter(connect(null, mapDispatchToProps)(SelectionOption));

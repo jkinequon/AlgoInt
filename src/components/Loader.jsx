@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
 
+/**
+ * This is the loading screen used when communicating to the server
+ */
 export default class Loader extends Component {
   render() {
     return (
-      <ReactModal
+      <ReactModal // Modal is used to deny the user of any interaction
         isOpen={true}
         className="loader-modal"
         overlayClassName="loader-modal-overlay"

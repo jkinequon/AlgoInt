@@ -1,23 +1,19 @@
 import React, { Component } from "react";
 import Countdown from "react-countdown";
 import { connect } from "react-redux";
-import ReactModal from "react-modal";
-import { NavLink, withRouter } from "react-router-dom";
-import RankingModal from "./RankingModal";
 import { bindActionCreators } from "redux";
 import { setTimeFinished, setCountdownRef } from "../redux/actions/actions";
 import { ClockHelper } from "./";
 
-var willUnmount = false;
+var willUnmount = false; // For debugging purposes
 
 class Clock extends Component {
-  countdownApi = null;
+  countdownApi = null; // For debugging purposes
 
   renderer = ({ formatted: { hours, minutes, seconds }, completed }) => {
-    const { setTimeFinished, timeFinished } = this.props;
     if (completed) {
       // Render a complete state
-      this.countdownApi && this.countdownApi.pause();
+      this.countdownApi && this.countdownApi.pause();  // For debugging purposes
       return (
         <span className="float-right timer">
           Time's up!
@@ -28,7 +24,7 @@ class Clock extends Component {
       // Render a countdown
       return (
         <span className="float-right timer">
-          {hours}:{minutes}:{seconds}
+          {hours}:{minutes}:{seconds} {/**Displays the time */}
         </span>
       );
     }
@@ -36,22 +32,21 @@ class Clock extends Component {
 
   handlePause = ({ seconds }) => {
     const { setTimeFinished, timeFinished } = this.props;
-    this.forceUpdate();
+    this.forceUpdate(); // For debugging purposes
     setTimeFinished(true);
     // alert(seconds);
   };
 
   setRef = countdown => {
     const { setCountdownRef } = this.props;
-
     if (countdown) {
-      this.countdownApi = countdown.getApi();
+      this.countdownApi = countdown.getApi(); // For debugging purposes
       console.log(this.countdownApi);
       setCountdownRef(this.countdownApi); // todo store countdownref and call countdownref.pause() when submitting and .start() when fetched
     }
   };
-  componentWillUpdate() {}
-  componentWillUnmount() {
+
+  componentWillUnmount() { // For debugging purposes
     willUnmount = true;
   }
 
@@ -61,13 +56,13 @@ class Clock extends Component {
     return (
       <div>
         {!timeFinished ? (
-          <Countdown
-            ref={this.setRef}
+          <Countdown // Keeps track of the time and passes it to the renderer
+            ref={this.setRef} // For debugging purposes
             date={Date.now() + mockInterviewTime * 60000}
             // date={Date.now() + 3000} // Sets timer to 3 seconds for testing
             renderer={this.renderer}
             autoStart={true}
-            onPause={this.handlePause}
+            onPause={this.handlePause} // For debugging purposes
           />
         ) : (
           <></>
@@ -76,6 +71,8 @@ class Clock extends Component {
     );
   }
 }
+
+/** Retrieving states for the redux store */
 const mapStateToProps = state => {
   return {
     mockInterviewTime: state.delta.mockInterviewTime,
@@ -83,6 +80,7 @@ const mapStateToProps = state => {
   };
 };
 
+/** Retrieving actions for the redux store */
 function mapDispatchToProps(dispatch) {
   return {
     setTimeFinished: bindActionCreators(setTimeFinished, dispatch),
@@ -90,4 +88,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+/** Connecting to the redux store */
 export default connect(mapStateToProps, mapDispatchToProps)(Clock);

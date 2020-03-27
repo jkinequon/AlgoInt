@@ -13,6 +13,9 @@ import {
 import Slider from "@material-ui/core/Slider";
 import { NavLink, withRouter } from "react-router-dom";
 
+/**
+ * Component to control the contents for each selection component for the home page
+ */
 class HomeOptions extends Component {
   constructor(props) {
     super(props);
@@ -21,6 +24,7 @@ class HomeOptions extends Component {
     };
   }
 
+  // Gets called when a mode is selected
   initializeModeSelection = (mode, isMockInterview) => {
     const {
       setQuestionQueue,
@@ -31,21 +35,24 @@ class HomeOptions extends Component {
       setCompletedQuestions,
       setTimeFinished
     } = this.props;
+    // Set some control states
     setCurrentQuestion(null);
     setQuestionQueue([]);
     setCurrentMode(mode);
     setMockInterviewTime(this.state.sliderValue);
     setCompletedQuestions([]);
 
-    // If Whiteboard mode
+    // If an error somehow occured
     if (mode == 0) {
       alert("No mode detected, error?");
       alert("WHaT tHE FucK!?");
     }
     // If MockInterview Mode
     else if (mode == 3) {
-      setTimeFinished(false);
+      setTimeFinished(false); // Start timer
       if (questionsObject.length > 0) {
+        // Select three random questions from the database
+        // And insert it into the questio queue
         let tempQuestionQueue = [];
         while (tempQuestionQueue.length < 3) {
           var min = 1;
@@ -59,7 +66,7 @@ class HomeOptions extends Component {
       }
     }
   };
-
+  // Gandles the value change for the slider
   handleChange = (event, newValue) => {
     const { setMockInterviewTime } = this.props;
     this.setState({ sliderValue: newValue });
@@ -77,10 +84,10 @@ class HomeOptions extends Component {
     } = this.props;
 
     return (
-      <NavLink
+      <NavLink // To re-route using Router
         className="root-container-home"
         activeClassName={"root-container-home-active"}
-        to={toLink}
+        to={toLink} // Go to the link supplied (/Problem or /Selection)
         onClick={() => this.initializeModeSelection(mode, isMockInterview)}
       >
         <div className="inner-container">
@@ -93,7 +100,7 @@ class HomeOptions extends Component {
               <div className="info-text">
                 Time frame: {mockInterviewTime} minutes
               </div>
-              <Slider
+              <Slider // Slider component for selecting amount of minutes to set the timer to
                 onClick={e => {
                   e.stopPropagation();
                   e.preventDefault();
@@ -117,6 +124,7 @@ class HomeOptions extends Component {
   }
 }
 
+/** Retrieving states for the redux store */
 const mapStateToProps = state => {
   return {
     currentQuestion: state.delta.currentQuestion,
@@ -126,6 +134,7 @@ const mapStateToProps = state => {
   };
 };
 
+/** Retrieving actions for the redux store */
 function mapDispatchToProps(dispatch) {
   return {
     setCurrentQuestion: bindActionCreators(setCurrentQuestion, dispatch),
@@ -137,4 +146,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+/** Connecting to the redux store */
 export default connect(mapStateToProps, mapDispatchToProps)(HomeOptions);
