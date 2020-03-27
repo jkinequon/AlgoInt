@@ -1,3 +1,4 @@
+// Important for importing the actions
 export const SET_FRONTEND_TEST = 'SET_FRONTEND_TEST';
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_OFF = 'SIGN_OFF';

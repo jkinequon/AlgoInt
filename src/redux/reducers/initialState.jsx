@@ -1,3 +1,5 @@
+// Basically the redux master states
+// These are globally accessible via the redux store's actions
 export default {
   frontEndTest: false,
   signedIn: false,

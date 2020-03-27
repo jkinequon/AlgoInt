@@ -1,6 +1,8 @@
 import * as types from "../actions/actionTypes";
 import initialState from "./initialState";
 
+// Assigns action objects and action types
+// Directly interacts with the redux store's master states
 export default function deltaReducer(state = initialState, action) {
   switch (action.type) {
     case types.SET_FRONTEND_TEST: {

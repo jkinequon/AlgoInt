@@ -11,10 +11,15 @@ import './scss/main';
 //Initial Default Redux Settings  
 const store = configureStore();
 
+/**
+ * THE MAIN ENTRY POINT
+ * - Sets up the redux store
+ * - Sets up secure router
+ */
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
+      <Provider store={store}> 
         <SecureRouter />
       </Provider>
     )
