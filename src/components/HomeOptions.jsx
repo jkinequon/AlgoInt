@@ -101,9 +101,9 @@ class HomeOptions extends Component {
                 onChange={(e, val) => this.handleChange(e, val)}
                 defaultValue={60}
                 aria-labelledby="discrete-slider-small-steps"
-                step={10}
+                step={0.5}
                 marks
-                min={1}
+                min={0.5}
                 max={100}
                 valueLabelDisplay="auto"
               />

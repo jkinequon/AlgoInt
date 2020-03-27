@@ -5,8 +5,9 @@ import { setTimeFinished } from "../redux/actions/actions";
 
 class ClockHelper extends Component {
   componentDidMount() {
+    console.log("CLOCK HELPER");
     const { setTimeFinished, timeFinished } = this.props;
-    () => setTimeFinished(true);
+    setTimeFinished(true);
   }
   render() {
     return <div></div>;
@@ -14,16 +15,16 @@ class ClockHelper extends Component {
 }
 
 const mapStateToProps = state => {
-    return {
-      mockInterviewTime: state.delta.mockInterviewTime,
-      timeFinished: state.delta.timeFinished
-    };
+  return {
+    mockInterviewTime: state.delta.mockInterviewTime,
+    timeFinished: state.delta.timeFinished
   };
-  
-  function mapDispatchToProps(dispatch) {
-    return {
-      setTimeFinished: bindActionCreators(setTimeFinished, dispatch)
-    };
-  }
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(ClockHelper);
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setTimeFinished: bindActionCreators(setTimeFinished, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClockHelper);

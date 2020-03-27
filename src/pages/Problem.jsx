@@ -8,9 +8,11 @@ import { bindActionCreators } from "redux";
 import {
   setCurrentQuestion,
   setQuestionQueue,
-  addCompletedQuestion
+  addCompletedQuestion,
+  setTimeFinished
 } from "../redux/actions/actions";
 
+import { ClockHelper } from "../components/";
 import RankingModal from "./../components/RankingModal";
 
 class Problem extends Component {
@@ -28,7 +30,6 @@ class Problem extends Component {
       isLoading: false
     };
   }
-
 
   handleOpenHint1Modal = () => {
     this.setState({ showHint1Modal: true });
@@ -60,13 +61,16 @@ class Problem extends Component {
     var success = false;
     // console.log(currentQuestion, username);
     // console.log(this.state.value);
-    var data = {
-      name: username,
-      message: "Submit",
-      UUID: uid,
-      Question: questionsObject[currentQuestion]["Question Python File"],
-      Solution: this.state.value
-    };
+    console.log(questionsObject);
+    if (currentQuestion != null) {
+      var data = {
+        name: username,
+        message: "Submit",
+        UUID: uid,
+        Question: questionsObject[currentQuestion]["Question Python File"],
+        Solution: this.state.value
+      };
+    }
     if (!frontEndTest) {
       // console.log(data);
       this.setState({ isLoading: true });
@@ -207,8 +211,14 @@ class Problem extends Component {
     // console.log(this.state.consoleOutput);
     // console.log(this.state.questionHints);
     var consoleOutput = this.state.consoleOutput;
+    const { currentMode, setTimeFinished, completedQuestions } = this.props;
     return (
       <div className="parent-container">
+        {currentMode == 3 && completedQuestions.length >= 3 ? (
+          <ClockHelper />
+        ) : (
+          <></>
+        )}
         {this.state.isLoading ? <Loader /> : <></>}
 
         <RankingModal
@@ -338,7 +348,8 @@ const mapStateToProps = state => {
     username: state.delta.username,
     uid: state.delta.uid,
     frontEndTest: state.delta.frontEndTest,
-    currentMode: state.delta.currentMode
+    currentMode: state.delta.currentMode,
+    completedQuestions: state.delta.completedQuestions
   };
 };
 
@@ -347,6 +358,7 @@ function mapDispatchToProps(dispatch) {
     setCurrentQuestion: bindActionCreators(setCurrentQuestion, dispatch),
     addCompletedQuestion: bindActionCreators(addCompletedQuestion, dispatch),
     setQuestionQueue: bindActionCreators(setQuestionQueue, dispatch),
+    setTimeFinished: bindActionCreators(setQuestionQueue, setTimeFinished)
   };
 }
 

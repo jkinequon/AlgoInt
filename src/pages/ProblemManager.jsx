@@ -35,7 +35,9 @@ class ProblemManager extends Component {
       currentQuestion,
       questionQueue,
       questionsObject = [],
-      currentMode
+      currentMode,
+      timeFinished,
+      completedQuestions
     } = this.props;
     console.log(questionsObject);
     return (
@@ -76,8 +78,10 @@ class ProblemManager extends Component {
               </button>
             </div>
           </div>
+        ) : currentMode == 3 && timeFinished == false ? (
+          <Problem />
         ) : // if a question is already active
-        currentQuestion != null ? (
+        currentMode != 3 && currentQuestion != null ? (
           <Problem />
         ) : (
           // if there are no selected questions

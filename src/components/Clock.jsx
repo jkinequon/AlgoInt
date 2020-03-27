@@ -18,17 +18,12 @@ class Clock extends Component {
     if (completed) {
       // Render a complete state
       this.countdownApi && this.countdownApi.pause();
-
-      if (timeFinished) {
-        return (
-          <span className="float-right timer">
-            Time's up!
-            <ClockHelper />
-          </span>
-        );
-      } else {
-        return <div />;
-      }
+      return (
+        <span className="float-right timer">
+          Time's up!
+          <ClockHelper />
+        </span>
+      );
     } else {
       // Render a countdown
       return (
@@ -37,6 +32,13 @@ class Clock extends Component {
         </span>
       );
     }
+  };
+
+  handlePause = ({ seconds }) => {
+    const { setTimeFinished, timeFinished } = this.props;
+    this.forceUpdate();
+    setTimeFinished(true);
+    // alert(seconds);
   };
 
   setRef = countdown => {
