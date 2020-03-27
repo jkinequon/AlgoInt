@@ -10,12 +10,17 @@ import {
   setUID
 } from "../redux/actions/actions";
 import firebase from "../firebase_config";
-import { NavLink, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
+/**
+ * This class will handle the introduction page and the google sign-in option
+ */
 class LogIn extends Component {
+  /**
+   * Function to authenticate the user through google authentication using firebase
+   */
   googleSignIn = () => {
     const { signIn, setUsername, setUID } = this.props;
-
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase
       .auth()
@@ -26,11 +31,11 @@ class LogIn extends Component {
         // user info
         var user = result.user;
         console.log(user);
-        signIn();
-        setUsername(user["displayName"]);
-        setUID(user["uid"]);
+        signIn(); // Set signin to true - for SecureRouter
+        setUsername(user["displayName"]); // Storing username into redux store
+        setUID(user["uid"]);   // Storing UID into redux store
       })
-      .catch(function(error) {
+      .catch(function(error) { // Used for printing errors
         var errorCode = error.code;
         var errorMessage = error.message;
         var email = error.email;
@@ -38,13 +43,16 @@ class LogIn extends Component {
       });
   };
 
+    /**
+   * Function to successfully sign the user out using google auth and firebase
+   */
   googleSignOut = () => {
     const { signOff, setUsername, setUID } = this.props;
     firebase
       .auth()
       .signOut()
       .then(function() {
-        signOff();
+        signOff();  // Set signin to false - for SecureRouter
         // successful signout
         setUsername("default_user");
         setUID("abcd");
@@ -55,8 +63,7 @@ class LogIn extends Component {
   };
 
   render() {
-    const { signedIn, signIn, signOff, setFrontEndTest } = this.props;
-
+    const { setFrontEndTest } = this.props; // For testing front-end
     return (
       <div className="home-panel">
         <div className="welcome-intro">Welcome to</div>
@@ -121,12 +128,14 @@ class LogIn extends Component {
   }
 }
 
+/** Retrieving states for the redux store */
 const mapStateToProps = state => {
   return {
     signedIn: state.delta.signedIn
   };
 };
 
+/** Retrieving actions for the redux store */
 function mapDispatchToProps(dispatch) {
   return {
     setFrontEndTest: bindActionCreators(setFrontEndTest, dispatch),
@@ -137,4 +146,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+/** Connecting to the redux store */
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LogIn));

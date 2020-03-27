@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { FaHammer, FaWrench, FaSadTear } from 'react-icons/fa';
 
+/** This was used for 404 errors */
 export default class UnderDev extends Component {
     render() {
         return (

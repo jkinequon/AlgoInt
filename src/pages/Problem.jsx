@@ -15,6 +15,14 @@ import {
 import { ClockHelper } from "../components/";
 import RankingModal from "./../components/RankingModal";
 
+/**
+ * This component will display the problem page:
+ * - Question Description
+ * - Question Hints
+ * - Question Console Window
+ * - Code Editor
+ * - Run & Submit buttons
+ */
 class Problem extends Component {
   constructor(props) {
     super(props);
@@ -31,22 +39,33 @@ class Problem extends Component {
     };
   }
 
+  // Opens the hint modal
   handleOpenHint1Modal = () => {
     this.setState({ showHint1Modal: true });
   };
 
+  // Opens the hint modal
   handleOpenHint2Modal = () => {
     this.setState({ showHint2Modal: true });
   };
 
+  // Closes the hint modal
   handleCloseHint1Modal = () => {
     this.setState({ showHint1Modal: false });
   };
 
+  // Closes the hint modal
   handleCloseHint2Modal = () => {
     this.setState({ showHint2Modal: false });
   };
 
+  /**
+   * For the Submit Button
+   * Communicates to the server back-end
+   * - Sends the code to compile
+   * - Receives a response
+   * Submits the question to the database if the question's tests passed
+   */
   submitHandler = () => {
     const {
       setCurrentQuestion,
@@ -58,11 +77,12 @@ class Problem extends Component {
       frontEndTest,
       addCompletedQuestion
     } = this.props;
-    var success = false;
+    var success = false; // If the question succeeded
     // console.log(currentQuestion, username);
     // console.log(this.state.value);
-    console.log(questionsObject);
+    // console.log(questionsObject);
     if (currentQuestion != null) {
+      // object to send to the server
       var data = {
         name: username,
         message: "Submit",
@@ -73,7 +93,8 @@ class Problem extends Component {
     }
     if (!frontEndTest) {
       // console.log(data);
-      this.setState({ isLoading: true });
+      this.setState({ isLoading: true }); // Brings up loading screen
+      //Communication with the server /Submit
       let response = fetch("http://127.0.0.1:5000/api/Submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -82,7 +103,6 @@ class Problem extends Component {
         .then(response => response.json())
         .then(jsonObject => {
           var response = JSON.parse(jsonObject["response"]);
-
           if (response["response"] == "Success") {
             success = true;
             this.setState({
@@ -94,6 +114,7 @@ class Problem extends Component {
             });
           }
           if (response["outputData"] != []) {
+            // Save console ouput
             this.setState({
               consoleOutput: [
                 ...this.state.consoleOutput,
@@ -101,7 +122,7 @@ class Problem extends Component {
               ]
             });
           }
-
+          // If it was successful then either bring up the next question or show the rankings
           if (success) {
             if (currentMode == 3) {
               addCompletedQuestion(currentQuestion);
@@ -110,7 +131,7 @@ class Problem extends Component {
               this.clickChild(currentQuestion);
             }
           }
-          this.setState({ isLoading: false });
+          this.setState({ isLoading: false }); // Hides the loading screen
         });
     } else {
       // THIS IS FRONT-END TESTING CASE
@@ -128,9 +149,9 @@ class Problem extends Component {
       questionsObject,
       frontEndTest
     } = this.props;
-
     // console.log(currentQuestion, username);
     // console.log(this.state.value);
+    // object to send to the server
     var data = {
       name: username,
       message: "Run",
@@ -139,8 +160,9 @@ class Problem extends Component {
       Solution: this.state.value
     };
     if (!frontEndTest) {
-      this.setState({ isLoading: true });
+      this.setState({ isLoading: true }); // Brings up loading screen
       // console.log(data);
+      //Communication with the server /Run
       let response = fetch("http://127.0.0.1:5000/api/Run", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -158,7 +180,7 @@ class Problem extends Component {
             this.setState({
               consoleOutput: ["Failed"]
             });
-          }
+          } // Save console ouput
           if (response["outputData"] != []) {
             this.setState({
               consoleOutput: [
@@ -167,10 +189,10 @@ class Problem extends Component {
               ]
             });
           }
-          this.setState({ isLoading: false });
+          this.setState({ isLoading: false }); // Hides the loading screen
         });
     } else {
-      // THIS IS FRONT-END TESTING CASE
+      // THIS IS FRONT-END TESTING CASES
       this.setState({
         consoleOutput: [
           ...this.state.consoleOutput,
@@ -186,6 +208,7 @@ class Problem extends Component {
     }
   };
 
+  /** When component mounts, set the question title, description and hints */
   componentDidMount() {
     const { questionsObject, currentQuestion, currentMode } = this.props;
     var q_object = questionsObject[currentQuestion];
@@ -194,7 +217,7 @@ class Problem extends Component {
       questionDescription: q_object["Question Description"],
       questionHints: q_object["Question Hints"]
     });
-
+    // Enable/Disable hints based on mode
     if (currentMode == 1) {
       // Whiteboard
       this.setState({ enableHints: true });
@@ -211,16 +234,18 @@ class Problem extends Component {
     // console.log(this.state.consoleOutput);
     // console.log(this.state.questionHints);
     var consoleOutput = this.state.consoleOutput;
-    const { currentMode, setTimeFinished, completedQuestions } = this.props;
+    const { currentMode, completedQuestions } = this.props;
     return (
       <div className="parent-container">
-        {currentMode == 3 && completedQuestions.length >= 3 ? (
+        { // This is a helper to stop the clock (setting state in render)
+        currentMode == 3 && completedQuestions.length >= 3 ? (
           <ClockHelper />
         ) : (
           <></>
         )}
-        {this.state.isLoading ? <Loader /> : <></>}
-
+        {// Displays the Loader when the state is set
+        this.state.isLoading ? <Loader /> : <></>}
+        {/* The modal to display the rankings*/}
         <RankingModal
           setClick={click => (this.clickChild = click)}
           withinProblem={true}
@@ -261,6 +286,7 @@ class Problem extends Component {
           </div>
         </ReactModal>
         {/* HINT MODALS */}
+        {/* Div contains the question, hints and console */}
         <div className="left-container">
           <div className="question-div">
             <h1 className="question-title">{this.state.questionTitle}</h1>
@@ -286,7 +312,8 @@ class Problem extends Component {
           )}
           <div className="console-div">
             <div className="inner-console-div">
-              {consoleOutput != [] ? (
+              {// Prints all the console messages
+              consoleOutput != [] ? (
                 consoleOutput.map((val, i) => {
                   if (val == "Success") {
                     return (
@@ -310,6 +337,7 @@ class Problem extends Component {
             </div>
           </div>
         </div>
+        {/* Div contains the code editor and Submit/Run buttons */}
         <div className="right-container">
           <CodeEditor
             onChange={newValue => {
@@ -340,6 +368,7 @@ class Problem extends Component {
   }
 }
 
+/** Retrieving states for the redux store */
 const mapStateToProps = state => {
   return {
     currentQuestion: state.delta.currentQuestion,
@@ -353,6 +382,7 @@ const mapStateToProps = state => {
   };
 };
 
+/** Retrieving actions for the redux store */
 function mapDispatchToProps(dispatch) {
   return {
     setCurrentQuestion: bindActionCreators(setCurrentQuestion, dispatch),
@@ -362,4 +392,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+/** Connecting to the redux store */
 export default connect(mapStateToProps, mapDispatchToProps)(Problem);

@@ -10,21 +10,30 @@ import {
 } from "../redux/actions/actions";
 import { MockIntResults } from "../components";
 
-import { NavLink, withRouter } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
+/**
+ * This component will serve as the main /problems route
+ * It will go on to show 1 of three components
+ * 1. A description of the question to start - with a button to start it
+ * 2. The Problem.jsx component itself - this will show the Q description, hint buttons, console panel, and code editor
+ * 3. The Results component displaying either question completed, each question result and an option to view the rankings page
+ */
 class ProblemManager extends Component {
+  /**
+   * Selects a new question from the question queue
+   */
   selectQuestion = questionQueue => {
     const { setCurrentQuestion, setQuestionQueue } = this.props;
     if (questionQueue != null) {
       var question = questionQueue[0];
       var queue = questionQueue.slice(1);
-      // console.log(question);
-      // console.log(queue);
-      setCurrentQuestion(question);
-      setQuestionQueue(queue);
+      setCurrentQuestion(question); // set the question in redux
+      setQuestionQueue(queue); // set the updated queue in redux
     }
   };
 
+  // If this component unmounts, mode is no longer 1, 2, or 3
   componentWillUnmount() {
     const { setCurrentMode } = this.props;
     setCurrentMode(0);
@@ -36,13 +45,12 @@ class ProblemManager extends Component {
       questionQueue,
       questionsObject = [],
       currentMode,
-      timeFinished,
-      completedQuestions
+      timeFinished
     } = this.props;
-    console.log(questionsObject);
+    // console.log(questionsObject);
     return (
       <>
-        {// if no current question and there exists a queue
+        {// if no current question and there exists a queue then show problem initializer
         questionQueue.length != 0 && currentQuestion == null ? (
           <div className="problem-start">
             <div className="center-align">
@@ -72,25 +80,27 @@ class ProblemManager extends Component {
 
               <button
                 className="problem-button"
+                // This will set the problem and bring up the new window
                 onClick={() => this.selectQuestion(questionQueue)}
               >
                 <span>START</span>
               </button>
             </div>
           </div>
-        ) : currentMode == 3 && timeFinished == false ? (
+        ) : // IF in interview mode and time is not yet finished
+        currentMode == 3 && timeFinished == false ? (
           <Problem />
-        ) : // if a question is already active
+        ) : // IF in whiteboard or coding problem mode and a question is already active
         currentMode != 3 && currentQuestion != null ? (
           <Problem />
         ) : (
-          // if there are no selected questions
+          // IF there are no selected questions, show the results
           <div className="problem-start">
             <div className="center-align">
               {currentMode != 3 ? (
                 <h2>Question Completed!</h2>
               ) : (
-                <MockIntResults />
+                <MockIntResults /> // Shows the results for Mock Interview
               )}
 
               <NavLink
@@ -110,6 +120,7 @@ class ProblemManager extends Component {
   }
 }
 
+/** Retrieving states for the redux store */
 const mapStateToProps = state => {
   return {
     currentQuestion: state.delta.currentQuestion,
@@ -121,6 +132,7 @@ const mapStateToProps = state => {
   };
 };
 
+/** Retrieving actions for the redux store */
 function mapDispatchToProps(dispatch) {
   return {
     setCurrentQuestion: bindActionCreators(setCurrentQuestion, dispatch),
@@ -129,4 +141,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+/** Connecting to the redux store */
 export default connect(mapStateToProps, mapDispatchToProps)(ProblemManager);
