@@ -58,56 +58,44 @@ class LogIn extends Component {
     const { signedIn, signIn, signOff, setFrontEndTest } = this.props;
 
     return (
-      <div className="test">
+      <div className="home-panel">
+        <div className="welcome-intro">Welcome to</div>
+        <div className="title-div">
+          <h1 className="h1-block">lgoInt</h1>
+        </div>
+        <div class="loader-title triangle">
+          <svg viewBox="0 0 86 80">
+            <polygon points="43 8 79 72 7 72"> </polygon>
+          </svg>
+        </div>
         <div className="intro">
           AlgoInt is a platform that prepares you for coding interviews.
           Everything you need from whiteboard, mock interviews and more. Solve
           our 6 questions as efficient as you can and see your rank compared to
           others.
         </div>
-        <div class="loader triangle">
-          <svg viewBox="0 0 86 80">
-            <polygon points="43 8 79 72 7 72"> </polygon>
-          </svg>
-        </div>
-        <form className="signIn">
-          {signedIn ? (
-            <button
-              className=""
-              onClick={() => {
-                signOff();
-              }}
-            >
-              Log out
+        <>
+          <button
+            className=""
+            onClick={() => {
+              signIn();
+              setFrontEndTest();
+            }}
+          >
+            Front-end Dev Testing
+          </button>
+          <div
+            className="google-sign-in-div"
+            onClick={() => {
+              this.googleSignIn();
+            }}
+          >
+            <button className="google-image-button">
+              <img className="google-image" src="assets/google-logo.png"></img>
             </button>
-          ) : (
-            <>
-              <button
-                className=""
-                onClick={() => {
-                  signIn();
-                  setFrontEndTest();
-                }}
-              >
-                Front-end Dev Testing
-              </button>
-              <div
-                className="google-sign-in-div"
-                onClick={() => {
-                  this.googleSignIn();
-                }}
-              >
-                <button className="google-image-button">
-                  <img
-                    className="google-image"
-                    src="assets/google-logo.png"
-                  ></img>
-                </button>
-                <span className="third_party_text">Sign in with google</span>
-              </div>
-            </>
-          )}
-        </form>
+            <span className="third_party_text">Sign in with google</span>
+          </div>
+        </>
       </div>
     );
   }
