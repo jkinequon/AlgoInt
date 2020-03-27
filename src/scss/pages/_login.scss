@@ -4,13 +4,15 @@
     border: solid 5px #232323 !important;
     color: #fff;
     width: 65vw;
-    height: max-content;
+    height: 750px;
     margin: auto;
-    margin-top: 20vh;
+    margin-top: 5vh;
     padding: 10px;
+    padding-top: 50px;
 }
 
 .welcome-intro {
+    color: #ffffffa6;
     text-align: center;
     font-size: 20px;
     margin: auto;
@@ -19,6 +21,7 @@
 }
 
 .title-div {
+    color: #ffffffa6;
     text-align: center;
     font-size: 20px;
     padding: 0px 0px 50px 0px;
@@ -27,7 +30,7 @@
     height: max-content;
     font-size: 50px;
     position: relative;
-    left: 60px;
+    left: 50px;
     .h1-block {
         padding: 0px;
         margin: 0px;
@@ -35,12 +38,33 @@
 }
 
 .intro {
+    color: #ffffffa6;
     text-align: center;
     font-size: 20px;
     padding: 50px;
     margin: auto;
-    width: 50%;
     height: max-content;
+    position: relative;
+    top: -120px;
+    h1 {
+        font-size: 33px;
+        line-height: 50px;
+    }
+}
+
+.mode-intro {
+    color: #ffffffa6;
+    border: outset 3px #9081f1;
+    width: auto;
+    height: max-content;
+    border-radius: 8px;
+    padding: 0px 10px;
+    h2 {
+        text-decoration: underline;
+    }
+    h3 {
+        text-align: left;
+    }
 }
 
 .signIn {
@@ -64,9 +88,12 @@
     background-color: #ffffff00 !important;
     text-decoration: none !important;
     margin: 0 auto;
-    border: solid;
-    border-radius: 4px;
     transition: 0.5s;
+    position: relative;
+    border-radius: 8px;
+    border: 3px solid #5f5f5f;
+    padding: 4px !important;
+    top: -150px;
     .google-image-button {
         cursor: pointer;
         margin-top: 0px;
@@ -111,7 +138,7 @@
     margin: 0px auto;
     transform: scale(2);
     top: -135px;
-    left: -150px;
+    left: -165px;
     &:before {
         content: "";
         width: 6px;

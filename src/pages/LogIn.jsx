@@ -69,33 +69,53 @@ class LogIn extends Component {
           </svg>
         </div>
         <div className="intro">
-          AlgoInt is a platform that prepares you for coding interviews.
-          Everything you need from whiteboard, mock interviews and more. Solve
-          our 6 questions as efficient as you can and see your rank compared to
-          others.
-        </div>
-        <>
-          <button
-            className=""
-            onClick={() => {
-              signIn();
-              setFrontEndTest();
-            }}
-          >
-            Front-end Dev Testing
-          </button>
-          <div
-            className="google-sign-in-div"
-            onClick={() => {
-              this.googleSignIn();
-            }}
-          >
-            <button className="google-image-button">
-              <img className="google-image" src="assets/google-logo.png"></img>
-            </button>
-            <span className="third_party_text">Sign in with google</span>
+          <h1>
+            AlgoInt is a platform that{" "}
+            <span className="console-success">
+              prepares you for coding interviews.
+            </span>
+          </h1>
+          <div className="mode-intro">
+            <h2 className="console-failed">Modes: </h2>
+            <h3>
+              <span className="console-failed">Whiteboard:</span> Enhance your
+              raw skills with no editor assistance!
+            </h3>
+            <h3>
+              <span className="console-failed">Coding Problem:</span>{" "}
+              Comfortable tackle problems with live autocompletion!
+            </h3>
+            <h3>
+              <span className="console-failed">Mock Interview:</span> Escape
+              your comfort zone and tackle problems within a time frame!
+            </h3>
           </div>
-        </>
+          <h2>
+            Solve our 6 questions as{" "}
+            <span className="console-success">efficent</span> as possible and
+            see your rank compared to others.
+          </h2>
+        </div>
+        {/* <button
+          className=""
+          onClick={() => {
+            signIn();
+            setFrontEndTest();
+          }}
+        >
+          Front-end Dev Testing
+        </button> */}
+        <div
+          className="google-sign-in-div"
+          onClick={() => {
+            this.googleSignIn();
+          }}
+        >
+          <button className="google-image-button">
+            <img className="google-image" src="assets/google-logo.png"></img>
+          </button>
+          <span className="third_party_text">Sign in with google</span>
+        </div>
       </div>
     );
   }
