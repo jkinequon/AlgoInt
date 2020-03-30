@@ -1,7 +1,7 @@
 # AlgoInt  
 AlgoInt is a web application made for practicing coding interviews. 
 
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/3Bdj9buMjm8/0.jpg)](http://www.youtube.com/watch?v=3Bdj9buMjm8 "Video Title")
+[![IMAGE ALT TEXT](VideoImage.jpg)](http://www.youtube.com/watch?v=3Bdj9buMjm8 "Video Title")
 
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/3Bdj9buMjm8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
   
