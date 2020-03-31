@@ -1,5 +1,5 @@
 # AlgoInt  
-## AlgoInt is a web application made for practicing coding interviews. 
+**AlgoInt is a web application made for practicing coding interviews.**
 
 ### Check out the YouTube video below:
 [![AlgoInt Presentation](VideoImage.jpg)](http://www.youtube.com/watch?v=3Bdj9buMjm8 "AlgoInt Presentation")
