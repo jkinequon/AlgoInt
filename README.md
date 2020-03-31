@@ -1,7 +1,7 @@
 # AlgoInt  
-AlgoInt is a web application made for practicing coding interviews. 
+## AlgoInt is a web application made for practicing coding interviews. 
 
-Check out the YouTube video below:
+## Check out the YouTube video below:
 [![AlgoInt Presentation](VideoImage.jpg)](http://www.youtube.com/watch?v=3Bdj9buMjm8 "AlgoInt Presentation")
 
 <!-- <div class="something" markdown="1">
@@ -17,4 +17,4 @@ docker run -v /home/justicesk/Documents/Test/tmp:/tmp -it --rm -e path_file=One.
   
 Note that the path /home/justicesk/Documents/Test/tmp is the path where you want to write into it. 
 
-React-Ace: https://www.npmjs.com/package/react-ace
+### React-Ace: https://www.npmjs.com/package/react-ace
