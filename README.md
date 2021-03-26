@@ -4,7 +4,7 @@
 
 ## Group members:
 - Jeremy Storring (JNS855)
-- Justice Sparvier-Kinequon (JJS497)
+- Justice SK (JJS497)
 - Ricardo Rheeder (RIR954)
 - Sarah Piot (SFP987)
 
